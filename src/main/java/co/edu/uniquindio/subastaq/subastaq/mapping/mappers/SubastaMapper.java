@@ -80,4 +80,14 @@ public interface SubastaMapper {
     List<ProductoDto> getPujasDto(List<Puja> listaPujas);
     @Named("mappingToPujaDto")
     PujaDto mappingToPujaDto(Puja puja);
+
+    //Mapping usuario
+    @Named("UsuarioToUsuarioDto")
+    UsuarioDto usuarioToUsuarioDto (Usuario usuario);
+    Usuario usuarioDtoToUsuario(UsuarioDto usuarioDto);
+    @IterableMapping (qualifiedByName = "UsuarioToUsuarioDto")
+    List<UsuarioDto> getUsuariosDto (List<Usuario> listaUsuarios);
+    @Named("mappingToUsuarioDto")
+    UsuarioDto mappingToUsuarioDto(Usuario usuario);
+
 }
