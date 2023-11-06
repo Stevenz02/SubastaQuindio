@@ -77,7 +77,7 @@ public interface SubastaMapper {
     PujaDto pujaToPujaDto(Puja puja);
     Puja pujaDtoToPuja(PujaDto pujaDto);
     @IterableMapping(qualifiedByName = "PujaToPujaDto")
-    List<ProductoDto> getPujasDto(List<Puja> listaPujas);
+    List<PujaDto> getPujasDto(List<Puja> listaPujas);
     @Named("mappingToPujaDto")
     PujaDto mappingToPujaDto(Puja puja);
 
