@@ -5,4 +5,7 @@ module co.edu.uniquindio.subastaq.subastaq {
     requires java.desktop;
     requires java.logging;
 
+    opens co.edu.uniquindio.subastaq.subastaq.aplicacion to javafx.fxml;
+    opens co.edu.uniquindio.subastaq.subastaq.controller to javafx.fxml;
+    exports co.edu.uniquindio.subastaq.subastaq.aplicacion to javafx.graphics;
 }
