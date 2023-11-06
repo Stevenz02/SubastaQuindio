@@ -1,15 +1,15 @@
 package co.edu.uniquindio.subastaq.subastaq.controller;
 
+import co.edu.uniquindio.subastaq.subastaq.model.Anunciante;
+import co.edu.uniquindio.subastaq.subastaq.model.Comprador;
+import co.edu.uniquindio.subastaq.subastaq.model.TipoProducto;
 import javafx.beans.Observable;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import co.edu.uniquindio.subastaq.subastaq.controllerModel.UsuarioController;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.UsuarioDto;
 
@@ -34,7 +34,7 @@ public class registrarUsuarioController {
     private Button btnGuardar;
 
     @FXML
-    private ComboBox<?> comboUsuario;
+    private ComboBox<String> comboUsuario;
 
     @FXML
     private Label registroLabel;
@@ -56,6 +56,18 @@ public class registrarUsuarioController {
 
     @FXML
     private TextField texUsuario;
+
+    @FXML
+    private TableColumn<UsuarioDto, String> colmNombre;
+
+    @FXML
+    private TableColumn<UsuarioDto, String> colmCedula;
+
+    @FXML
+    private TableColumn<UsuarioDto, String> colmTipo;
+
+    @FXML
+    private TableView<UsuarioDto> tableUsuarios;
 
     @FXML
     void bttActualizar(ActionEvent event) {
@@ -82,7 +94,19 @@ public class registrarUsuarioController {
     }
 
     private void intiView() {
+        initDataBinding();
+
+
     }
+    private void initDataBinding() {
+        colmNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().nombre()));
+        colmCedula.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().apellido()));
+        colmTipo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().cedula()));
+    }
+    private void obtenerUsuarios() {
+        listaUsuariosDto.addAll(UsuarioControllerService.obtenerUsuarios());
+    }
+
 
 }
 

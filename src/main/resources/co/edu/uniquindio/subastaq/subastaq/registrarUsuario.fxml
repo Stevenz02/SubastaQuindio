@@ -13,6 +13,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <AnchorPane prefHeight="553.0" prefWidth="773.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.subastaq.subastaq.controller.registrarUsuarioController">
    <children>
       <SplitPane prefHeight="553.0" prefWidth="773.0">
@@ -36,7 +38,14 @@
                               <TextField fx:id="texEdad" layoutX="175.0" layoutY="103.0" />
                               <TextField fx:id="texCedula" layoutX="175.0" layoutY="132.0" />
                               <TextField fx:id="texUsuario" layoutX="175.0" layoutY="237.0" />
-                              <ComboBox fx:id="comboUsuario" layoutX="175.0" layoutY="161.0" prefWidth="150.0" />
+                              <ComboBox fx:id="comboUsuario" layoutX="175.0" layoutY="161.0" prefWidth="150.0">
+                                  <items>
+                                      <FXCollections fx:factory="observableArrayList">
+                                          <String fx:value="Comprador" />
+                                          <String fx:value="Anunciante" />
+                                      </FXCollections>
+                                  </items>
+                              </ComboBox>
                               <Label fx:id="registroLabel" layoutX="313.0" layoutY="1.0" styleClass="label-titulo" stylesheets="@../../../../../EstilosCCS/styles.css" text="Registro de usuario" />
                               <Label layoutX="17.0" layoutY="136.0" text="Cedula:" />
                               <Button fx:id="btnActualizar" layoutX="629.0" layoutY="255.0" mnemonicParsing="false" onAction="#bttActualizar" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Actualizar Usuario" />
@@ -52,11 +61,11 @@
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="132.0" prefWidth="628.0">
                            <children>
-                              <TableView layoutX="8.0" layoutY="3.0" prefHeight="213.0" prefWidth="439.0" stylesheets="@../../../../../EstilosCCS/styles.css">
+                              <TableView fx:id="tableUsuarios" layoutX="8.0" layoutY="3.0" prefHeight="213.0" prefWidth="439.0" stylesheets="@../../../../../EstilosCCS/styles.css">
                                 <columns>
-                                  <TableColumn prefWidth="136.79997634887695" text="Nombre" />
-                                  <TableColumn prefWidth="137.60006713867188" text="Cedula" />
-                                    <TableColumn prefWidth="165.60003662109375" text="Tipo de usuario" />
+                                  <TableColumn fx:id="colmNombre" prefWidth="136.79997634887695" text="Nombre" />
+                                  <TableColumn fx:id="colmCedula" prefWidth="137.60006713867188" text="Cedula" />
+                                    <TableColumn fx:id="colmTipo" prefWidth="165.60003662109375" text="Tipo de usuario" />
                                 </columns>
                               </TableView>
                               <Button fx:id="btnEliminar" layoutX="460.0" layoutY="90.0" mnemonicParsing="false" onAction="#bttEliminar" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Eliminar Usuario" />
