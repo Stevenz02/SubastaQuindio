@@ -3,6 +3,7 @@ package co.edu.uniquindio.subastaq.subastaq.model;
 
 import co.edu.uniquindio.subastaq.subastaq.exception.AnuncianteExepcion;
 import co.edu.uniquindio.subastaq.subastaq.exception.CompradorExepcion;
+import co.edu.uniquindio.subastaq.subastaq.exception.UsuarioExepcion;
 import co.edu.uniquindio.subastaq.subastaq.model.service.ISubastaService;
 
 import java.io.Serializable;
@@ -90,30 +91,33 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
     }
 
     @Override
-    public Usuario crearUsuario(String nombre, String apellido, Integer edad, String cedula, String NombreUsuario, String contrasenia, String tipo) throws CompradorExepcion, AnuncianteExepcion {
+    public Usuario crearUsuario(String nombre, String apellido, Integer edad, String cedula, String NombreUsuario, String contrasenia, String tipo) throws CompradorExepcion, AnuncianteExepcion, UsuarioExepcion {
         Usuario usuario = null;
-        if(usuarioExiste(cedula) && isMayor(edad)){
-            if (tipo.equalsIgnoreCase("Comprador")){
-                usuario = new Usuario(NombreUsuario,contrasenia);
-                usuario.setNombre(nombre);
-                usuario.setApellido(apellido);
-                usuario.setCedula(cedula);
-                usuario.setEdad(edad);
-                getListaUsuarios().add(usuario);
-                crearComprador(usuario);
-            }
-            else if(tipo.equalsIgnoreCase("Anunciante")){
-                usuario = new Usuario(NombreUsuario,contrasenia);
-                usuario.setNombre(nombre);
-                usuario.setApellido(apellido);
-                usuario.setCedula(cedula);
-                usuario.setEdad(edad);
-                getListaUsuarios().add(usuario);
-                crearAnunciante(usuario);
-            }
-            else {
-                System.out.println("Ingrese correctamente el tipo de usuario");
-            }
+        if(usuarioExiste(cedula)){
+            throw new UsuarioExepcion("El usuario con cedula: "+ cedula + "ya existe");
+        } else if (!isMayor(edad)) {
+            throw new UsuarioExepcion("El usuario es menor de edad, tiene "+ edad + " años");
+        }
+        if (tipo.equalsIgnoreCase("Comprador")){
+            usuario = new Usuario(NombreUsuario,contrasenia);
+            usuario.setNombre(nombre);
+            usuario.setApellido(apellido);
+            usuario.setCedula(cedula);
+            usuario.setEdad(edad);
+            getListaUsuarios().add(usuario);
+            crearComprador(usuario);
+        }
+        else if(tipo.equalsIgnoreCase("Anunciante")){
+            usuario = new Usuario(NombreUsuario,contrasenia);
+            usuario.setNombre(nombre);
+            usuario.setApellido(apellido);
+            usuario.setCedula(cedula);
+            usuario.setEdad(edad);
+            getListaUsuarios().add(usuario);
+            crearAnunciante(usuario);
+        }
+        else {
+            throw new UsuarioExepcion("Ingrese correctamente el tipo de usuario");
         }
         return usuario;
     }
@@ -125,14 +129,75 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
 
     @Override
     public boolean usuarioExiste(String cedula) {
-        boolean flag = true;
-        for (Usuario usuario : listaUsuarios){
+        boolean flag = false;
+        for (Usuario usuario : getListaUsuarios()){
             if (usuario.getCedula().equalsIgnoreCase(cedula)) {
-                flag = false;
+                flag = true;
                 break;
             }
         }
         return flag;
     }
 
+    @Override
+    public Boolean eliminarUsuario(String cedula) throws UsuarioExepcion {
+        Usuario usuario = null;
+        boolean flag = false;
+        usuario = obtenerUsuario(cedula);
+        if (usuario == null){
+            throw new UsuarioExepcion("El usuario a eliminar no existe");
+        }else {
+            getListaUsuarios().remove(usuario);
+            flag = true;
+        }
+        return flag;
+    }
+
+    @Override
+    public boolean actualizarUsuario(String cedulaActual, Usuario usuario) throws UsuarioExepcion {
+        Usuario usuarioActual = obtenerUsuario(cedulaActual);
+        if (usuarioActual == null){
+            throw new UsuarioExepcion("El usuario no existe");
+        }
+        else {
+            usuarioActual.setNombre(usuario.getNombre());
+            usuarioActual.setApellido(usuario.getApellido());
+            usuarioActual.setCedula(usuarioActual.getCedula());
+            usuarioActual.setEdad(usuario.getEdad());
+            usuarioActual.setNombreUsuario(usuario.getNombreUsuario());
+            usuarioActual.setContrasenia(usuario.getContrasenia());
+        }
+        return true;
+    }
+
+    @Override
+    public boolean verificarUsuarioExistente(String cedula) throws UsuarioExepcion {
+        if (usuarioExiste(cedula)){
+            throw new UsuarioExepcion("El usuario con cedula: "+ cedula+" ya existe");
+        }
+        else {
+            return true;
+        }
+    }
+
+    @Override
+    public Usuario obtenerUsuario(String cedula) {
+        Usuario usuarioEncontrado = null;
+        for (Usuario usuario: getListaUsuarios()){
+            if (usuario.getCedula().equalsIgnoreCase(cedula)){
+                usuarioEncontrado = usuario;
+                break;
+            }
+        }
+        return usuarioEncontrado;
+    }
+
+    @Override
+    public List<Usuario> obtenerUsuarios() {
+        return getListaUsuarios();
+    }
+
+    public void agregarUsuario(Usuario nuevoUsuario) throws UsuarioExepcion {
+        getListaUsuarios().add(nuevoUsuario);
+    }
 }

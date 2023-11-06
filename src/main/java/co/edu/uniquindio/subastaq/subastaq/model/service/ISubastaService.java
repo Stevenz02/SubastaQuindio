@@ -5,8 +5,16 @@ import co.edu.uniquindio.subastaq.subastaq.exception.CompradorExepcion;
 import co.edu.uniquindio.subastaq.subastaq.exception.UsuarioExepcion;
 import co.edu.uniquindio.subastaq.subastaq.model.Usuario;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public interface ISubastaService {
     public Usuario crearUsuario(String nombre, String apellido, Integer edad, String cedula, String NombreUsuario, String contrasenia, String tipo) throws UsuarioExepcion, CompradorExepcion, AnuncianteExepcion;
     public boolean isMayor(Integer edad);
     public boolean usuarioExiste(String cedula);
+    public Boolean eliminarUsuario(String cedula)throws UsuarioExepcion;
+    boolean actualizarUsuario(String cedulaActual, Usuario usuario) throws UsuarioExepcion;
+    public boolean  verificarUsuarioExistente(String cedula) throws UsuarioExepcion;
+    public Usuario obtenerUsuario(String cedula);
+    public List<Usuario> obtenerUsuarios();
 }
