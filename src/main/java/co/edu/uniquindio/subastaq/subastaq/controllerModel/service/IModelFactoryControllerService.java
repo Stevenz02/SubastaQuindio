@@ -12,6 +12,6 @@ public interface IModelFactoryControllerService {
     List<AnuncianteDto> obtenerAnunciantes();
     boolean agregarUsuario(UsuarioDto usuarioDto);
     boolean actualizarUsuario (String cedula, UsuarioDto usuarioDto);
-    boolean eliminarUsuario(String cedula, UsuarioDto usuarioDto);
+    boolean eliminarUsuario(String cedula);
 
 }
