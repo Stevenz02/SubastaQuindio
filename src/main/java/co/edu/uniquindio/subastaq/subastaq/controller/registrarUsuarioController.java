@@ -1,5 +1,8 @@
 package co.edu.uniquindio.subastaq.subastaq.controller;
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,8 +10,13 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import co.edu.uniquindio.subastaq.subastaq.controllerModel.UsuarioController;
+import co.edu.uniquindio.subastaq.subastaq.mapping.dto.UsuarioDto;
 
 public class registrarUsuarioController {
+    UsuarioController UsuarioControllerService;
+    ObservableList<UsuarioDto> listaUsuariosDto = FXCollections.observableArrayList();
+    UsuarioDto usuarioSeleccionado;
 
     @FXML
     private Label accesoLabel;
@@ -67,6 +75,13 @@ public class registrarUsuarioController {
     @FXML
     void bttGuardar(ActionEvent event) {
 
+    }
+    void initialize() {
+        UsuarioControllerService = new UsuarioController();
+        intiView();
+    }
+
+    private void intiView() {
     }
 
 }
