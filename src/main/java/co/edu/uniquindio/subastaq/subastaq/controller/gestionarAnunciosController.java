@@ -34,7 +34,7 @@ public class gestionarAnunciosController {
     private Button btneliminarProducto;
 
     @FXML
-    private ComboBox<?> cbTipoProducto;
+    private ComboBox<TipoProducto> cbTipoProducto;
 
     @FXML
     private TableColumn<Anuncio, String> columnaNombreProducto;
