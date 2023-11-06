@@ -151,7 +151,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     }
 
     @Override
-    public boolean eliminarUsuario(String cedula, UsuarioDto usuarioDto) {
+    public boolean eliminarUsuario(String cedula) {
         boolean flag = false;
         try{
             flag = getSubastaUniquindio().eliminarUsuario(cedula);
@@ -160,4 +160,5 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         }
         return flag;
     }
+
 }
