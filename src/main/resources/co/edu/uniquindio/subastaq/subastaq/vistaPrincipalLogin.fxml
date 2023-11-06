@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="566.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.subastaq.subastaq.controller.vistaPrincipalLogin">
+   <children>
+      <TabPane prefHeight="566.0" prefWidth="782.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Autenticar">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <SplitPane orientation="VERTICAL" prefHeight="536.0" prefWidth="782.0">
+                          <items>
+                              <fx:include source="autenticarUsuario.fxml" />
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+          <Tab text="Registro Usuario">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <SplitPane orientation="VERTICAL" prefHeight="537.0" prefWidth="782.0">
+                          <items>
+                              <fx:include source="registrarUsuario.fxml" />
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
