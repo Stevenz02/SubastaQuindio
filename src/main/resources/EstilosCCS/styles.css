@@ -1,0 +1,35 @@
+/* Estilo para los labels */
+.label-titulo {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+/* Estilo para los botones */
+.button-standard {
+    -fx-background-color: #5c6bc0;
+    -fx-text-fill: white;
+    -fx-border-color: transparent;
+    -fx-border-radius: 4;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5;
+}
+
+.button-standard:hover {
+    -fx-background-color: #3949ab;
+}
+
+/* Estilo para la tabla */
+.table-view {
+    -fx-border-color: #cccccc;
+    -fx-border-insets: 5;
+    -fx-border-width: 1;
+    -fx-border-style: solid;
+}
+
+/* Estilo para el lado izquierdo del panel */
+.letf-form {
+    -fx-background-color: linear-gradient(to top right, #ffffff, #ffffff);
+    -fx-border-color: #000;
+    -fx-border-width: .4px 0px .4px .4px; /* LADO IZQUIERDO DEL PANEL */
+}
