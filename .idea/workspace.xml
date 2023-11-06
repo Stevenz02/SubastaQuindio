@@ -5,21 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c0cd79d-d40e-49f3-a50a-5ec033274a5e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/aplicacion/aplicacion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controller/autenticarUsuarioController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controller/registrarUsuarioController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controller/vistaPrincipalLogin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/EstilosCCS/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Imagenes/LogoSQ.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Imagenes/UsuarioLogin.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastaq/subastaq/autenticarUsuario.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastaq/subastaq/registrarUsuario.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastaq/subastaq/vistaPrincipalLogin.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/HelloApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/HelloController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastaq/subastaq/hello-view.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,10 +39,10 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2XlyM1Om7U1Zlfeg2iSHmHTGZTr" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -65,21 +51,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Steven",
-    "last_opened_file_path": "C:/Users/apoyotic/Documents/GitHub/Proyecto_SubastaQ/SubastaQ/src/main/resources/Imagenes",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Steven&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/apoyotic/Documents/GitHub/Proyecto_SubastaQ/SubastaQ/src/main/resources/Imagenes&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\apoyotic\Documents\GitHub\Proyecto_SubastaQ\SubastaQ\src\main\resources\Imagenes" />
