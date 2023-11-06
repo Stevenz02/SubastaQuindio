@@ -5,7 +5,7 @@ import co.edu.uniquindio.subastaq.subastaq.model.service.ICompradorService;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Comprador extends Persona implements Serializable, ICompradorService {
+public class Comprador extends Usuario implements Serializable, ICompradorService {
     private Integer limitePujas;
     private Double cantidadPujada;
     private Puja pujaActual;
@@ -62,5 +62,10 @@ public class Comprador extends Persona implements Serializable, ICompradorServic
                 ", cantidadPujada=" + cantidadPujada +
                 ", pujaActual=" + pujaActual +
                 '}';
+    }
+
+    @Override
+    public Puja crearPuja() {
+        return null;
     }
 }

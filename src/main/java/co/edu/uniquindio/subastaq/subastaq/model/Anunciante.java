@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-public class Anunciante extends Persona implements Serializable, IAnuncianteService {
+public class Anunciante extends Usuario implements Serializable, IAnuncianteService {
     private Integer cantidadAnuncios;
     private Date fechaLimite;
     private List<Producto> listaProductos;
@@ -75,5 +75,15 @@ public class Anunciante extends Persona implements Serializable, IAnuncianteServ
                 ", listaProductos=" + listaProductos +
                 ", listaAnuncios=" + listaAnuncios +
                 '}';
+    }
+
+    @Override
+    public Anuncio crearAnuncio() {
+        return null;
+    }
+
+    @Override
+    public boolean eliminarAnuncio() {
+        return false;
     }
 }

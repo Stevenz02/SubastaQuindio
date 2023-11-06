@@ -1,11 +1,9 @@
 package co.edu.uniquindio.subastaq.subastaq.model;
 
-import co.edu.uniquindio.subastaq.subastaq.model.service.IPersonaService;
-
 import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Persona implements Serializable, IPersonaService {
+public abstract class Persona implements Serializable {
     private String nombre;
     private String apellido;
     private String cedula;
