@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="co.edu.uniquindio.subastaq.subastaq.controller.vistaPrincipalAnunciante" prefHeight="566.0" prefWidth="782.0">
+    <children>
+        <TabPane prefHeight="566.0" prefWidth="782.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Gestionar Anuncios">
+                    <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                            <children>
+                                <SplitPane orientation="VERTICAL" prefHeight="536.0" prefWidth="782.0">
+                                    <items>
+                                        <fx:include source="gestionarAnuncios.fxml" />
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Gestionar Pujas">
+                    <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                            <children>
+                                <SplitPane orientation="VERTICAL" prefHeight="537.0" prefWidth="782.0">
+                                    <items>
+                                        <fx:include source="gestionarPujas.fxml" />
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>
