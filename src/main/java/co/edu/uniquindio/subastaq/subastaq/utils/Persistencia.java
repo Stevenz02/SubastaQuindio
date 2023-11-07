@@ -13,15 +13,15 @@ import java.util.List;
 
 public class Persistencia {
 
-    public static final String RUTA_ARCHIVO_MODELO_SUBASTA_BINARIO = "bancoUq/src/main/resources/persistencia/model.dat";
-    public static final String RUTA_ARCHIVO_MODELO_SUBASTA_XML = "bancoUq/src/main/resources/persistencia/model.xml";
-    public static final String RUTA_ARCHIVO_COMPRADORES = "bancoUq/src/main/resources/persistencia/archivoClientes.txt";
-    public static final String RUTA_ARCHIVO_ANUNCIOS = "co.edu.uniquindio.programacion3/src/main/resources/persistencia/archivoObjetos.txt";
-    public static final String RUTA_ARCHIVO_ANUNCIANTES = "";
-    public static final String RUTA_ARCHIVO_USUARIOS = "";
-    public static final String RUTA_ARCHIVO_PRODUCTOS = "";
-    public static final String RUTA_ARCHIVO_PUJAS = "/src/main/resources/persistencia/archivoUsuarios.txt";
-    public static final String RUTA_ARCHIVO_LOG = "bancoUq/src/main/resources/persistencia/log/BancoLog.txt";
+    public static final String RUTA_ARCHIVO_MODELO_SUBASTA_BINARIO = "src/main/resources/persistencia/model.dat";
+    public static final String RUTA_ARCHIVO_MODELO_SUBASTA_XML = "src/main/resources/persistencia/model.xml";
+    public static final String RUTA_ARCHIVO_COMPRADORES = "src/main/resources/persistencia/archivoCompradores.txt";
+    public static final String RUTA_ARCHIVO_ANUNCIOS = "src/main/resources/persistencia/archivoAnuncios.txt";
+    public static final String RUTA_ARCHIVO_ANUNCIANTES = "src/main/resources/persistencia/archivoAnunciantes.txt";
+    public static final String RUTA_ARCHIVO_USUARIOS = "src/main/resources/persistencia/archivoUsuarios.txt";
+    public static final String RUTA_ARCHIVO_PRODUCTOS = "src/main/resources/persistencia/archivoProductos.txt";
+    public static final String RUTA_ARCHIVO_PUJAS = "src/main/resources/persistencia/archivoUsuarios.txt";
+    public static final String RUTA_ARCHIVO_LOG = "src/main/resources/persistencia/SubastaLog.txt";
 
 
 
@@ -86,7 +86,7 @@ public class Persistencia {
             contenido+= comprador.getNombre()+","+comprador.getApellido()+","+comprador.getCedula()+","+comprador.getNombreUsuario()
                     +","+comprador.getContrasenia()+","+comprador.getEdad()+","+comprador.getPujaActual().getCodigo()+ comprador.getPujaActual().getFecha()+comprador.getPujaActual().getOfertaActual()+"\n";
         }
-        ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_ANUNCIANTES, contenido, false);
+        ArchivoUtil.guardarArchivo(RUTA_ARCHIVO_COMPRADORES, contenido, false);
     }
 
 //	----------------------LOADS------------------------
