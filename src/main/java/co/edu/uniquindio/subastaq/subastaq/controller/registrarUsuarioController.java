@@ -34,10 +34,10 @@ public class registrarUsuarioController {
     private Button btnGuardar;
 
     @FXML
-    private ComboBox<String> comboUsuario;
+    private Label registroLabel;
 
     @FXML
-    private Label registroLabel;
+    private TextField texNombre;
 
     @FXML
     private TextField texApellido;
@@ -46,16 +46,16 @@ public class registrarUsuarioController {
     private TextField texCedula;
 
     @FXML
-    private PasswordField texContrasena;
-
-    @FXML
     private TextField texEdad;
 
     @FXML
-    private TextField texNombre;
+    private ComboBox<String> comboUsuario;
 
     @FXML
     private TextField texUsuario;
+
+    @FXML
+    private PasswordField texContrasena;
 
     @FXML
     private TableColumn<UsuarioDto, String> colmNombre;
@@ -95,8 +95,10 @@ public class registrarUsuarioController {
 
     private void intiView() {
         initDataBinding();
-
-
+        obtenerUsuarios();
+        tableUsuarios.getItems().clear();
+        tableUsuarios.setItems(listaUsuariosDto);
+        listenerSelection();
     }
     private void initDataBinding() {
         colmNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().nombre()));
@@ -106,8 +108,23 @@ public class registrarUsuarioController {
     private void obtenerUsuarios() {
         listaUsuariosDto.addAll(UsuarioControllerService.obtenerUsuarios());
     }
-
-
+    private void listenerSelection() {
+        tableUsuarios.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            usuarioSeleccionado = newSelection;
+            mostrarInformacionUsuario(usuarioSeleccionado);
+        });
+    }
+    private void mostrarInformacionUsuario(UsuarioDto usuarioSeleccionado) {
+        if(usuarioSeleccionado != null){
+            texNombre.setText(usuarioSeleccionado.nombre());
+            texApellido.setText(usuarioSeleccionado.apellido());
+            texCedula.setText(usuarioSeleccionado.cedula());
+            texEdad.setText(String.valueOf(usuarioSeleccionado.edad()));
+            comboUsuario.setValue(String.valueOf(usuarioSeleccionado.getClass()));
+            texUsuario.setText(usuarioSeleccionado.nombreUsuario());
+            texContrasena.setText(usuarioSeleccionado.contrasenia());
+        }
+    }
 }
 
 
