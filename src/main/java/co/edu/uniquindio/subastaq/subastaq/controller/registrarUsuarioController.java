@@ -13,12 +13,20 @@ import javafx.scene.control.*;
 import co.edu.uniquindio.subastaq.subastaq.controllerModel.UsuarioController;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.UsuarioDto;
 
+import java.net.URL;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 public class registrarUsuarioController {
     UsuarioController UsuarioControllerService;
     ObservableList<UsuarioDto> listaUsuariosDto = FXCollections.observableArrayList();
     UsuarioDto usuarioSeleccionado;
+
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
 
     @FXML
     private Label accesoLabel;
@@ -71,6 +79,7 @@ public class registrarUsuarioController {
     @FXML
     private TableView<UsuarioDto> tableUsuarios;
 
+    @FXML
     void initialize() {
         UsuarioControllerService = new UsuarioController();
         intiView();
@@ -121,8 +130,10 @@ public class registrarUsuarioController {
 
     @FXML
     void guardarUsuarioAction(ActionEvent event) { crearUsuario(); }
-
-
+    @FXML
+    void actualizarUsuarioAction(ActionEvent event) { actualizarUsuario(); }
+    @FXML
+    void eliminarUsuarioAction(ActionEvent event) { eliminarUsuario(); }
 
     private void crearUsuario() {
         //1. Capturar los datos
@@ -141,13 +152,56 @@ public class registrarUsuarioController {
             mostrarMensaje("Notificación usuario", "Usuario no creado", "Los datos ingresados son invalidos", Alert.AlertType.ERROR);
         }
     }
-
+    private void actualizarUsuario() {
+        boolean usuarioActualizado = false;
+        //1. Capturar los datos
+        String cedulaActual = usuarioSeleccionado.cedula();
+        UsuarioDto usuarioDto = construirUsuarioDto();
+        //2. verificar el empleado seleccionado
+        if(usuarioSeleccionado != null){
+            //3. Validar la información
+            if(datosValidos(usuarioSeleccionado)){
+                usuarioActualizado = UsuarioControllerService.actualizarUsuario(cedulaActual,usuarioDto);
+                if(usuarioActualizado){
+                    listaUsuariosDto.remove(usuarioSeleccionado);
+                    listaUsuariosDto.add(usuarioDto);
+                    tableUsuarios.refresh();
+                    mostrarMensaje("Notificación usuario", "Empleado usuario", "El usuario se ha actualizado con éxito", Alert.AlertType.INFORMATION);
+                    limpiarCamposUsuario();
+                }else{
+                    mostrarMensaje("Notificación usuario", "Empleado no usuario", "El usuario no se ha actualizado con éxito", Alert.AlertType.INFORMATION);
+                }
+            }else{
+                mostrarMensaje("Notificación usuario", "Usuario no creado", "Los datos ingresados son invalidos", Alert.AlertType.ERROR);
+            }
+        }
+    }
+    private void eliminarUsuario() {
+        boolean usuarioEliminado = false;
+        if(usuarioSeleccionado != null){
+            if(mostrarMensajeConfirmacion("¿Estas seguro de eliminar al usuario?")){
+                usuarioEliminado = UsuarioControllerService.eliminarUsuario(usuarioSeleccionado.cedula());
+                if(usuarioEliminado == true){
+                    listaUsuariosDto.remove(usuarioSeleccionado);
+                    usuarioSeleccionado = null;
+                    tableUsuarios.getSelectionModel().clearSelection();
+                    limpiarCamposUsuario();
+                    mostrarMensaje("Notificación usuario", "Usuario eliminado", "El usuario se ha eliminado con éxito", Alert.AlertType.INFORMATION);
+                }else{
+                    mostrarMensaje("Notificación usuario", "Usuario no eliminado", "El usuario no se puede eliminar", Alert.AlertType.ERROR);
+                }
+            }
+        }else{
+            mostrarMensaje("Notificación usuario", "Usuario no seleccionado", "Seleccionado un usuario de la lista", Alert.AlertType.WARNING);
+        }
+    }
     private UsuarioDto construirUsuarioDto() {
         return new UsuarioDto(
         texNombre.getText(),
         texApellido.getText(),
         texCedula.getText(),
         Integer.valueOf(texEdad.getText()),
+        comboUsuario.getValue(),
         texUsuario.getText(),
         texContrasena.getText()
         );
@@ -173,6 +227,8 @@ public class registrarUsuarioController {
             mensaje += "El documento es invalido \n" ;
         if(usuarioDto.edad() == null || usuarioDto.edad().equals(""))
             mensaje += "La edad es invalida \n" ;
+        if(usuarioDto.tipo() == null || usuarioDto.tipo().equals(""))
+            mensaje += "El tipo es invalido \n" ;
         if(usuarioDto.nombreUsuario() == null || usuarioDto.nombreUsuario().equals(""))
             mensaje += "El nombre de usuario es invalida \n" ;
         if(usuarioDto.contrasenia() == null || usuarioDto.contrasenia().equals(""))

@@ -15,6 +15,7 @@ public class SubastaUtils {
         usuario.setApellido("arias");
         usuario.setCedula("125454");
         usuario.setEdad(18);
+        usuario.setTipo("Comprador");
         usuario.setNombreUsuario("admins");
         usuario.setContrasenia("contra");
         subastaUniquindio.getListaUsuarios().add(usuario);
@@ -24,6 +25,7 @@ public class SubastaUtils {
         usuario2.setApellido("ari2s");
         usuario2.setCedula("125454");
         usuario2.setEdad(32);
+        usuario2.setTipo("Anunciante");
         usuario2.setNombreUsuario("admins");
         usuario2.setContrasenia("contra");
         subastaUniquindio.getListaUsuarios().add(usuario2);
@@ -47,7 +49,7 @@ public class SubastaUtils {
         anunciante.setContrasenia("contra");
         subastaUniquindio.getListaAnunciantes().add(anunciante);
 
-        System.out.println("Información del banco creada");
+        System.out.println("Información de la subasta creada");
         return subastaUniquindio;
     }
 }
