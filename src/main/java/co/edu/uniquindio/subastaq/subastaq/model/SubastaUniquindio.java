@@ -99,7 +99,7 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
             throw new UsuarioExepcion("El usuario es menor de edad, tiene "+ edad + " años");
         }
         if (tipo.equalsIgnoreCase("Comprador")){
-            usuario = new Usuario(NombreUsuario,contrasenia);
+            usuario = new Usuario(NombreUsuario,contrasenia, tipo);
             usuario.setNombre(nombre);
             usuario.setApellido(apellido);
             usuario.setCedula(cedula);
@@ -108,7 +108,7 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
             crearComprador(usuario);
         }
         else if(tipo.equalsIgnoreCase("Anunciante")){
-            usuario = new Usuario(NombreUsuario,contrasenia);
+            usuario = new Usuario(NombreUsuario,contrasenia, tipo);
             usuario.setNombre(nombre);
             usuario.setApellido(apellido);
             usuario.setCedula(cedula);
@@ -160,6 +160,7 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
             throw new UsuarioExepcion("El usuario no existe");
         }
         else {
+            usuarioActual.setTipo(usuario.getTipo());
             usuarioActual.setNombre(usuario.getNombre());
             usuarioActual.setApellido(usuario.getApellido());
             usuarioActual.setCedula(usuarioActual.getCedula());

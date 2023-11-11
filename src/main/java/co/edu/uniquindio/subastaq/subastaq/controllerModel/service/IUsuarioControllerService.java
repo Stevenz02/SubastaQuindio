@@ -9,4 +9,5 @@ public interface IUsuarioControllerService {
     boolean agregarUsuario(UsuarioDto usuarioDto);
     boolean eliminarUsuario(String cedula);
     void registrarAcciones(String mensaje, int nivel, String accion);
+    public boolean actualizarUsuario(String cedulaActual, UsuarioDto usuarioDto);
 }

@@ -30,4 +30,9 @@ public class UsuarioController implements IUsuarioControllerService {
     public void registrarAcciones(String mensaje, int nivel, String accion) {
         modelFactoryController.registrarAccionesSistema(mensaje, nivel, accion);
     }
+
+    @Override
+    public boolean actualizarUsuario(String cedulaActual, UsuarioDto usuarioDto) {
+        return modelFactoryController.actualizarUsuario(cedulaActual, usuarioDto);
+    }
 }

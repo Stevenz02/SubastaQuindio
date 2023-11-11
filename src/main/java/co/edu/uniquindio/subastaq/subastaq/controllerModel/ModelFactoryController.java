@@ -65,14 +65,10 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     }
 
     private void salvarDatosPrueba() {
-        try {
-            Persistencia.guardarSubastaUniquindio(getSubastaUniquindio());
-            Persistencia.guardarAnunciantes(getSubastaUniquindio().getListaAnunciantes());
-            Persistencia.guardarCompradores(getSubastaUniquindio().getListaCompradores());
-            Persistencia.guardarUsuarios(getSubastaUniquindio().getListaUsuarios());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Persistencia.guardarSubastaUniquindio(getSubastaUniquindio());
+        Persistencia.guardarAnunciantes(getSubastaUniquindio().getListaAnunciantes());
+        Persistencia.guardarCompradores(getSubastaUniquindio().getListaCompradores());
+        Persistencia.guardarUsuarios(getSubastaUniquindio().getListaUsuarios());
     }
 
     private void cargarDatosBase() {
@@ -97,11 +93,11 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     }
 
     private void cargarResourceBinario() {
-        subastaUniquindio = Persistencia.cargarRecursoSubastaBinario();
+        subastaUniquindio = Persistencia.cargarSubasta();
     }
 
     private void guardarResourceBinario() {
-        Persistencia.guardarRecursoSubastaBinario(subastaUniquindio);
+        Persistencia.guardarSubasta(subastaUniquindio);
     }
 
     public void registrarAccionesSistema(String mensaje, int nivel, String accion) {

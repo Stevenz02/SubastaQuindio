@@ -26,7 +26,6 @@ public  class ArchivoUtil {
      * @throws IOException
      */
     public static void guardarArchivo(String ruta,String contenido, Boolean flagAnexarContenido) throws IOException {
-
         FileWriter fw = new FileWriter(ruta,flagAnexarContenido);
         BufferedWriter bfw = new BufferedWriter(fw);
         bfw.write(contenido);
@@ -41,7 +40,6 @@ public  class ArchivoUtil {
      * @throws IOException
      */
     public static ArrayList<String> leerArchivo(String ruta) throws IOException {
-
         ArrayList<String>  contenido = new ArrayList<String>();
         FileReader fr=new FileReader(ruta);
         BufferedReader bfr=new BufferedReader(fr);
@@ -186,6 +184,5 @@ public  class ArchivoUtil {
         codificadorXML = new XMLEncoder(new FileOutputStream(rutaArchivo));
         codificadorXML.writeObject(objeto);
         codificadorXML.close();
-
     }
 }

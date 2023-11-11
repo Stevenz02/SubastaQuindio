@@ -6,6 +6,7 @@ public record UsuarioDto(
         String cedula,
         Integer edad,
         String nombreUsuario,
-        String contrasenia
+        String contrasenia,
+        String tipo
 ) {
 }
