@@ -112,7 +112,7 @@ public class registrarUsuarioController {
             texApellido.setText(usuarioSeleccionado.apellido());
             texCedula.setText(usuarioSeleccionado.cedula());
             texEdad.setText(String.valueOf(usuarioSeleccionado.edad()));
-            comboUsuario.setValue(String.valueOf(usuarioSeleccionado.getClass()));
+            comboUsuario.setValue(String.valueOf(usuarioSeleccionado.tipo()));
             texUsuario.setText(usuarioSeleccionado.nombreUsuario());
             texContrasena.setText(usuarioSeleccionado.contrasenia());
         }
@@ -123,7 +123,7 @@ public class registrarUsuarioController {
         texApellido.setText("Ingrese el apellido");
         texCedula.setText("Ingrese la cedula");
         texEdad.setText("Ingrese la edad");
-        comboUsuario.setValue(String.valueOf(usuarioSeleccionado.getClass()));
+        comboUsuario.setValue("Seleccione un tipo");
         texUsuario.setText("Ingrese el usuario");
         texContrasena.setText("Ingrese la contraseña");
     }
@@ -211,6 +211,7 @@ public class registrarUsuarioController {
         texApellido.setText("");
         texCedula.setText("");
         texEdad.setText("");
+        comboUsuario.setValue("");
         texUsuario.setText("");
         texContrasena.setText("");
     }
