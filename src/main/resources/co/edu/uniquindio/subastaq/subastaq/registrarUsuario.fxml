@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -13,8 +15,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
 <AnchorPane prefHeight="553.0" prefWidth="773.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.subastaq.subastaq.controller.registrarUsuarioController">
    <children>
       <SplitPane prefHeight="553.0" prefWidth="773.0">
@@ -48,9 +48,9 @@
                               </ComboBox>
                               <Label fx:id="registroLabel" layoutX="313.0" layoutY="1.0" styleClass="label-titulo" stylesheets="@../../../../../EstilosCCS/styles.css" text="Registro de usuario" />
                               <Label layoutX="17.0" layoutY="136.0" text="Cedula:" />
-                              <Button fx:id="btnActualizar" layoutX="629.0" layoutY="255.0" mnemonicParsing="false" onAction="#bttActualizar" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Actualizar Usuario" />
-                              <Button fx:id="btnGuardar" layoutX="373.0" layoutY="255.0" mnemonicParsing="false" onAction="#bttGuardar" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Guardar Usuario" />
-                              <Button fx:id="btnCrear" layoutX="509.0" layoutY="255.0" mnemonicParsing="false" onAction="#bttCrear" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Crear Usuario" />
+                              <Button fx:id="btnActualizar" layoutX="629.0" layoutY="255.0" mnemonicParsing="false" onAction="#actualizarUsuarioAction" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Actualizar Usuario" />
+                              <Button fx:id="btnGuardar" layoutX="373.0" layoutY="255.0" mnemonicParsing="false" onAction="#guardarUsuarioAction" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Guardar Usuario" />
+                              <Button fx:id="btnCrear" layoutX="509.0" layoutY="255.0" mnemonicParsing="false" onAction="#crearUsuarioAction" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Crear Usuario" />
                               <ImageView fitHeight="216.0" fitWidth="258.0" layoutX="437.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../../../Imagenes/LogoSQ.PNG" />
@@ -65,10 +65,10 @@
                                 <columns>
                                   <TableColumn fx:id="colmNombre" prefWidth="136.79997634887695" text="Nombre" />
                                   <TableColumn fx:id="colmCedula" prefWidth="137.60006713867188" text="Cedula" />
-                                    <TableColumn fx:id="colmTipo" prefWidth="165.60003662109375" text="Tipo de usuario" />
+                                    <TableColumn fx:id="colmUsuario" prefWidth="165.60003662109375" text="Usuario" />
                                 </columns>
                               </TableView>
-                              <Button fx:id="btnEliminar" layoutX="460.0" layoutY="90.0" mnemonicParsing="false" onAction="#bttEliminar" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Eliminar Usuario" />
+                              <Button fx:id="btnEliminar" layoutX="460.0" layoutY="90.0" mnemonicParsing="false" onAction="#eliminarUsuarioAction" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Eliminar Usuario" />
                            </children>
                         </AnchorPane>
                     </items>
