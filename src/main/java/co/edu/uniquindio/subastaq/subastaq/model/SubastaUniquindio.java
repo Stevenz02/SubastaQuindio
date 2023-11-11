@@ -7,13 +7,14 @@ import co.edu.uniquindio.subastaq.subastaq.exception.UsuarioExepcion;
 import co.edu.uniquindio.subastaq.subastaq.model.service.ISubastaService;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class SubastaUniquindio implements ISubastaService, Serializable {
-    private List<Anunciante> listaAnunciantes;
-    private List<Usuario> listaUsuarios;
-    private List<Comprador> listaCompradores;
+    private List<Anunciante> listaAnunciantes = new ArrayList<>();
+    private List<Usuario> listaUsuarios = new ArrayList<>();
+    private List<Comprador> listaCompradores = new ArrayList<>();
 
     public SubastaUniquindio() {
     }
@@ -69,25 +70,62 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
                 '}';
     }
 
-    public void crearAnunciante(Usuario usuario) throws AnuncianteExepcion {
-        Anunciante anunciante = new Anunciante();
-        anunciante.setNombre(usuario.getNombre());
-        anunciante.setApellido(usuario.getApellido());
-        anunciante.setCedula(usuario.getCedula());
-        anunciante.setNombreUsuario(usuario.getNombreUsuario());
-        anunciante.setContrasenia(usuario.getContrasenia());
-        getListaAnunciantes().add(anunciante);
-    }
 
 
+    @Override
     public void crearComprador(Usuario usuario) throws CompradorExepcion {
         Comprador comprador = new Comprador();
+        comprador.setTipo(usuario.getTipo());
         comprador.setNombre(usuario.getNombre());
         comprador.setApellido(usuario.getApellido());
         comprador.setCedula(usuario.getCedula());
         comprador.setNombreUsuario(usuario.getNombreUsuario());
         comprador.setContrasenia(usuario.getContrasenia());
         getListaCompradores().add(comprador);
+    }
+
+    @Override
+    public Boolean eliminarComprador(String cedula) throws CompradorExepcion {
+        Comprador comprador = null;
+        boolean flag = false;
+        comprador = obtenerComprador(cedula);
+        if (comprador == null){
+            throw new CompradorExepcion("El comprador a eliminar no existe");
+        }else {
+            getListaUsuarios().remove(comprador);
+            flag = true;
+        }
+        return flag;
+    }
+
+    @Override
+    public boolean actualizarComprador(String cedulaActual, Comprador comprador) throws CompradorExepcion {
+        Comprador compradorActual = obtenerComprador(cedulaActual);
+        if (compradorActual == null){
+            throw new CompradorExepcion("El comprador no existe");
+        }
+        else {
+            compradorActual.setTipo(comprador.getTipo());
+            compradorActual.setNombre(comprador.getNombre());
+            compradorActual.setApellido(comprador.getApellido());
+            compradorActual.setCedula(comprador.getCedula());
+            compradorActual.setEdad(comprador.getEdad());
+            compradorActual.setNombreUsuario(comprador.getNombreUsuario());
+            compradorActual.setContrasenia(comprador.getContrasenia());
+        }
+        return true;
+    }
+
+    @Override
+    public Comprador obtenerComprador(String cedula) {
+        Comprador compradorEncontrado = null;
+        for (Comprador comprador: getListaCompradores()){
+            if (comprador.getCedula().equalsIgnoreCase(cedula)){
+                compradorEncontrado = comprador;
+                break;
+            }
+        }
+        return compradorEncontrado;
     }
 
     @Override
@@ -200,5 +238,30 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
 
     public void agregarUsuario(Usuario nuevoUsuario) throws UsuarioExepcion {
         getListaUsuarios().add(nuevoUsuario);
+    }
+    public void crearAnunciante(Usuario usuario) throws AnuncianteExepcion {
+        Anunciante anunciante = new Anunciante();
+        anunciante.setTipo(usuario.getTipo());
+        anunciante.setNombre(usuario.getNombre());
+        anunciante.setApellido(usuario.getApellido());
+        anunciante.setCedula(usuario.getCedula());
+        anunciante.setNombreUsuario(usuario.getNombreUsuario());
+        anunciante.setContrasenia(usuario.getContrasenia());
+        getListaAnunciantes().add(anunciante);
+    }
+
+    @Override
+    public Boolean eliminarAnunciante(String cedula) throws AnuncianteExepcion {
+        return null;
+    }
+
+    @Override
+    public boolean actualizarAnunciante(String cedulaActual, Anunciante anunciante) throws AnuncianteExepcion {
+        return false;
+    }
+
+    @Override
+    public Anunciante obtenerAnunciante(String cedula) {
+        return null;
     }
 }

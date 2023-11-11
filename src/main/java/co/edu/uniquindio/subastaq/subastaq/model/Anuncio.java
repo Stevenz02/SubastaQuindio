@@ -1,6 +1,7 @@
 package co.edu.uniquindio.subastaq.subastaq.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -11,7 +12,7 @@ public class Anuncio implements Serializable {
     private Date fechaPublicacion;
     private Date FechaLimite;
     private Double valorInicial;
-    private List<Puja> listaPujas;
+    private List<Puja> listaPujas = new ArrayList<>();
 
     public Anuncio() {
     }

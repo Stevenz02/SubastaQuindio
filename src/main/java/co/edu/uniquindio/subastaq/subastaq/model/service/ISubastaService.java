@@ -3,6 +3,8 @@ package co.edu.uniquindio.subastaq.subastaq.model.service;
 import co.edu.uniquindio.subastaq.subastaq.exception.AnuncianteExepcion;
 import co.edu.uniquindio.subastaq.subastaq.exception.CompradorExepcion;
 import co.edu.uniquindio.subastaq.subastaq.exception.UsuarioExepcion;
+import co.edu.uniquindio.subastaq.subastaq.model.Anunciante;
+import co.edu.uniquindio.subastaq.subastaq.model.Comprador;
 import co.edu.uniquindio.subastaq.subastaq.model.Usuario;
 
 import java.util.ArrayList;
@@ -17,4 +19,16 @@ public interface ISubastaService {
     public boolean  verificarUsuarioExistente(String cedula) throws UsuarioExepcion;
     public Usuario obtenerUsuario(String cedula);
     public List<Usuario> obtenerUsuarios();
+
+
+    public void crearComprador(Usuario usuario) throws CompradorExepcion;
+    public Boolean eliminarComprador(String cedula)throws CompradorExepcion;
+    boolean actualizarComprador(String cedulaActual, Comprador comprador) throws CompradorExepcion;
+    public Comprador obtenerComprador(String cedula);
+
+
+    public void crearAnunciante(Usuario usuario) throws AnuncianteExepcion;
+    public Boolean eliminarAnunciante(String cedula)throws AnuncianteExepcion;
+    boolean actualizarAnunciante(String cedulaActual, Anunciante anunciante) throws AnuncianteExepcion;
+    public Anunciante obtenerAnunciante(String cedula);
 }
