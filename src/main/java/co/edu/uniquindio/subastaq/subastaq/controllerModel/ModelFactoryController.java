@@ -72,7 +72,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     }
 
     private void cargarDatosBase() {
-        //subastaUniquindio = inicializarDatos();
+        subastaUniquindio = inicializarDatos();
     }
 
     public SubastaUniquindio getSubastaUniquindio() {
