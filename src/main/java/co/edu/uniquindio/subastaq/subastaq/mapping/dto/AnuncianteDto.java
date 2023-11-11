@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 public record AnuncianteDto(
+        String tipo,
         String nombreUsuario,
         String contrasenia,
         String nombre,
