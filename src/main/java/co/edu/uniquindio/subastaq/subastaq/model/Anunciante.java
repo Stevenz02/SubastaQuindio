@@ -3,6 +3,7 @@ package co.edu.uniquindio.subastaq.subastaq.model;
 import co.edu.uniquindio.subastaq.subastaq.model.service.IAnuncianteService;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -10,8 +11,8 @@ import java.util.Objects;
 public class Anunciante extends Usuario implements Serializable, IAnuncianteService {
     private Integer cantidadAnuncios;
     private Date fechaLimite;
-    private List<Producto> listaProductos;
-    private List<Anuncio> listaAnuncios;
+    private List<Producto> listaProductos = new ArrayList<>();
+    private List<Anuncio> listaAnuncios = new ArrayList<>();
 
     public Anunciante() {
     }
