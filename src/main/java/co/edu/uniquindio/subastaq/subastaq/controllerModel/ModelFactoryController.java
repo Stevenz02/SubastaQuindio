@@ -3,6 +3,8 @@ package co.edu.uniquindio.subastaq.subastaq.controllerModel;
 import co.edu.uniquindio.subastaq.subastaq.aplicacion.aplicacion;
 import co.edu.uniquindio.subastaq.subastaq.controllerModel.service.IModelFactoryControllerService;
 import co.edu.uniquindio.subastaq.subastaq.exception.UsuarioExepcion;
+import co.edu.uniquindio.subastaq.subastaq.exception.ActualizarUsuarioExepcion;
+import co.edu.uniquindio.subastaq.subastaq.exception.BuscarUsuarioExepcion;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.AnuncianteDto;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.CompradorDto;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.UsuarioDto;
@@ -181,7 +183,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
             Usuario usuario = mapper.usuarioDtoToUsuario(usuarioDto);
             getSubastaUniquindio().actualizarUsuario(cedula,usuario);
             return true;
-        } catch (UsuarioExepcion e) {
+        } catch (ActualizarUsuarioExepcion e) {
             e.printStackTrace();
             return false;
         }
@@ -199,7 +201,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     }
 
     @Override
-    public void iniciarSesion(String nombreUsuario, String contrasenia, ActionEvent eventoMouse) throws UsuarioExepcion {
+    public void iniciarSesion(String nombreUsuario, String contrasenia, ActionEvent eventoMouse) throws BuscarUsuarioExepcion {
         Usuario usuario = null;
         if(subastaUniquindio.verificarCredenciales(nombreUsuario, contrasenia)){
             usuario = subastaUniquindio.buscarUsuario(nombreUsuario, contrasenia);

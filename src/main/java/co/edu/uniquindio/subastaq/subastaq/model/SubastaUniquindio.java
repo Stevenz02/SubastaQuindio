@@ -1,11 +1,8 @@
 package co.edu.uniquindio.subastaq.subastaq.model;
 
 
-import co.edu.uniquindio.subastaq.subastaq.exception.AnuncianteExepcion;
-import co.edu.uniquindio.subastaq.subastaq.exception.CompradorExepcion;
-import co.edu.uniquindio.subastaq.subastaq.exception.UsuarioExepcion;
+import co.edu.uniquindio.subastaq.subastaq.exception.*;
 import co.edu.uniquindio.subastaq.subastaq.model.service.ISubastaService;
-import co.edu.uniquindio.subastaq.subastaq.utils.ArchivoUtil;
 import javafx.scene.control.Alert;
 
 import java.io.Serializable;
@@ -85,12 +82,12 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
     }
 
     @Override
-    public Boolean eliminarComprador(String cedula) throws CompradorExepcion {
+    public Boolean eliminarComprador(String cedula) throws EliminarCompradorExepcion {
         Comprador comprador = null;
         boolean flag = false;
         comprador = obtenerComprador(cedula);
         if (comprador == null){
-            throw new CompradorExepcion("El comprador a eliminar no existe");
+            throw new EliminarCompradorExepcion("El comprador a eliminar no existe");
         }else {
             getListaUsuarios().remove(comprador);
             flag = true;
@@ -99,10 +96,10 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
     }
 
     @Override
-    public boolean actualizarComprador(String cedulaActual, Comprador comprador) throws CompradorExepcion {
+    public boolean actualizarComprador(String cedulaActual, Comprador comprador) throws ActualizarCompradorExepcion {
         Comprador compradorActual = obtenerComprador(cedulaActual);
         if (compradorActual == null){
-            throw new CompradorExepcion("El comprador no existe");
+            throw new ActualizarCompradorExepcion("El comprador no existe");
         }
         else {
             compradorActual.setTipo(comprador.getTipo());
@@ -201,10 +198,10 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
     }
 
     @Override
-    public boolean actualizarUsuario(String cedulaActual, Usuario usuario) throws UsuarioExepcion {
+    public boolean actualizarUsuario(String cedulaActual, Usuario usuario) throws ActualizarUsuarioExepcion {
         Usuario usuarioActual = obtenerUsuario(cedulaActual);
         if (usuarioActual == null){
-            throw new UsuarioExepcion("El usuario no existe");
+            throw new ActualizarUsuarioExepcion("El usuario no existe");
         }
         else {
             usuarioActual.setTipo(usuario.getTipo());
@@ -219,9 +216,9 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
     }
 
     @Override
-    public boolean verificarUsuarioExistente(String cedula) throws UsuarioExepcion {
+    public boolean verificarUsuarioExistente(String cedula) throws VerificarUsuarioExepcion {
         if (usuarioExiste(cedula)){
-            throw new UsuarioExepcion("El usuario con cedula: "+ cedula+" ya existe");
+            throw new VerificarUsuarioExepcion("El usuario con cedula: "+ cedula+" ya existe");
         }
         else {
             return true;
@@ -258,7 +255,7 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
     }
 
     @Override
-    public Usuario buscarUsuario(String nombreUsuario, String contrasenia) throws UsuarioExepcion{
+    public Usuario buscarUsuario(String nombreUsuario, String contrasenia) throws BuscarUsuarioExepcion {
         Usuario usuarioEncontrado = null;
         for(Usuario usuario: getListaUsuarios()){
             if(usuario.getNombreUsuario().equals(nombreUsuario) && usuario.getContrasenia().equals(contrasenia)){
@@ -266,7 +263,7 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
                 return  usuarioEncontrado;
             }
         }
-        throw new UsuarioExepcion("El usuario no existe");
+        throw new BuscarUsuarioExepcion("El usuario no existe");
     }
 
     public void agregarUsuario(Usuario nuevoUsuario) throws UsuarioExepcion {
@@ -284,12 +281,12 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
     }
 
     @Override
-    public Boolean eliminarAnunciante(String cedula) throws AnuncianteExepcion {
+    public Boolean eliminarAnunciante(String cedula) throws EliminarAnuncianteExepcion {
         return null;
     }
 
     @Override
-    public boolean actualizarAnunciante(String cedulaActual, Anunciante anunciante) throws AnuncianteExepcion {
+    public boolean actualizarAnunciante(String cedulaActual, Anunciante anunciante) throws ActualizarAnuncianteExepcion {
         return false;
     }
 

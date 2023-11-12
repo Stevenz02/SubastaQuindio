@@ -1,15 +1,12 @@
 package co.edu.uniquindio.subastaq.subastaq.controller;
 
 import co.edu.uniquindio.subastaq.subastaq.controllerModel.ModelFactoryController;
-import co.edu.uniquindio.subastaq.subastaq.controllerModel.UsuarioController;
-import co.edu.uniquindio.subastaq.subastaq.controllerModel.service.IModelFactoryControllerService;
-import co.edu.uniquindio.subastaq.subastaq.exception.UsuarioExepcion;
+import co.edu.uniquindio.subastaq.subastaq.exception.BuscarUsuarioExepcion;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.UsuarioDto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -44,7 +41,7 @@ public class autenticarUsuarioController {
     void bttIngresar(ActionEvent event) {
         try {
             ModelFactoryControllerService.iniciarSesion(texUsuario.getText(), texContrasena.getText(), event);
-        } catch (UsuarioExepcion e) {
+        } catch (BuscarUsuarioExepcion e) {
             e.printStackTrace();
         }
     }
