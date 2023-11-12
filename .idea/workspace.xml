@@ -9,11 +9,12 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/aplicacion/aplicacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/aplicacion/aplicacion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controller/autenticarUsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controller/autenticarUsuarioController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controllerModel/ModelFactoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controllerModel/ModelFactoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/model/SubastaUniquindio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/model/SubastaUniquindio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Persistencia/SubastaLog.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persistencia/SubastaLog.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Persistencia/archivoUsuarios.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persistencia/archivoUsuarios.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Persistencia/model.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persistencia/model.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Persistencia/model.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persistencia/model.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastaq/subastaq/autenticarUsuario.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastaq/subastaq/autenticarUsuario.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastaq/subastaq/vistaPrincipalLogin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastaq/subastaq/vistaPrincipalLogin.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,6 +129,7 @@
       <workItem from="1699645122676" duration="338000" />
       <workItem from="1699737358619" duration="6204000" />
       <workItem from="1699743576463" duration="7877000" />
+      <workItem from="1699815837776" duration="3848000" />
     </task>
     <servers />
   </component>

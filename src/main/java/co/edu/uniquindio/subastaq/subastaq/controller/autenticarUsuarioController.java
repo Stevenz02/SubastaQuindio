@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -40,9 +41,12 @@ public class autenticarUsuarioController {
     }
 
     @FXML
-    void bttIngresar(ActionEvent event) throws UsuarioExepcion {
-        ModelFactoryControllerService.iniciarSesion(texUsuario.getText(), texContrasena.getText(), event);
+    void bttIngresar(ActionEvent event) {
+        try {
+            ModelFactoryControllerService.iniciarSesion(texUsuario.getText(), texContrasena.getText(), event);
+        } catch (UsuarioExepcion e) {
+            e.printStackTrace();
+        }
     }
-
 }
 

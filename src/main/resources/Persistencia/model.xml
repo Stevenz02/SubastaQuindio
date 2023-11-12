@@ -5,10 +5,10 @@
    <void method="add">
     <object class="co.edu.uniquindio.subastaq.subastaq.model.Usuario">
      <void property="apellido">
-      <string>morales</string>
+      <string>Morales</string>
      </void>
      <void property="cedula">
-      <string>1902922</string>
+      <string>10049</string>
      </void>
      <void property="contrasenia">
       <string>12345</string>
@@ -17,60 +17,10 @@
       <int>19</int>
      </void>
      <void property="nombre">
-      <string>steven</string>
+      <string>Steven</string>
      </void>
      <void property="nombreUsuario">
       <string>admin</string>
-     </void>
-     <void property="tipo">
-      <string>Comprador</string>
-     </void>
-    </object>
-   </void>
-   <void method="add">
-    <object class="co.edu.uniquindio.subastaq.subastaq.model.Usuario">
-     <void property="apellido">
-      <string>morales</string>
-     </void>
-     <void property="cedula">
-      <string>101922</string>
-     </void>
-     <void property="contrasenia">
-      <string>12345</string>
-     </void>
-     <void property="edad">
-      <int>19</int>
-     </void>
-     <void property="nombre">
-      <string>steven2</string>
-     </void>
-     <void property="nombreUsuario">
-      <string>admin2</string>
-     </void>
-     <void property="tipo">
-      <string>Comprador</string>
-     </void>
-    </object>
-   </void>
-   <void method="add">
-    <object class="co.edu.uniquindio.subastaq.subastaq.model.Usuario">
-     <void property="apellido">
-      <string>1234</string>
-     </void>
-     <void property="cedula">
-      <string>1903933</string>
-     </void>
-     <void property="contrasenia">
-      <string>12345</string>
-     </void>
-     <void property="edad">
-      <int>19</int>
-     </void>
-     <void property="nombre">
-      <string>steven</string>
-     </void>
-     <void property="nombreUsuario">
-      <string>admin20</string>
      </void>
      <void property="tipo">
       <string>Anunciante</string>
