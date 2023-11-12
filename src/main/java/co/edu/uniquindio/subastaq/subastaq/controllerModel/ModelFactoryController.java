@@ -126,8 +126,9 @@ public class ModelFactoryController implements IModelFactoryControllerService {
                 Usuario usuario = mapper.usuarioDtoToUsuario(usuarioDto);
                 getSubastaUniquindio().agregarUsuario(usuario);
                 guardarResourceXML();
+                return true;
             }
-            return true;
+            return false;
         }catch (UsuarioExepcion e){
             e.getMessage();
             return false;
