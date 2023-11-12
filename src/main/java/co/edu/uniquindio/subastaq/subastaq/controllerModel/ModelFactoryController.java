@@ -186,7 +186,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     @Override
     public void cargarVistaAnunciante(ActionEvent actionEvent) {
-        Aplicacion.cambiarPanelAnunciante(actionEvent);
+        Aplicacion.cambiarPanelAnunciante();
     }
 
 }
