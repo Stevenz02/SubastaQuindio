@@ -122,7 +122,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     @Override
     public boolean agregarUsuario(UsuarioDto usuarioDto) {
         try{
-            if (!subastaUniquindio.usuarioExiste(usuarioDto.cedula())){
+            if (!subastaUniquindio.usuarioExiste(usuarioDto.cedula()) && subastaUniquindio.isMayor(usuarioDto.edad())){
                 Usuario usuario = mapper.usuarioDtoToUsuario(usuarioDto);
                 getSubastaUniquindio().agregarUsuario(usuario);
                 guardarResourceXML();
