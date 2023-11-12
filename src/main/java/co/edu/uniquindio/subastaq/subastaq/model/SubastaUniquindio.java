@@ -6,6 +6,7 @@ import co.edu.uniquindio.subastaq.subastaq.exception.CompradorExepcion;
 import co.edu.uniquindio.subastaq.subastaq.exception.UsuarioExepcion;
 import co.edu.uniquindio.subastaq.subastaq.model.service.ISubastaService;
 import co.edu.uniquindio.subastaq.subastaq.utils.ArchivoUtil;
+import javafx.scene.control.Alert;
 
 import java.io.Serializable;
 import java.util.*;
@@ -248,11 +249,11 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
     public boolean verificarCredenciales(String nombreUsuario, String contrasenia) {
         for(Usuario usuario : getListaUsuarios()){
             if (usuario.getNombreUsuario().equals(nombreUsuario) && usuario.getContrasenia().equals(contrasenia)){
-                System.out.println("Se verificaron las credenciales");
+                mostrarMensaje("Notificación usuario", "Usuario ha iniciado sesión", "Ha iniciado sesión correctamente", Alert.AlertType.CONFIRMATION);
                 return true;
             }
         }
-        System.out.println("No se verificaron las credenciales");
+        mostrarMensaje("Notificación usuario", "Usuario NO ha iniciado sesión", "Por favor verifique si ha ingresado correctamente las credenciales", Alert.AlertType.WARNING);
         return false;
     }
 
@@ -300,5 +301,13 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
     @Override
     public Anuncio crearAnuncio() {
         return null;
+    }
+
+    private void mostrarMensaje(String titulo, String header, String contenido, Alert.AlertType alertType) {
+        Alert aler = new Alert(alertType);
+        aler.setTitle(titulo);
+        aler.setHeaderText(header);
+        aler.setContentText(contenido);
+        aler.showAndWait();
     }
 }
