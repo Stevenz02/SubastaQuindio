@@ -1,5 +1,6 @@
 package co.edu.uniquindio.subastaq.subastaq.controllerModel;
 
+import co.edu.uniquindio.subastaq.subastaq.aplicacion.aplicacion;
 import co.edu.uniquindio.subastaq.subastaq.controllerModel.service.IModelFactoryControllerService;
 import co.edu.uniquindio.subastaq.subastaq.exception.UsuarioExepcion;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.AnuncianteDto;
@@ -9,6 +10,8 @@ import co.edu.uniquindio.subastaq.subastaq.mapping.mappers.SubastaMapper;
 import co.edu.uniquindio.subastaq.subastaq.model.SubastaUniquindio;
 import co.edu.uniquindio.subastaq.subastaq.model.Usuario;
 import co.edu.uniquindio.subastaq.subastaq.utils.Persistencia;
+import javafx.event.ActionEvent;
+
 import java.io.IOException;
 import java.util.List;
 import static co.edu.uniquindio.subastaq.subastaq.utils.SubastaUtils.inicializarDatos;
@@ -16,6 +19,7 @@ import static co.edu.uniquindio.subastaq.subastaq.utils.SubastaUtils.inicializar
 
 public class ModelFactoryController implements IModelFactoryControllerService {
     SubastaUniquindio subastaUniquindio;
+    aplicacion Aplicacion;
     SubastaMapper mapper = SubastaMapper.INSTANCE;
 
     //------------------------------  Singleton ------------------------------------------------
@@ -83,6 +87,9 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         this.subastaUniquindio = subastaUniquindio;
     }
 
+    public void setAplicacion(aplicacion Aplicacion){
+        this.Aplicacion = Aplicacion;
+    }
 
     private void cargarResourceXML() {
         subastaUniquindio = Persistencia.cargarRecursoSubastaXML();
@@ -159,27 +166,27 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     }
 
     @Override
-    public void iniciarSesion(String nombreUsuario, String contrasenia) throws UsuarioExepcion {
+    public void iniciarSesion(String nombreUsuario, String contrasenia, ActionEvent eventoMouse) throws UsuarioExepcion {
         Usuario usuario = null;
         if(subastaUniquindio.verificarCredenciales(nombreUsuario, contrasenia)){
             usuario = subastaUniquindio.buscarUsuario(nombreUsuario, contrasenia);
             if(usuario.getTipo().equalsIgnoreCase("Anunciante")){
-                cargarVistaAnunciante();
+                cargarVistaAnunciante(eventoMouse);
             }
             else if(usuario.getTipo().equalsIgnoreCase("Comprador")){
-                cargarVistaComprador();
+                cargarVistaComprador(eventoMouse);
             }
         }
     }
 
     @Override
-    public void cargarVistaComprador() {
+    public void cargarVistaComprador(ActionEvent actionEvent) {
 
     }
 
     @Override
-    public void cargarVistaAnunciante() {
-
+    public void cargarVistaAnunciante(ActionEvent actionEvent) {
+        Aplicacion.cambiarPanelAnunciante(actionEvent);
     }
 
 }

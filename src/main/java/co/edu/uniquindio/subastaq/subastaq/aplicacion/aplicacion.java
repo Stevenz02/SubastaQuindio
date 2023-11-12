@@ -2,7 +2,9 @@ package co.edu.uniquindio.subastaq.subastaq.aplicacion;
 
 import co.edu.uniquindio.subastaq.subastaq.controller.registrarUsuarioController;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -19,8 +21,20 @@ public class aplicacion extends Application {
         primaryStage.show();
     }
 
-    public void cambiarPanel(){
-
+    public void cambiarPanelAnunciante(ActionEvent event) {
+        try {
+            // Cargar el archivo FXML para la vista principal del anunciante
+            Parent vistaPrincipalAnunciante = FXMLLoader.load(getClass().getResource("co/edu/uniquindio/subastaq/subastaq/vistaPrincipalAnunciante.fxml"));
+            // Obtener el escenario a través del evento que desencadenó el cambio
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            // Establecer la nueva escena en el escenario actual
+            stage.setScene(new Scene(vistaPrincipalAnunciante));
+            // Mostrar el escenario
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Manejo de error (puedes mostrar un mensaje de error al usuario si es necesario)
+        }
     }
     public static void main(String[] args) { launch(); }
 }
