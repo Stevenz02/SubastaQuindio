@@ -5,11 +5,10 @@ import co.edu.uniquindio.subastaq.subastaq.exception.AnuncianteExepcion;
 import co.edu.uniquindio.subastaq.subastaq.exception.CompradorExepcion;
 import co.edu.uniquindio.subastaq.subastaq.exception.UsuarioExepcion;
 import co.edu.uniquindio.subastaq.subastaq.model.service.ISubastaService;
+import co.edu.uniquindio.subastaq.subastaq.utils.ArchivoUtil;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class SubastaUniquindio implements ISubastaService, Serializable {
     private List<Anunciante> listaAnunciantes = new ArrayList<>();
@@ -128,6 +127,15 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
         return compradorEncontrado;
     }
 
+    @Override
+    public Puja crearPuja(Double oferta) {
+        return new Puja(generarNumeroAleatorio(), new Date(), oferta);
+    }
+
+    public static String generarNumeroAleatorio() {
+        Random random = new Random();
+        return String.valueOf(random.nextInt(500) + 1);  // Genera un número entre 1 y 500 (ambos inclusive)
+    }
     @Override
     public Usuario crearUsuario(String nombre, String apellido, Integer edad, String cedula, String NombreUsuario, String contrasenia, String tipo) throws CompradorExepcion, AnuncianteExepcion, UsuarioExepcion {
         Usuario usuario = null;
@@ -284,6 +292,11 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
 
     @Override
     public Anunciante obtenerAnunciante(String cedula) {
+        return null;
+    }
+
+    @Override
+    public Anuncio crearAnuncio() {
         return null;
     }
 }
