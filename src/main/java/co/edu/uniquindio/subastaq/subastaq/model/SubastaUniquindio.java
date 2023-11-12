@@ -261,7 +261,7 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
     public Usuario buscarUsuario(String nombreUsuario, String contrasenia) throws UsuarioExepcion{
         Usuario usuarioEncontrado = null;
         for(Usuario usuario: getListaUsuarios()){
-            if(verificarCredenciales(nombreUsuario, contrasenia)){
+            if(usuario.getNombreUsuario().equals(nombreUsuario) && usuario.getContrasenia().equals(contrasenia)){
                 usuarioEncontrado = usuario;
                 return  usuarioEncontrado;
             }

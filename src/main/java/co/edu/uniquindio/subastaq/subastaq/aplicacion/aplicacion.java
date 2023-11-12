@@ -58,6 +58,22 @@ public class aplicacion extends Application {
             e.printStackTrace();
         }
     }
+    public void cambiarPanelComprador() {
+        try {
+            // Cargar la vista del comprador
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/co/edu/uniquindio/subastaq/subastaq/vistaPrincipalComprador.fxml"));
+            Parent vistaPrincipalComprador = loader.load();
+
+            // Establecer la nueva escena en el escenario principal
+            primaryStage.setScene(new Scene(vistaPrincipalComprador));
+
+            // Mostrar el escenario con la nueva vista
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public static void main(String[] args) {
         launch(args);
     }

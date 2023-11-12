@@ -203,6 +203,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         Usuario usuario = null;
         if(subastaUniquindio.verificarCredenciales(nombreUsuario, contrasenia)){
             usuario = subastaUniquindio.buscarUsuario(nombreUsuario, contrasenia);
+            System.out.println(("El usuario es: " + usuario));
             if(usuario.getTipo().equalsIgnoreCase("Anunciante")){
                 cargarVistaAnunciante(eventoMouse);
             }
@@ -214,9 +215,8 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     @Override
     public void cargarVistaComprador(ActionEvent actionEvent) {
-
+        Aplicacion.cambiarPanelComprador();
     }
-
     @Override
     public void cargarVistaAnunciante(ActionEvent actionEvent) {
         Aplicacion.cambiarPanelAnunciante();
