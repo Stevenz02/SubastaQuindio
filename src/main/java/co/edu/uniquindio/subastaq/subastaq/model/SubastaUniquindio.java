@@ -236,6 +236,28 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
         return getListaUsuarios();
     }
 
+    @Override
+    public boolean verificarCredenciales(String nombreUsuario, String contrasenia) {
+        for(Usuario usuario : getListaUsuarios()){
+            if (usuario.getNombreUsuario().equals(nombreUsuario) && usuario.getContrasenia().equals(contrasenia)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public Usuario buscarUsuario(String nombreUsuario, String contrasenia) throws UsuarioExepcion{
+        Usuario usuarioEncontrado = null;
+        for(Usuario usuario: getListaUsuarios()){
+            if(verificarCredenciales(nombreUsuario, contrasenia)){
+                usuarioEncontrado = usuario;
+                return  usuarioEncontrado;
+            }
+        }
+        throw new UsuarioExepcion("El usuario no existe");
+    }
+
     public void agregarUsuario(Usuario nuevoUsuario) throws UsuarioExepcion {
         getListaUsuarios().add(nuevoUsuario);
     }

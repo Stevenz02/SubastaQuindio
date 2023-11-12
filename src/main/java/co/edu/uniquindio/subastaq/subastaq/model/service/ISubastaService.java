@@ -19,6 +19,8 @@ public interface ISubastaService {
     public boolean  verificarUsuarioExistente(String cedula) throws UsuarioExepcion;
     public Usuario obtenerUsuario(String cedula);
     public List<Usuario> obtenerUsuarios();
+    public boolean verificarCredenciales(String nombreUsuario, String contrasenia);
+    public Usuario buscarUsuario (String nombreUsuario, String contrasenia) throws UsuarioExepcion;
 
 
     public void crearComprador(Usuario usuario) throws CompradorExepcion;

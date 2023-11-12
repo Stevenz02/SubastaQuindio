@@ -158,4 +158,28 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         return flag;
     }
 
+    @Override
+    public void iniciarSesion(String nombreUsuario, String contrasenia) throws UsuarioExepcion {
+        Usuario usuario = null;
+        if(subastaUniquindio.verificarCredenciales(nombreUsuario, contrasenia)){
+            usuario = subastaUniquindio.buscarUsuario(nombreUsuario, contrasenia);
+            if(usuario.getTipo().equalsIgnoreCase("Anunciante")){
+                cargarVistaAnunciante();
+            }
+            else if(usuario.getTipo().equalsIgnoreCase("Comprador")){
+                cargarVistaComprador();
+            }
+        }
+    }
+
+    @Override
+    public void cargarVistaComprador() {
+
+    }
+
+    @Override
+    public void cargarVistaAnunciante() {
+
+    }
+
 }

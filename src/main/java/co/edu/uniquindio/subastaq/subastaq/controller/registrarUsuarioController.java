@@ -1,5 +1,6 @@
 package co.edu.uniquindio.subastaq.subastaq.controller;
 
+import co.edu.uniquindio.subastaq.subastaq.aplicacion.aplicacion;
 import co.edu.uniquindio.subastaq.subastaq.model.Anunciante;
 import co.edu.uniquindio.subastaq.subastaq.model.Comprador;
 import co.edu.uniquindio.subastaq.subastaq.model.TipoProducto;
@@ -265,6 +266,7 @@ public class registrarUsuarioController {
             return false;
         }
     }
+
 }
 
 
