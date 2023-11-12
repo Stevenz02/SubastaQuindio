@@ -14,10 +14,15 @@ import javafx.event.ActionEvent;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
 import static co.edu.uniquindio.subastaq.subastaq.utils.SubastaUtils.inicializarDatos;
 
 
 public class ModelFactoryController implements IModelFactoryControllerService {
+    private ExecutorService executorService = Executors.newFixedThreadPool(6);
     SubastaUniquindio subastaUniquindio;
     aplicacion Aplicacion;
     SubastaMapper mapper = SubastaMapper.INSTANCE;
@@ -33,32 +38,60 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         return SingletonHolder.eINSTANCE;
     }
 
-    public ModelFactoryController() {
-        //1. inicializar datos y luego guardarlo en archivos
-        System.out.println("invocación clase singleton");
-        cargarDatosBase();
-        salvarDatosPrueba();
+    private ModelFactoryController() {
+        System.out.println("Invocación clase singleton");
 
-        //2. Cargar los datos de los archivos
-        cargarDatosDesdeArchivos();
+        // Cargar los datos de forma asíncrona
+        cargarDatosAsync();
 
-        //3. Guardar y Cargar el recurso serializable binario
-        guardarResourceBinario();
-        cargarResourceBinario();
-
-        //4. Guardar y Cargar el recurso serializable XML
-        guardarResourceXML();
-        cargarResourceXML();
-
-        //Siempre se debe verificar si la raiz del recurso es null
-
-        if(subastaUniquindio == null){
-            cargarDatosBase();
-            guardarResourceXML();
-        }
+        // Registrar acciones del sistema
         registrarAccionesSistema("Inicio de sesión", 1, "inicioSesión");
     }
 
+    private void cargarDatosAsync() {
+        // Cargar datos de archivos
+        executorService.submit(this::cargarDatosDesdeArchivos);
+
+        // Cargar datos desde el recurso serializable binario
+        executorService.submit(this::cargarResourceBinario);
+
+        // Cargar datos desde el recurso serializable XML
+        executorService.submit(this::cargarResourceXML);
+
+        // Esperar a que todos los hilos de carga terminen antes de continuar
+        executorService.shutdown();
+        try {
+            if (!executorService.awaitTermination(60, TimeUnit.SECONDS)) {
+                executorService.shutdownNow();
+            }
+        } catch (InterruptedException ex) {
+            executorService.shutdownNow();
+            Thread.currentThread().interrupt();
+        }
+
+        // Una vez que la carga ha terminado, configurar los hilos para guardar los datos
+        ExecutorService savingExecutor = Executors.newFixedThreadPool(3);
+
+        // Hilo para guardar datos después de la carga
+        savingExecutor.submit(() -> {
+            if (subastaUniquindio == null) {
+                cargarDatosBase();
+            }
+            guardarResourceBinario();
+            guardarResourceXML();
+        });
+
+        // Esperar a que todos los hilos de guardado terminen antes de continuar
+        savingExecutor.shutdown();
+        try {
+            if (!savingExecutor.awaitTermination(60, TimeUnit.SECONDS)) {
+                savingExecutor.shutdownNow();
+            }
+        } catch (InterruptedException ex) {
+            savingExecutor.shutdownNow();
+            Thread.currentThread().interrupt();
+        }
+    }
     private void cargarDatosDesdeArchivos() {
         subastaUniquindio = new SubastaUniquindio();
         try {
