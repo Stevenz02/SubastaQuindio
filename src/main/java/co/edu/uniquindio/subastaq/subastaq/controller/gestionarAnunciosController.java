@@ -32,7 +32,7 @@ public class gestionarAnunciosController {
 
     AnuncioController AnuncioControllerService;
     ObservableList<AnuncioDto> listaAnunciosDto = FXCollections.observableArrayList();
-    UsuarioDto usuarioSeleccionado;
+    AnuncioDto anuncioSeleccionado;
 
     @FXML
     private ResourceBundle resources;
@@ -132,5 +132,6 @@ public class gestionarAnunciosController {
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate();
     }
+
 }
 
