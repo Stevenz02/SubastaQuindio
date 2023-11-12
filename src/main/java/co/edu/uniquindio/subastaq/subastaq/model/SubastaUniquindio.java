@@ -240,9 +240,11 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
     public boolean verificarCredenciales(String nombreUsuario, String contrasenia) {
         for(Usuario usuario : getListaUsuarios()){
             if (usuario.getNombreUsuario().equals(nombreUsuario) && usuario.getContrasenia().equals(contrasenia)){
+                System.out.println("Se verificaron las credenciales");
                 return true;
             }
         }
+        System.out.println("No se verificaron las credenciales");
         return false;
     }
 

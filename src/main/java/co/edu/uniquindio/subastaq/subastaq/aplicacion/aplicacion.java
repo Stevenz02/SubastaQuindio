@@ -1,6 +1,9 @@
 package co.edu.uniquindio.subastaq.subastaq.aplicacion;
 
+import co.edu.uniquindio.subastaq.subastaq.controller.autenticarUsuarioController;
+import co.edu.uniquindio.subastaq.subastaq.controllerModel.ModelFactoryController;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,35 +16,48 @@ public class aplicacion extends Application {
     private Stage primaryStage;
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         this.primaryStage = primaryStage; // Almacenar el primaryStage
         mostrarVistaPrincipalLogin();
     }
 
-    public void mostrarVistaPrincipalLogin() throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/co/edu/uniquindio/subastaq/subastaq/vistaPrincipalLogin.fxml"));
-        primaryStage.setTitle("Inicio de sesion en Subastas Quindío");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
-    }
+    public void mostrarVistaPrincipalLogin() {
+        try {
+            // Cargar la vista
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/co/edu/uniquindio/subastaq/subastaq/vistaPrincipalLogin.fxml"));
+            Parent root = loader.load();
 
+            // Aquí obtienes el controlador correcto de la vista que acabas de cargar
+            autenticarUsuarioController controller = loader.getController();
+
+            // Suponiendo que 'ModelFactoryController' tiene un método para establecer la instancia de 'aplicacion'
+            ModelFactoryController.getInstance().setAplicacion(this);
+
+            // Configurar la escena y mostrarla
+            primaryStage.setTitle("Inicio de sesión en Subastas Quindío");
+            primaryStage.setScene(new Scene(root));
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void cambiarPanelAnunciante() {
         try {
+            // Cargar la vista del anunciante
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(aplicacion.class.getResource("/co/edu/uniquindio/subastaq/subastaq/vistaPrincipalAnunciante.fxml"));
+            loader.setLocation(getClass().getResource("/co/edu/uniquindio/subastaq/subastaq/vistaPrincipalAnunciante.fxml"));
             Parent vistaPrincipalAnunciante = loader.load();
 
             // Establecer la nueva escena en el escenario principal
             primaryStage.setScene(new Scene(vistaPrincipalAnunciante));
 
-            // Mostrar el escenario
+            // Mostrar el escenario con la nueva vista
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            // Aquí puedes manejar la excepción más adecuadamente, mostrar un mensaje al usuario, etc.
         }
     }
-
     public static void main(String[] args) {
         launch(args);
     }
