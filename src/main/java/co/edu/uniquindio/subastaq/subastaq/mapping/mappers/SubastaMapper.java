@@ -15,17 +15,14 @@ public interface SubastaMapper {
     SubastaMapper INSTANCE = Mappers.getMapper(SubastaMapper.class);
 
     //Mapping anunciantes
-    @Mapping(target = "listaProductoDto", source = "listaProductos")
     @Mapping(target = "listaAnunciosDto", source = "listaAnuncios")
     @Named("AnuncianteToAnuncianteDto")
     AnuncianteDto anuncianteToAnuncianteDto(Anunciante anunciante);
-    @Mapping(target = "listaProductos", source = "listaProductoDto")
     @Mapping(target = "listaAnuncios", source = "listaAnunciosDto")
     Anunciante anuncianteDtoToAnunciante(AnuncianteDto anuncianteDto);
 
     @IterableMapping(qualifiedByName = "AnuncianteToAnuncianteDto")
     List<AnuncianteDto> getAnunciantesDto(List<Anunciante> listaAnunciantes);
-    @Mapping(target = "listaProductoDto", source = "listaProductos")
     @Mapping(target = "listaAnunciosDto", source = "listaAnuncios")
     @Named("mappingToAnuncianteDto")
     AnuncianteDto mappingToAnuncianteDto(Anunciante anunciante);

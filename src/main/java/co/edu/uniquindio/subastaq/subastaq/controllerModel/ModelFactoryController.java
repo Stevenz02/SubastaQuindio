@@ -6,6 +6,7 @@ import co.edu.uniquindio.subastaq.subastaq.exception.UsuarioExepcion;
 import co.edu.uniquindio.subastaq.subastaq.exception.ActualizarUsuarioExepcion;
 import co.edu.uniquindio.subastaq.subastaq.exception.BuscarUsuarioExepcion;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.AnuncianteDto;
+import co.edu.uniquindio.subastaq.subastaq.mapping.dto.AnuncioDto;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.CompradorDto;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.subastaq.subastaq.mapping.mappers.SubastaMapper;
@@ -159,6 +160,16 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     @Override
     public List<AnuncianteDto> obtenerAnunciantes() {
         return mapper.getAnunciantesDto(subastaUniquindio.getListaAnunciantes());
+    }
+
+    @Override
+    public List<AnuncioDto> obtenerAnuncios() {
+        return mapper.getAnunciosDto(subastaUniquindio.getListaAnunciantes().listIterator().next().getListaAnuncios());
+    }
+
+    @Override
+    public boolean agregarAnuncio(AnuncioDto anuncioDto) {
+        return false;
     }
 
     @Override

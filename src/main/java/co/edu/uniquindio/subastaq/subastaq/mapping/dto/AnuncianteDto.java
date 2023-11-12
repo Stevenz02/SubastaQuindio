@@ -13,7 +13,6 @@ public record AnuncianteDto(
         Integer edad,
         Integer cantidadAnuncios,
         Date fechaLimite,
-        List<ProductoDto> listaProductoDto,
         List<AnuncioDto> listaAnunciosDto
 
 ) {
