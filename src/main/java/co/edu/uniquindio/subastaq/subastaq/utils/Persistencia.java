@@ -11,12 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Persistencia {
-    public static final String RUTA_ARCHIVO_MODELO_SUBASTA_BINARIO = "src/main/resources/persistencia/model.dat";
-    public static final String RUTA_ARCHIVO_MODELO_SUBASTA_XML = "src/main/resources/persistencia/model.xml";
-    public static final String RUTA_ARCHIVO_COMPRADORES = "src/main/resources/persistencia/archivoCompradores.dat";
-    public static final String RUTA_ARCHIVO_ANUNCIANTES = "src/main/resources/persistencia/archivoAnunciantes.dat";
-    public static final String RUTA_ARCHIVO_USUARIOS = "src/main/resources/persistencia/archivoUsuarios.dat";
-    public static final String RUTA_ARCHIVO_LOG = "src/main/resources/persistencia/SubastaLog.dat";
+    public static final String RUTA_ARCHIVO_MODELO_SUBASTA_BINARIO = "src/main/resources/Persistencia/model.dat";
+    public static final String RUTA_ARCHIVO_MODELO_SUBASTA_XML = "src/main/resources/Persistencia/model.xml";
+    public static final String RUTA_ARCHIVO_COMPRADORES = "src/main/resources/Persistencia/archivoCompradores.dat";
+    public static final String RUTA_ARCHIVO_ANUNCIANTES = "src/main/resources/Persistencia/archivoAnunciantes.dat";
+    public static final String RUTA_ARCHIVO_USUARIOS = "src/main/resources/Persistencia/archivoUsuarios.dat";
+    public static final String RUTA_ARCHIVO_LOG = "src/main/resources/Persistencia/SubastaLog.dat";
 
     //	---------------------- Saves ------------------------   //
 

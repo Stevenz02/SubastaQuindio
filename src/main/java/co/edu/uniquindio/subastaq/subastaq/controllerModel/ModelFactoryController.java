@@ -43,8 +43,8 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         guardarResourceBinario();
 
         //4. Guardar y Cargar el recurso serializable XML
-        guardarResourceXML();
         cargarResourceXML();
+        guardarResourceXML();
 
         //Siempre se debe verificar si la raiz del recurso es null
 
