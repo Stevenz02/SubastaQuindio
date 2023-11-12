@@ -64,8 +64,4 @@ public class Comprador extends Usuario implements Serializable, ICompradorServic
                 '}';
     }
 
-    @Override
-    public Puja crearPuja() {
-        return null;
-    }
 }
