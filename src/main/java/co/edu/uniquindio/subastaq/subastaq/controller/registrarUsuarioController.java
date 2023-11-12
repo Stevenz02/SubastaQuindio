@@ -3,6 +3,7 @@ package co.edu.uniquindio.subastaq.subastaq.controller;
 import co.edu.uniquindio.subastaq.subastaq.model.Anunciante;
 import co.edu.uniquindio.subastaq.subastaq.model.Comprador;
 import co.edu.uniquindio.subastaq.subastaq.model.TipoProducto;
+import co.edu.uniquindio.subastaq.subastaq.model.Usuario;
 import co.edu.uniquindio.subastaq.subastaq.utils.Persistencia;
 import javafx.beans.Observable;
 import javafx.beans.property.SimpleStringProperty;
@@ -128,7 +129,6 @@ public class registrarUsuarioController {
         texUsuario.setText("Ingrese el usuario");
         texContrasena.setText("Ingrese la contraseña");
     }
-
     @FXML
     void guardarUsuarioAction(ActionEvent event) { crearUsuario(); }
     @FXML
@@ -183,20 +183,19 @@ public class registrarUsuarioController {
     }
 
     private void eliminarUsuario() {
-        if (usuarioSeleccionado != null) {
-            if (mostrarMensajeConfirmacion("¿Estás seguro de eliminar al usuario?")) {
+        if(usuarioSeleccionado != null){
+            if(mostrarMensajeConfirmacion("¿Estas seguro de eliminar al usuario?")){
                 boolean usuarioEliminado = UsuarioControllerService.eliminarUsuario(usuarioSeleccionado.cedula());
-                if (usuarioEliminado) {
+                if(usuarioEliminado){
                     listaUsuariosDto.remove(usuarioSeleccionado);
-                    usuarioSeleccionado = null;
                     tableUsuarios.getSelectionModel().clearSelection();
                     mostrarMensaje("Notificación usuario", "Usuario eliminado", "El usuario se ha eliminado con éxito", Alert.AlertType.INFORMATION);
                     limpiarCamposUsuario();
-                } else {
+                }else{
                     mostrarMensaje("Notificación usuario", "Usuario no eliminado", "El usuario no se puede eliminar", Alert.AlertType.ERROR);
                 }
             }
-        } else {
+        }else{
             mostrarMensaje("Notificación usuario", "Usuario no seleccionado", "Selecciona un usuario de la lista", Alert.AlertType.WARNING);
         }
     }
