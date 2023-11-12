@@ -5,19 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c0cd79d-d40e-49f3-a50a-5ec033274a5e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controller/comprarProductoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controller/pujarProductoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controller/vistaPrincipalComprador.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastaq/subastaq/comprarProducto.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastaq/subastaq/pujarProducto.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/aplicacion/aplicacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/aplicacion/aplicacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controllerModel/ModelFactoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controllerModel/ModelFactoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/model/SubastaUniquindio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/model/SubastaUniquindio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controller/comprarProductoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controller/gestionarAnunciosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controller/gestionarAnunciosController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controller/pujarProductoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controller/pujarProductoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Persistencia/SubastaLog.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persistencia/SubastaLog.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Persistencia/archivoUsuarios.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persistencia/archivoUsuarios.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Persistencia/model.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persistencia/model.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Persistencia/model.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persistencia/model.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastaq/subastaq/comprarProducto.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastaq/subastaq/pujarProducto.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastaq/subastaq/pujarProducto.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastaq/subastaq/vistaPrincipalComprador.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastaq/subastaq/vistaPrincipalComprador.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -133,7 +128,7 @@
       <workItem from="1699645122676" duration="338000" />
       <workItem from="1699737358619" duration="6204000" />
       <workItem from="1699743576463" duration="7877000" />
-      <workItem from="1699815837776" duration="9053000" />
+      <workItem from="1699815837776" duration="12361000" />
     </task>
     <servers />
   </component>
