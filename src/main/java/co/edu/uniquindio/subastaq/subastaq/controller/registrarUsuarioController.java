@@ -3,6 +3,7 @@ package co.edu.uniquindio.subastaq.subastaq.controller;
 import co.edu.uniquindio.subastaq.subastaq.model.Anunciante;
 import co.edu.uniquindio.subastaq.subastaq.model.Comprador;
 import co.edu.uniquindio.subastaq.subastaq.model.TipoProducto;
+import co.edu.uniquindio.subastaq.subastaq.utils.Persistencia;
 import javafx.beans.Observable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -153,46 +154,50 @@ public class registrarUsuarioController {
         }
     }
     private void actualizarUsuario() {
-        boolean usuarioActualizado = false;
-        //1. Capturar los datos
-        String cedulaActual = usuarioSeleccionado.cedula();
-        UsuarioDto usuarioDto = construirUsuarioDto();
-        //2. verificar el empleado seleccionado
-        if(usuarioSeleccionado != null){
-            //3. Validar la información
-            if(datosValidos(usuarioSeleccionado)){
-                usuarioActualizado = UsuarioControllerService.actualizarUsuario(cedulaActual,usuarioDto);
-                if(usuarioActualizado){
-                    listaUsuariosDto.remove(usuarioSeleccionado);
-                    listaUsuariosDto.add(usuarioDto);
+        if (usuarioSeleccionado != null) {
+            //1. Capturar los datos nuevos
+            UsuarioDto usuarioDto = construirUsuarioDto();
+
+            //2. Validar la información nueva
+            if (datosValidos(usuarioDto)) {
+                boolean usuarioActualizado = UsuarioControllerService.actualizarUsuario(usuarioSeleccionado.cedula(), usuarioDto);
+
+                if (usuarioActualizado) {
+                    // Encuentra el índice del usuario seleccionado en la lista y actualiza la lista.
+                    int selectedIndex = listaUsuariosDto.indexOf(usuarioSeleccionado);
+                    if(selectedIndex != -1) {
+                        listaUsuariosDto.set(selectedIndex, usuarioDto); // Actualizar la lista con los nuevos datos.
+                    }
                     tableUsuarios.refresh();
-                    mostrarMensaje("Notificación usuario", "Empleado usuario", "El usuario se ha actualizado con éxito", Alert.AlertType.INFORMATION);
+                    mostrarMensaje("Notificación usuario", "Usuario actualizado", "El usuario se ha actualizado con éxito", Alert.AlertType.INFORMATION);
                     limpiarCamposUsuario();
-                }else{
-                    mostrarMensaje("Notificación usuario", "Empleado no usuario", "El usuario no se ha actualizado con éxito", Alert.AlertType.INFORMATION);
+                } else {
+                    mostrarMensaje("Notificación usuario", "Usuario no actualizado", "El usuario no se ha actualizado con éxito", Alert.AlertType.ERROR);
                 }
-            }else{
-                mostrarMensaje("Notificación usuario", "Usuario no creado", "Los datos ingresados son invalidos", Alert.AlertType.ERROR);
+            } else {
+                mostrarMensaje("Notificación usuario", "Datos inválidos", "Los datos ingresados son inválidos", Alert.AlertType.ERROR);
             }
+        } else {
+            mostrarMensaje("Notificación usuario", "Usuario no seleccionado", "Seleccione un usuario de la lista", Alert.AlertType.WARNING);
         }
     }
+
     private void eliminarUsuario() {
-        boolean usuarioEliminado = false;
-        if(usuarioSeleccionado != null){
-            if(mostrarMensajeConfirmacion("¿Estas seguro de eliminar al usuario?")){
-                usuarioEliminado = UsuarioControllerService.eliminarUsuario(usuarioSeleccionado.cedula());
-                if(usuarioEliminado == true){
+        if (usuarioSeleccionado != null) {
+            if (mostrarMensajeConfirmacion("¿Estás seguro de eliminar al usuario?")) {
+                boolean usuarioEliminado = UsuarioControllerService.eliminarUsuario(usuarioSeleccionado.cedula());
+                if (usuarioEliminado) {
                     listaUsuariosDto.remove(usuarioSeleccionado);
                     usuarioSeleccionado = null;
                     tableUsuarios.getSelectionModel().clearSelection();
-                    limpiarCamposUsuario();
                     mostrarMensaje("Notificación usuario", "Usuario eliminado", "El usuario se ha eliminado con éxito", Alert.AlertType.INFORMATION);
-                }else{
+                    limpiarCamposUsuario();
+                } else {
                     mostrarMensaje("Notificación usuario", "Usuario no eliminado", "El usuario no se puede eliminar", Alert.AlertType.ERROR);
                 }
             }
-        }else{
-            mostrarMensaje("Notificación usuario", "Usuario no seleccionado", "Seleccionado un usuario de la lista", Alert.AlertType.WARNING);
+        } else {
+            mostrarMensaje("Notificación usuario", "Usuario no seleccionado", "Selecciona un usuario de la lista", Alert.AlertType.WARNING);
         }
     }
     private UsuarioDto construirUsuarioDto() {
@@ -201,9 +206,9 @@ public class registrarUsuarioController {
         texApellido.getText(),
         texCedula.getText(),
         Integer.valueOf(texEdad.getText()),
-        comboUsuario.getValue(),
         texUsuario.getText(),
-        texContrasena.getText()
+        texContrasena.getText(),
+        comboUsuario.getValue()
         );
     }
     private void limpiarCamposUsuario() {
@@ -211,33 +216,34 @@ public class registrarUsuarioController {
         texApellido.setText("");
         texCedula.setText("");
         texEdad.setText("");
-        comboUsuario.setValue("");
         texUsuario.setText("");
         texContrasena.setText("");
+        comboUsuario.setValue("");
     }
     private void registrarAcciones(String mensaje, int nivel, String accion) {
         UsuarioControllerService.registrarAcciones(mensaje, nivel, accion);
     }
     private boolean datosValidos(UsuarioDto usuarioDto) {
-        String mensaje = "";
-        if(usuarioDto.nombre() == null || usuarioDto.nombre().equals(""))
-            mensaje += "El nombre es invalido \n" ;
-        if(usuarioDto.apellido() == null || usuarioDto.apellido().equals(""))
-            mensaje += "El apellido es invalido \n" ;
-        if(usuarioDto.cedula() == null || usuarioDto.cedula().equals(""))
-            mensaje += "El documento es invalido \n" ;
-        if(usuarioDto.edad() == null || usuarioDto.edad().equals(""))
-            mensaje += "La edad es invalida \n" ;
-        if(usuarioDto.tipo() == null || usuarioDto.tipo().equals(""))
-            mensaje += "El tipo es invalido \n" ;
-        if(usuarioDto.nombreUsuario() == null || usuarioDto.nombreUsuario().equals(""))
-            mensaje += "El nombre de usuario es invalida \n" ;
-        if(usuarioDto.contrasenia() == null || usuarioDto.contrasenia().equals(""))
-            mensaje += "La contraseña es invalida \n" ;
-        if(mensaje.equals("")){
+        StringBuilder mensaje = new StringBuilder();
+        if (usuarioDto.nombre().isBlank())
+            mensaje.append("El nombre es inválido.\n");
+        if (usuarioDto.apellido().isBlank())
+            mensaje.append("El apellido es inválido.\n");
+        if (usuarioDto.cedula().isBlank())
+            mensaje.append("La cédula es inválida.\n");
+        if (usuarioDto.edad() == null || usuarioDto.edad() <= 0)
+            mensaje.append("La edad es inválida.\n");
+        if (usuarioDto.tipo().isBlank())
+            mensaje.append("El tipo de usuario es inválido.\n");
+        if (usuarioDto.nombreUsuario().isBlank())
+            mensaje.append("El nombre de usuario es inválido.\n");
+        if (usuarioDto.contrasenia().isBlank())
+            mensaje.append("La contraseña es inválida.\n");
+
+        if (mensaje.length() == 0) {
             return true;
-        }else{
-            mostrarMensaje("Notificación usuario","Datos invalidos",mensaje, Alert.AlertType.WARNING);
+        } else {
+            mostrarMensaje("Notificación usuario", "Datos inválidos", mensaje.toString(), Alert.AlertType.WARNING);
             return false;
         }
     }
