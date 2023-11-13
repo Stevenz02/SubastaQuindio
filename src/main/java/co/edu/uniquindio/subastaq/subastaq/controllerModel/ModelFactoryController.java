@@ -2,6 +2,7 @@ package co.edu.uniquindio.subastaq.subastaq.controllerModel;
 
 import co.edu.uniquindio.subastaq.subastaq.aplicacion.aplicacion;
 import co.edu.uniquindio.subastaq.subastaq.controllerModel.service.IModelFactoryControllerService;
+import co.edu.uniquindio.subastaq.subastaq.exception.AnuncianteExepcion;
 import co.edu.uniquindio.subastaq.subastaq.exception.UsuarioExepcion;
 import co.edu.uniquindio.subastaq.subastaq.exception.ActualizarUsuarioExepcion;
 import co.edu.uniquindio.subastaq.subastaq.exception.BuscarUsuarioExepcion;
@@ -10,6 +11,8 @@ import co.edu.uniquindio.subastaq.subastaq.mapping.dto.AnuncioDto;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.CompradorDto;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.subastaq.subastaq.mapping.mappers.SubastaMapper;
+import co.edu.uniquindio.subastaq.subastaq.model.Anunciante;
+import co.edu.uniquindio.subastaq.subastaq.model.Anuncio;
 import co.edu.uniquindio.subastaq.subastaq.model.SubastaUniquindio;
 import co.edu.uniquindio.subastaq.subastaq.model.Usuario;
 import co.edu.uniquindio.subastaq.subastaq.utils.Persistencia;
@@ -168,8 +171,11 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     }
 
     @Override
-    public boolean agregarAnuncio(AnuncioDto anuncioDto) {
-        return false;
+    public boolean agregarAnuncio(AnuncioDto anuncioDto, UsuarioDto usuarioDto) {
+        Anuncio anuncio = mapper.anuncioDtoToAnuncio(anuncioDto);
+        Anunciante anunciante = subastaUniquindio.obtenerAnunciante(usuarioDto.cedula());
+        getSubastaUniquindio().crearAnuncio(anunciante, anuncio);
+        return true;
     }
 
     @Override
