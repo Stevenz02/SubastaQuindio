@@ -2,10 +2,9 @@ package co.edu.uniquindio.subastaq.subastaq.controllerModel;
 
 import co.edu.uniquindio.subastaq.subastaq.aplicacion.aplicacion;
 import co.edu.uniquindio.subastaq.subastaq.controllerModel.service.IModelFactoryControllerService;
-import co.edu.uniquindio.subastaq.subastaq.exception.AnuncianteExepcion;
-import co.edu.uniquindio.subastaq.subastaq.exception.UsuarioExepcion;
 import co.edu.uniquindio.subastaq.subastaq.exception.ActualizarUsuarioExepcion;
 import co.edu.uniquindio.subastaq.subastaq.exception.BuscarUsuarioExepcion;
+import co.edu.uniquindio.subastaq.subastaq.exception.UsuarioExepcion;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.AnuncianteDto;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.AnuncioDto;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.CompradorDto;
@@ -239,6 +238,17 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     @Override
     public void cargarVistaAnunciante(ActionEvent actionEvent) {
         Aplicacion.cambiarPanelAnunciante();
+    }
+
+    @Override
+    public AnuncianteDto buscarAnuncianteNombre(String nombre) {
+        Anunciante anunciante = getSubastaUniquindio().buscarAnuncianteNombre(nombre);
+        return crearAnuncianteDto(anunciante);
+    }
+
+    @Override
+    public AnuncianteDto crearAnuncianteDto(Anunciante anunciante) {
+        return mapper.anuncianteToAnuncianteDto(anunciante);
     }
 
 }
