@@ -1,20 +1,25 @@
 package co.edu.uniquindio.subastaq.subastaq.controller;
 
 import co.edu.uniquindio.subastaq.subastaq.controllerModel.AnuncioController;
+import co.edu.uniquindio.subastaq.subastaq.controllerModel.ModelFactoryController;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.AnuncianteDto;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.AnuncioDto;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.ProductoDto;
+import co.edu.uniquindio.subastaq.subastaq.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.subastaq.subastaq.model.TipoProducto;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -23,9 +28,11 @@ import java.util.ResourceBundle;
 
 public class gestionarAnunciosController {
 
+    ModelFactoryController modelFactoryController;
     AnuncioController AnuncioControllerService;
     ObservableList<AnuncioDto> listaAnunciosDto = FXCollections.observableArrayList();
     AnuncioDto anuncioSeleccionado;
+    UsuarioDto usuario = ModelFactoryController.getUsuarioActual();
 
     @FXML
     private ResourceBundle resources;
@@ -86,6 +93,23 @@ public class gestionarAnunciosController {
 
     @FXML
     void bttcargarFoto(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+
+        // Configurar el FileChooser
+        fileChooser.setTitle("Seleccionar Foto");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg", "*.gif"),
+                new FileChooser.ExtensionFilter("Todos los archivos", "*.*")
+        );
+
+        // Mostrar el diálogo de apertura de archivos
+        File file = fileChooser.showOpenDialog(((Node) event.getTarget()).getScene().getWindow());
+
+        if (file != null) {
+            // Si se selecciona un archivo, actualizar la vista de imagen
+            Image image = new Image(file.toURI().toString());
+            imgFoto.setImage(image);
+        }
     }
 
     @FXML
@@ -177,7 +201,7 @@ public class gestionarAnunciosController {
         AnuncioDto anuncioDto = construirAnuncioDto();
         //2. Validar la información
         if (datosValidos(anuncioDto)) {
-            if (AnuncioControllerService.agregarAnuncio(anuncioDto)) {
+            if (AnuncioControllerService.agregarAnuncio(anuncioDto, usuario)) {
                 listaAnunciosDto.add(anuncioDto);
                 mostrarMensaje("Notificación Anuncio", "Anuncio creado", "El anuncio se ha creado con éxito", Alert.AlertType.INFORMATION);
                 limpiarCamposAnuncio();
@@ -191,11 +215,17 @@ public class gestionarAnunciosController {
     }
 
     private AnuncioDto construirAnuncioDto() {
+        AnuncianteDto anuncianteDto = modelFactoryController.buscarAnuncianteNombre(txtNombreAnunciante.getText());
+        ProductoDto productoDto = crearProductoDto(txtNombreProducto.getText(),cbTipoProducto.getValue(), txtDescripcion.getText(), );
+
         return new AnuncioDto(
-                txtNombreAnunciante.getText(),
-                txtNombreProducto.getText(),
-                cbTipoProducto.getValue(),
+                anuncianteDto,
+
+
         );
+    }
+    public ProductoDto crearProductoDto(String nombreProducto, TipoProducto tipoProducto, String descripcion, String rutaImagen){
+        return new ProductoDto(nombreProducto, tipoProducto, descripcion, rutaImagen);
     }
 
     private void limpiarCamposAnuncio() {

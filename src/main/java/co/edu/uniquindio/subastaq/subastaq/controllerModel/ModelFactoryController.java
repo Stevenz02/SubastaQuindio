@@ -28,6 +28,7 @@ import static co.edu.uniquindio.subastaq.subastaq.utils.SubastaUtils.inicializar
 
 public class ModelFactoryController implements IModelFactoryControllerService {
     private ExecutorService executorService = Executors.newFixedThreadPool(6);
+    private static UsuarioDto usuarioActual;
     SubastaUniquindio subastaUniquindio;
     aplicacion Aplicacion;
     SubastaMapper mapper = SubastaMapper.INSTANCE;
@@ -175,6 +176,9 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         Anunciante anunciante = subastaUniquindio.obtenerAnunciante(usuarioDto.cedula());
         getSubastaUniquindio().crearAnuncio(anunciante, anuncio);
         return true;
+    }
+    public static UsuarioDto getUsuarioActual() {
+        return usuarioActual;
     }
 
     @Override
