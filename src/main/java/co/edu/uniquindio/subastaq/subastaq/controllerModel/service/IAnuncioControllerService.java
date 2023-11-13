@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface IAnuncioControllerService {
     List<AnuncioDto> obtenerAnuncios();
-    boolean agregarAnuncio(AnuncioDto anuncioDto);
+    boolean agregarAnuncio(AnuncioDto anuncioDto, UsuarioDto usuarioDto);
     void registrarAcciones(String mensaje, int nivel, String accion);
 }

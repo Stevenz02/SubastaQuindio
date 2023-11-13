@@ -2,6 +2,7 @@ package co.edu.uniquindio.subastaq.subastaq.controllerModel;
 
 import co.edu.uniquindio.subastaq.subastaq.controllerModel.service.IAnuncioControllerService;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.AnuncioDto;
+import co.edu.uniquindio.subastaq.subastaq.mapping.dto.UsuarioDto;
 
 import java.util.List;
 
@@ -17,8 +18,8 @@ public class AnuncioController implements IAnuncioControllerService {
     }
 
     @Override
-    public boolean agregarAnuncio(AnuncioDto anuncioDto) {
-        return modelFactoryController.agregarAnuncio(anuncioDto);
+    public boolean agregarAnuncio(AnuncioDto anuncioDto, UsuarioDto usuarioDto) {
+        return modelFactoryController.agregarAnuncio(anuncioDto, usuarioDto);
     }
 
     @Override

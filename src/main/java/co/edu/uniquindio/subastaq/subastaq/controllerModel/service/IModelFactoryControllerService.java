@@ -1,6 +1,8 @@
 package co.edu.uniquindio.subastaq.subastaq.controllerModel.service;
 
+import co.edu.uniquindio.subastaq.subastaq.exception.AnuncianteExepcion;
 import co.edu.uniquindio.subastaq.subastaq.exception.BuscarUsuarioExepcion;
+import co.edu.uniquindio.subastaq.subastaq.exception.UsuarioExepcion;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.AnuncianteDto;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.AnuncioDto;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.CompradorDto;
@@ -14,7 +16,7 @@ public interface IModelFactoryControllerService {
     List<CompradorDto> obtenerCompradores();
     List<AnuncianteDto> obtenerAnunciantes();
     List<AnuncioDto> obtenerAnuncios();
-    boolean agregarAnuncio(AnuncioDto anuncioDto);
+    boolean agregarAnuncio(AnuncioDto anuncioDto, UsuarioDto usuarioDto) throws AnuncianteExepcion;
     boolean agregarUsuario(UsuarioDto usuarioDto);
     boolean actualizarUsuario (String cedula, UsuarioDto usuarioDto);
     boolean eliminarUsuario(String cedula);
