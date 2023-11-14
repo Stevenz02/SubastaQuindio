@@ -48,4 +48,5 @@
          </AnchorPane>
       </items>
    </SplitPane>
+   <Button fx:id="btnCerrarSesion" layoutX="533.0" layoutY="491.0" mnemonicParsing="false" onAction="#cerrarSesionAction" styleClass="button-standard-stop" stylesheets="@../../../../../EstilosCCS/styles.css" text="Cerrar Sesión" />
 </AnchorPane>

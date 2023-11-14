@@ -77,6 +77,31 @@
      </void>
     </object>
    </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.subastaq.subastaq.model.Usuario">
+     <void property="apellido">
+      <string>care verga</string>
+     </void>
+     <void property="cedula">
+      <string>134636</string>
+     </void>
+     <void property="contrasenia">
+      <string>123456</string>
+     </void>
+     <void property="edad">
+      <int>18</int>
+     </void>
+     <void property="nombre">
+      <string>Alex</string>
+     </void>
+     <void property="nombreUsuario">
+      <string>alex</string>
+     </void>
+     <void property="tipo">
+      <string>Comprador</string>
+     </void>
+    </object>
+   </void>
   </void>
  </object>
 </java>

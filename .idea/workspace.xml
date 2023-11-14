@@ -6,15 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="1c0cd79d-d40e-49f3-a50a-5ec033274a5e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/aplicacion/aplicacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/aplicacion/aplicacion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controller/gestionarAnunciosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controller/gestionarAnunciosController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controllerModel/ModelFactoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controllerModel/ModelFactoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controllerModel/service/IModelFactoryControllerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controllerModel/service/IModelFactoryControllerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/EstilosCCS/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/EstilosCCS/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Persistencia/SubastaLog.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persistencia/SubastaLog.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Persistencia/archivoUsuarios.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persistencia/archivoUsuarios.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Persistencia/model.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persistencia/model.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastaq/subastaq/autenticarUsuario.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastaq/subastaq/autenticarUsuario.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastaq/subastaq/gestionarAnuncios.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastaq/subastaq/gestionarAnuncios.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Persistencia/model.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persistencia/model.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +127,10 @@
       <workItem from="1699737358619" duration="6204000" />
       <workItem from="1699743576463" duration="7877000" />
       <workItem from="1699815837776" duration="19268000" />
-      <workItem from="1699920791398" duration="4693000" />
+      <workItem from="1699920791398" duration="4756000" />
+      <workItem from="1699975097470" duration="1456000" />
+      <workItem from="1699989461054" duration="298000" />
+      <workItem from="1700004660244" duration="647000" />
     </task>
     <servers />
   </component>

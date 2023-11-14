@@ -111,6 +111,7 @@ public class gestionarAnunciosController {
     }
     @FXML
     public void cerrarSesionAction(ActionEvent event) {
+        modelFactoryController = ModelFactoryController.getInstance();
         if (modelFactoryController != null) {
             modelFactoryController.cerrarSesion(event);
         } else {

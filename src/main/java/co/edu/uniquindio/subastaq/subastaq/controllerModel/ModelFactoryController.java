@@ -125,7 +125,6 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     public void setSubastaUniquindio(SubastaUniquindio subastaUniquindio) {
         this.subastaUniquindio = subastaUniquindio;
     }
-
     public void setAplicacion(aplicacion Aplicacion){
         this.Aplicacion = Aplicacion;
     }
