@@ -59,5 +59,6 @@
             <Image url="@../../../../../Imagenes/carritoProductos.png" />
          </image>
       </ImageView>
+      <Button fx:id="btnCerrarSesion" layoutX="597.0" layoutY="499.0" mnemonicParsing="false" onAction="#cerrarSesionAction" prefHeight="40.0" prefWidth="146.0" styleClass="button-standard-stop" stylesheets="@../../../../../EstilosCCS/styles.css" text="Cerrar Sesión" />
     </children>
 </AnchorPane>

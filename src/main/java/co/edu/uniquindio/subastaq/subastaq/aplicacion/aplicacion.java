@@ -74,6 +74,12 @@ public class aplicacion extends Application {
             e.printStackTrace();
         }
     }
+    /**
+     * Método para cambiar a la vista de inicio de sesión.
+     */
+    public void volverALogin() {
+        mostrarVistaPrincipalLogin();
+    }
     public static void main(String[] args) {
         launch(args);
     }

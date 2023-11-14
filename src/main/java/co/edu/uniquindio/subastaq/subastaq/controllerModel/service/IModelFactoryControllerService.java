@@ -22,6 +22,7 @@ public interface IModelFactoryControllerService {
     boolean actualizarUsuario (String cedula, UsuarioDto usuarioDto);
     boolean eliminarUsuario(String cedula);
     void iniciarSesion(String nombreUsuario, String contrasenia, ActionEvent eventoMouse) throws BuscarUsuarioExepcion;
+    void cerrarSesion(ActionEvent actionEvent);
     void cargarVistaComprador(ActionEvent actionEvent);
     void cargarVistaAnunciante(ActionEvent actionEvent);
     AnuncianteDto buscarAnuncianteNombre(String nombre);

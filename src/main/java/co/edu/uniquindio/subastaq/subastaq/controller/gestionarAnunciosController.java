@@ -1,5 +1,6 @@
 package co.edu.uniquindio.subastaq.subastaq.controller;
 
+import co.edu.uniquindio.subastaq.subastaq.aplicacion.aplicacion;
 import co.edu.uniquindio.subastaq.subastaq.controllerModel.AnuncioController;
 import co.edu.uniquindio.subastaq.subastaq.controllerModel.ModelFactoryController;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.AnuncianteDto;
@@ -28,7 +29,10 @@ import java.util.ResourceBundle;
 
 public class gestionarAnunciosController {
 
-    ModelFactoryController modelFactoryController;
+    private ModelFactoryController modelFactoryController;
+    public void setModelFactoryController(ModelFactoryController modelFactoryController) {
+        this.modelFactoryController = modelFactoryController;
+    }
     AnuncioController AnuncioControllerService;
     ObservableList<AnuncioDto> listaAnunciosDto = FXCollections.observableArrayList();
     AnuncioDto anuncioSeleccionado;
@@ -94,28 +98,36 @@ public class gestionarAnunciosController {
     @FXML
     void bttcargarFoto(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
-
-        // Configurar el FileChooser
         fileChooser.setTitle("Seleccionar Foto");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg", "*.gif"),
                 new FileChooser.ExtensionFilter("Todos los archivos", "*.*")
         );
-
-        // Mostrar el diálogo de apertura de archivos
         File file = fileChooser.showOpenDialog(((Node) event.getTarget()).getScene().getWindow());
-
         if (file != null) {
-            // Si se selecciona un archivo, actualizar la vista de imagen
             Image image = new Image(file.toURI().toString());
             imgFoto.setImage(image);
         }
     }
-
+    @FXML
+    public void cerrarSesionAction(ActionEvent event) {
+        if (modelFactoryController != null) {
+            modelFactoryController.cerrarSesion(event);
+        } else {
+            // Manejar el caso en que modelFactoryController es null
+            System.out.println("modelFactoryController es null");
+        }
+    }
     @FXML
     void bttactualizarProducto(ActionEvent event) {
     }
-
+    @FXML
+    void guardarAnuncioAction(ActionEvent event) {
+    }
+    @FXML
+    void eliminarAnuncioAction(ActionEvent event) {
+    }
+    /*
     @FXML
     void initialize() {
         AnuncioControllerService = new AnuncioController();
@@ -186,15 +198,7 @@ public class gestionarAnunciosController {
         }
     }
 
-    @FXML
-    void guardarAnuncioAction(ActionEvent event) {
-        crearAnuncio();
-    }
 
-    @FXML
-    void eliminarAnuncioAction(ActionEvent event) {
-
-    }
 
     private void crearAnuncio() {
         //1. Capturar los datos
@@ -227,6 +231,8 @@ public class gestionarAnunciosController {
     public ProductoDto crearProductoDto(String nombreProducto, TipoProducto tipoProducto, String descripcion, String rutaImagen){
         return new ProductoDto(nombreProducto, tipoProducto, descripcion, rutaImagen);
     }
+
+    */
 
     private void limpiarCamposAnuncio() {
         cbTipoProducto.setValue(null);

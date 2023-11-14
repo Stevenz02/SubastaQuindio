@@ -234,7 +234,9 @@ public class ModelFactoryController implements IModelFactoryControllerService {
             }
         }
     }
-
+    public void cerrarSesion(ActionEvent actionEvent) {
+        Aplicacion.volverALogin();
+    }
     @Override
     public void cargarVistaComprador(ActionEvent actionEvent) {
         Aplicacion.cambiarPanelComprador();
