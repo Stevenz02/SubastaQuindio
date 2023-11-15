@@ -40,7 +40,7 @@
                         <TextField fx:id="texUsuario" layoutX="104.0" layoutY="284.0" prefHeight="26.0" prefWidth="186.0" promptText="Nombre de usuario" />
                         <PasswordField fx:id="texContrasena" layoutX="104.0" layoutY="332.0" prefHeight="26.0" prefWidth="186.0" promptText="Contraseña" />
                         <Button fx:id="btnIngresar" layoutX="157.0" layoutY="386.0" mnemonicParsing="false" onAction="#bttIngresar" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Ingresar" />
-                        <Button fx:id="btnCerrar" layoutX="305.0" layoutY="14.0" mnemonicParsing="false" onAction="#bttCerrar" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Cerrar" />
+                        <Button fx:id="btnCerrar" layoutX="305.0" layoutY="14.0" mnemonicParsing="false" onAction="#bttCerrar" styleClass="button-standard-stop" stylesheets="@../../../../../EstilosCCS/styles.css" text="Cerrar" />
                      </children>
                   </AnchorPane>
                </children>

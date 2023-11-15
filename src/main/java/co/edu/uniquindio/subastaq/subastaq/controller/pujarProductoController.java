@@ -1,5 +1,6 @@
 package co.edu.uniquindio.subastaq.subastaq.controller;
 
+import co.edu.uniquindio.subastaq.subastaq.controllerModel.ModelFactoryController;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.AnuncioDto;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.ProductoDto;
 import co.edu.uniquindio.subastaq.subastaq.model.TipoProducto;
@@ -13,6 +14,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
 public class pujarProductoController {
+
+    private ModelFactoryController modelFactoryController;
 
     @FXML
     private Button buttonOfertar;
@@ -52,4 +55,13 @@ public class pujarProductoController {
 
     }
 
+    public void cerrarSesionAction(ActionEvent event) {
+        modelFactoryController = ModelFactoryController.getInstance();
+        if (modelFactoryController != null) {
+            modelFactoryController.cerrarSesion(event);
+        } else {
+            // Manejar el caso en que modelFactoryController es null
+            System.out.println("modelFactoryController es null");
+        }
+    }
 }

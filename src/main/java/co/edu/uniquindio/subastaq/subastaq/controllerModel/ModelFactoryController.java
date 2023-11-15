@@ -28,6 +28,7 @@ import static co.edu.uniquindio.subastaq.subastaq.utils.SubastaUtils.inicializar
 
 public class ModelFactoryController implements IModelFactoryControllerService {
     private ExecutorService executorService = Executors.newFixedThreadPool(6);
+    private static UsuarioDto usuarioActual;
     SubastaUniquindio subastaUniquindio;
     aplicacion Aplicacion;
     SubastaMapper mapper = SubastaMapper.INSTANCE;
@@ -124,7 +125,6 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     public void setSubastaUniquindio(SubastaUniquindio subastaUniquindio) {
         this.subastaUniquindio = subastaUniquindio;
     }
-
     public void setAplicacion(aplicacion Aplicacion){
         this.Aplicacion = Aplicacion;
     }
@@ -175,6 +175,9 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         Anunciante anunciante = subastaUniquindio.obtenerAnunciante(usuarioDto.cedula());
         getSubastaUniquindio().crearAnuncio(anunciante, anuncio);
         return true;
+    }
+    public static UsuarioDto getUsuarioActual() {
+        return usuarioActual;
     }
 
     @Override
@@ -230,7 +233,9 @@ public class ModelFactoryController implements IModelFactoryControllerService {
             }
         }
     }
-
+    public void cerrarSesion(ActionEvent actionEvent) {
+        Aplicacion.volverALogin();
+    }
     @Override
     public void cargarVistaComprador(ActionEvent actionEvent) {
         Aplicacion.cambiarPanelComprador();

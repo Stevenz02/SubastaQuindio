@@ -14,6 +14,14 @@
     -fx-padding: 10px 20px;
     -fx-border-radius: 5;
 }
+.button-standard-stop {
+    -fx-background-color: #f80404;
+    -fx-text-fill: #000000;
+    -fx-border-color: transparent;
+    -fx-border-radius: 4;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5;
+}
 
 .button-standard:hover {
     -fx-background-color: #3949ab;
