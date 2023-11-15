@@ -4,6 +4,7 @@ module co.edu.uniquindio.subastaq.subastaq {
     requires org.mapstruct;
     requires java.desktop;
     requires java.logging;
+    requires com.rabbitmq.client;
 
     opens co.edu.uniquindio.subastaq.subastaq.aplicacion to javafx.fxml;
     opens co.edu.uniquindio.subastaq.subastaq.controller to javafx.fxml;
