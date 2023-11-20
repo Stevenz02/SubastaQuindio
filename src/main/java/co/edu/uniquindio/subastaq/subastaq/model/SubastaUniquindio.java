@@ -292,14 +292,24 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
 
     @Override
     public Anunciante obtenerAnunciante(String cedula) {
-        Anunciante anuncianteEncontrado = null;
-        for (Anunciante anunciante: getListaAnunciantes()){
-            if (anunciante.getCedula().equalsIgnoreCase(cedula)){
-                anuncianteEncontrado = anunciante;
-                return anuncianteEncontrado;
+        for (Usuario usuario: getListaUsuarios()){
+            if (usuario.getCedula().equalsIgnoreCase(cedula)){
+                return usuarioToAnunciante(usuario);
             }
         }
-        return anuncianteEncontrado;
+        return null;
+    }
+
+    private Anunciante usuarioToAnunciante(Usuario usuario) {
+        Anunciante anunciante = new Anunciante(10, new Date(),new ArrayList<>());
+        anunciante.setTipo(usuario.getTipo());
+        anunciante.setNombre(usuario.getNombre());
+        anunciante.setApellido(usuario.getApellido());
+        anunciante.setCedula(usuario.getCedula());
+        anunciante.setNombreUsuario(usuario.getNombreUsuario());
+        anunciante.setContrasenia(usuario.getContrasenia());
+        getListaAnunciantes().add(anunciante);
+        return anunciante;
     }
 
     @Override
