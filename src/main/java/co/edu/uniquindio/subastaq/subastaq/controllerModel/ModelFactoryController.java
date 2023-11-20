@@ -268,19 +268,14 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     }
 
     @Override
-    public AnuncianteDto buscarAnuncianteNombre(String nombre) {
-        Anunciante anunciante = getSubastaUniquindio().buscarAnuncianteNombre(nombre);
+    public AnuncianteDto buscarAnuncianteCedula(String cedula) {
+        Anunciante anunciante = getSubastaUniquindio().buscarAnuncianteCedula(cedula);
         return crearAnuncianteDto(anunciante);
     }
 
     @Override
     public AnuncianteDto crearAnuncianteDto(Anunciante anunciante) {
         return mapper.anuncianteToAnuncianteDto(anunciante);
-    }
-
-    @Override
-    public UsuarioDto userToDto(Usuario usuario) {
-        return mapper.usuarioToUsuarioDto(usuario);
     }
 
 }

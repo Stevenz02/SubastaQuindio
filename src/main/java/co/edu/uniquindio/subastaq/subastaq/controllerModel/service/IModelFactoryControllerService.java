@@ -26,7 +26,7 @@ public interface IModelFactoryControllerService {
     void cerrarSesion(ActionEvent actionEvent);
     void cargarVistaComprador(ActionEvent actionEvent);
     void cargarVistaAnunciante(ActionEvent actionEvent);
-    AnuncianteDto buscarAnuncianteNombre(String nombre);
+    AnuncianteDto buscarAnuncianteCedula(String cedula);
     AnuncianteDto crearAnuncianteDto(Anunciante anunciante);
     UsuarioDto userToDto(Usuario usuario);
 }

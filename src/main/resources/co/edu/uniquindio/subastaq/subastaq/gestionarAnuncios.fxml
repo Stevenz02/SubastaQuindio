@@ -35,16 +35,14 @@
         <Label layoutX="434.0" layoutY="20.0" text="Foto:" />
         <ImageView fx:id="imgFoto" fitHeight="150.0" fitWidth="200.0" layoutX="493.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
         <Button fx:id="btncargarFoto" layoutX="541.0" layoutY="177.0" onAction="#bttcargarFoto" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Cargar Foto" />
-        <Label layoutX="20.0" layoutY="175.0" text="Nombre Anunciante:" />
-        <TextField fx:id="txtNombreAnunciante" layoutX="180.0" layoutY="171.0" prefHeight="26.0" prefWidth="200.0" />
-        <Label layoutX="20.0" layoutY="215.0" text="Fecha Publicación:" />
-        <DatePicker fx:id="dateFechaPublicacion" layoutX="180.0" layoutY="211.0" prefHeight="26.0" prefWidth="200.0" />
-        <Label layoutX="20.0" layoutY="255.0" text="Fecha Finalización:" />
-        <DatePicker fx:id="dateFechaFinalizacion" layoutX="180.0" layoutY="251.0" prefHeight="26.0" prefWidth="200.0" />
-        <Label layoutX="20.0" layoutY="295.0" text="Valor Inicial:" />
-        <TextField fx:id="txtValorInicial" layoutX="180.0" layoutY="291.0" prefHeight="26.0" prefWidth="200.0" />
+        <Label layoutX="19.0" layoutY="188.0" text="Fecha Publicación:" />
+        <DatePicker fx:id="dateFechaPublicacion" layoutX="180.0" layoutY="184.0" prefHeight="26.0" prefWidth="200.0" />
+        <Label layoutX="19.0" layoutY="234.0" text="Fecha Finalización:" />
+        <DatePicker fx:id="dateFechaFinalizacion" layoutX="180.0" layoutY="230.0" prefHeight="26.0" prefWidth="200.0" />
+        <Label layoutX="21.0" layoutY="283.0" text="Valor Inicial:" />
+        <TextField fx:id="txtValorInicial" layoutX="180.0" layoutY="279.0" prefHeight="26.0" prefWidth="200.0" />
         <Button fx:id="btnagregarProducto" layoutX="598.0" layoutY="335.0" onAction="#guardarAnuncioAction" prefHeight="40.0" prefWidth="146.0" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Agregar Producto" />
-        <TableView fx:id="tablaProductos" layoutX="20.0" layoutY="335.0" prefHeight="194.0" prefWidth="547.0" stylesheets="@../../../../../EstilosCCS/styles.css">
+        <TableView fx:id="tablaProductos" layoutX="20.0" layoutY="318.0" prefHeight="222.0" prefWidth="547.0" stylesheets="@../../../../../EstilosCCS/styles.css">
             <columns>
                 <TableColumn fx:id="columnaNombreProducto" prefWidth="123.20003509521484" text="Nombre Producto" />
                 <TableColumn fx:id="columnaTipoProducto" minWidth="0.0" prefWidth="143.199951171875" text="Tipo Producto" />

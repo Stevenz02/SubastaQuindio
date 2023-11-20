@@ -28,5 +28,5 @@ public interface ISubastaService {
     boolean actualizarAnunciante(String cedulaActual, Anunciante anunciante) throws ActualizarAnuncianteExepcion;
     public Anunciante obtenerAnunciante(String cedula);
     public void crearAnuncio(Anunciante anunciante, Anuncio anuncio) ;
-    public Anunciante buscarAnuncianteNombre(String nombre);
+    public Anunciante buscarAnuncianteCedula(String cedula);
 }

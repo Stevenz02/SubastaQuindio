@@ -61,9 +61,6 @@ public class gestionarAnunciosController {
     private TextArea txtDescripcion;
 
     @FXML
-    private TextField txtNombreAnunciante;
-
-    @FXML
     private DatePicker dateFechaPublicacion;
 
     @FXML
@@ -171,7 +168,6 @@ public class gestionarAnunciosController {
             // Establecer el nombre del producto, la descripción y el nombre del anunciante en sus respectivos TextFields.
             txtNombreProducto.setText(anuncioSeleccionado.productoDto().nombreProducto());
             txtDescripcion.setText(anuncioSeleccionado.productoDto().descripcion());
-            txtNombreAnunciante.setText(anuncioSeleccionado.anuncianteDto().nombre());
 
             // Convertir Date a LocalDate
             LocalDate fechaPubLocalDate = anuncioSeleccionado.fechaPublicacion().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -219,7 +215,7 @@ public class gestionarAnunciosController {
     }
 
     private AnuncioDto construirAnuncioDto() {
-        AnuncianteDto anuncianteDto = modelFactoryController.buscarAnuncianteNombre(txtNombreAnunciante.getText());
+        AnuncianteDto anuncianteDto = modelFactoryController.buscarAnuncianteCedula(usuario.nombre());
         System.out.println("El anuncianteDto es: " + anuncianteDto);
         if (anuncianteDto == null) {
             // Si el anunciante no se encuentra, devuelve null para manejarlo adecuadamente.
@@ -247,7 +243,6 @@ public class gestionarAnunciosController {
         cbTipoProducto.setValue(null);
         txtNombreProducto.clear();
         txtDescripcion.clear();
-        txtNombreAnunciante.clear();
         dateFechaPublicacion.setValue(null);
         dateFechaFinalizacion.setValue(null);
         txtValorInicial.clear();
