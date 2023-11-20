@@ -6,10 +6,16 @@ import co.edu.uniquindio.subastaq.subastaq.exception.*;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.*;
 import co.edu.uniquindio.subastaq.subastaq.mapping.mappers.SubastaMapper;
 import co.edu.uniquindio.subastaq.subastaq.model.*;
+import co.edu.uniquindio.subastaq.subastaq.producer.RabbitProducer;
 import co.edu.uniquindio.subastaq.subastaq.utils.Persistencia;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.DeliverCallback;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -23,8 +29,12 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     private ExecutorService executorService = Executors.newFixedThreadPool(6);
     private static UsuarioDto usuarioActual;
     SubastaUniquindio subastaUniquindio;
+    RabbitProducer rabbitFactory;
+    ConnectionFactory connectionFactory;
     aplicacion Aplicacion;
     SubastaMapper mapper = SubastaMapper.INSTANCE;
+    public static final String QUEUE_NUEVA_PUBLICACION = "nueva_publicacion";
+    Thread hiloServicioConsumer1;
 
     //------------------------------  Singleton ------------------------------------------------
     // Clase estatica oculta. Tan solo se instanciara el singleton una vez
@@ -43,8 +53,47 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         // Cargar los datos de forma asíncrona
         cargarDatosAsync();
 
+        // Metodo para crear la conexion con rabbit
+        //initRabbitConnection();
+
         // Registrar acciones del sistema
         registrarAccionesSistema("Inicio de sesión", 1, "inicioSesión");
+    }
+    private void initRabbitConnection() {
+        rabbitFactory = new RabbitProducer();
+        connectionFactory = rabbitFactory.getConnectionFactory();
+        System.out.println("conexion establecidad");
+    }
+    private void consumirMensajes() {
+        try {
+            Connection connection = connectionFactory.newConnection();
+            Channel channel = connection.createChannel();
+            channel.queueDeclare(QUEUE_NUEVA_PUBLICACION, false, false, false, null);
+
+            DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+                String message = new String(delivery.getBody());
+                System.out.println("Mensaje recibido: " + message);
+                //actualizarEstado(message);
+            };
+            while (true) {
+                channel.basicConsume(QUEUE_NUEVA_PUBLICACION, true, deliverCallback, consumerTag -> { });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void consumirMensajesServicio1(){
+        hiloServicioConsumer1 = new Thread(this::run);
+        hiloServicioConsumer1.start();
+    }
+
+
+    public void run() {
+        Thread currentThread = Thread.currentThread();
+        if(currentThread == hiloServicioConsumer1){
+            consumirMensajes();
+        }
     }
 
     private void cargarDatosAsync() {
@@ -195,6 +244,18 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     @Override
     public Producto productoDtoToProducto(ProductoDto productoDto) {
         return mapper.productoDtoToProducto(productoDto);
+    }
+
+    @Override
+    public void producirMensaje(String queue, String message) {
+        try (Connection connection = connectionFactory.newConnection();
+             Channel channel = connection.createChannel()) {
+            channel.queueDeclare(queue, false, false, false, null);
+            channel.basicPublish("", queue, null, message.getBytes(StandardCharsets.UTF_8));
+            System.out.println(" [x] Sent '" + message + "'");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

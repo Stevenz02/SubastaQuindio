@@ -28,4 +28,5 @@ public interface IModelFactoryControllerService {
     AnuncianteDto crearAnuncianteDto(Anunciante anunciante);
     UsuarioDto userToDto(Usuario usuario);
     Producto productoDtoToProducto (ProductoDto productoDto);
+    void producirMensaje(String queue, String message);
 }
