@@ -206,6 +206,14 @@ public class ModelFactoryController implements IModelFactoryControllerService {
             if (!subastaUniquindio.usuarioExiste(usuarioDto.cedula()) && subastaUniquindio.isMayor(usuarioDto.edad())){
                 Usuario usuario = mapper.usuarioDtoToUsuario(usuarioDto);
                 getSubastaUniquindio().agregarUsuario(usuario);
+                if (usuario.getTipo().equalsIgnoreCase("Comprador")){
+                    Comprador comprador = getSubastaUniquindio().crearCompradorRetorna(usuario);
+                    getSubastaUniquindio().agregarComprador();
+                }
+                if (usuario.getTipo().equalsIgnoreCase("Anunciante")){
+                    Anunciante anunciante = getSubastaUniquindio().crearAnuncianteRetorna(usuario);
+                    getSubastaUniquindio().agregarAnunciante();
+                }
                 guardarResourceBinario();
                 guardarResourceXML();
                 return true;
