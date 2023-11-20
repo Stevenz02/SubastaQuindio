@@ -3,11 +3,9 @@ package co.edu.uniquindio.subastaq.subastaq.controllerModel.service;
 import co.edu.uniquindio.subastaq.subastaq.exception.AnuncianteExepcion;
 import co.edu.uniquindio.subastaq.subastaq.exception.BuscarUsuarioExepcion;
 import co.edu.uniquindio.subastaq.subastaq.exception.UsuarioExepcion;
-import co.edu.uniquindio.subastaq.subastaq.mapping.dto.AnuncianteDto;
-import co.edu.uniquindio.subastaq.subastaq.mapping.dto.AnuncioDto;
-import co.edu.uniquindio.subastaq.subastaq.mapping.dto.CompradorDto;
-import co.edu.uniquindio.subastaq.subastaq.mapping.dto.UsuarioDto;
+import co.edu.uniquindio.subastaq.subastaq.mapping.dto.*;
 import co.edu.uniquindio.subastaq.subastaq.model.Anunciante;
+import co.edu.uniquindio.subastaq.subastaq.model.Producto;
 import co.edu.uniquindio.subastaq.subastaq.model.Usuario;
 import javafx.event.ActionEvent;
 
@@ -29,4 +27,5 @@ public interface IModelFactoryControllerService {
     AnuncianteDto buscarAnuncianteCedula(String cedula);
     AnuncianteDto crearAnuncianteDto(Anunciante anunciante);
     UsuarioDto userToDto(Usuario usuario);
+    Producto productoDtoToProducto (ProductoDto productoDto);
 }

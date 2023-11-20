@@ -5,15 +5,9 @@ import co.edu.uniquindio.subastaq.subastaq.controllerModel.service.IModelFactory
 import co.edu.uniquindio.subastaq.subastaq.exception.ActualizarUsuarioExepcion;
 import co.edu.uniquindio.subastaq.subastaq.exception.BuscarUsuarioExepcion;
 import co.edu.uniquindio.subastaq.subastaq.exception.UsuarioExepcion;
-import co.edu.uniquindio.subastaq.subastaq.mapping.dto.AnuncianteDto;
-import co.edu.uniquindio.subastaq.subastaq.mapping.dto.AnuncioDto;
-import co.edu.uniquindio.subastaq.subastaq.mapping.dto.CompradorDto;
-import co.edu.uniquindio.subastaq.subastaq.mapping.dto.UsuarioDto;
+import co.edu.uniquindio.subastaq.subastaq.mapping.dto.*;
 import co.edu.uniquindio.subastaq.subastaq.mapping.mappers.SubastaMapper;
-import co.edu.uniquindio.subastaq.subastaq.model.Anunciante;
-import co.edu.uniquindio.subastaq.subastaq.model.Anuncio;
-import co.edu.uniquindio.subastaq.subastaq.model.SubastaUniquindio;
-import co.edu.uniquindio.subastaq.subastaq.model.Usuario;
+import co.edu.uniquindio.subastaq.subastaq.model.*;
 import co.edu.uniquindio.subastaq.subastaq.utils.Persistencia;
 import javafx.event.ActionEvent;
 
@@ -186,6 +180,8 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         Anuncio anuncio = mapper.anuncioDtoToAnuncio(anuncioDto);
         Anunciante anunciante = subastaUniquindio.obtenerAnunciante(usuarioDto.cedula());
         getSubastaUniquindio().crearAnuncio(anunciante, anuncio);
+        guardarResourceBinario();
+        guardarResourceXML();
         return true;
     }
     public static UsuarioDto getUsuarioActual() {
@@ -198,6 +194,10 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     public UsuarioDto userToDto(Usuario usuario) {
         return mapper.usuarioToUsuarioDto(usuario);
     }
+    @Override
+    public Producto productoDtoToProducto(ProductoDto productoDto) {
+        return mapper.productoDtoToProducto(productoDto);
+    }
 
 
     @Override
@@ -206,6 +206,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
             if (!subastaUniquindio.usuarioExiste(usuarioDto.cedula()) && subastaUniquindio.isMayor(usuarioDto.edad())){
                 Usuario usuario = mapper.usuarioDtoToUsuario(usuarioDto);
                 getSubastaUniquindio().agregarUsuario(usuario);
+                guardarResourceBinario();
                 guardarResourceXML();
                 return true;
             }
