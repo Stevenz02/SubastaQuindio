@@ -127,19 +127,19 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
 
     @Override
     public Comprador obtenerComprador(String cedula) {
-        Comprador compradorEncontrado = null;
         for (Comprador comprador: getListaCompradores()){
             if (comprador.getCedula().equalsIgnoreCase(cedula)){
-                compradorEncontrado = comprador;
-                break;
+                return comprador;
             }
         }
-        return compradorEncontrado;
+        return null;
     }
 
     @Override
-    public Puja crearPuja(Double oferta) {
-        return new Puja(generarNumeroAleatorio(), new Date(), oferta);
+    public Puja crearPuja(Anuncio anuncio,Comprador comprador,Puja puja) {
+        comprador.setPujaActual(puja);
+        anuncio.getListaPujas().add(puja);
+        return puja;
     }
 
     public static String generarNumeroAleatorio() {
