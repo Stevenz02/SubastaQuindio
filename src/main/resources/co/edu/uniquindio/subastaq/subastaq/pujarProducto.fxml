@@ -15,7 +15,7 @@
         <columns>
             <TableColumn fx:id="colmNombreAnunciante" prefWidth="177.5999755859375" text="Anunciante" />
             <TableColumn fx:id="colmNombreProducto" prefWidth="194.39996337890625" text="Nombre Producto" />
-         <TableColumn fx:id="colmCodigo" prefWidth="145.60006713867188" text="Código" />
+         <TableColumn fx:id="colmFechaLimite" prefWidth="145.60006713867188" text="Fecha Limite" />
         </columns>
     </TableView>
 
