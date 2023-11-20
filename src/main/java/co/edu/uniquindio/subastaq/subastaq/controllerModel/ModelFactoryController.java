@@ -18,6 +18,7 @@ import co.edu.uniquindio.subastaq.subastaq.utils.Persistencia;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -166,8 +167,19 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     @Override
     public List<AnuncioDto> obtenerAnuncios() {
-        return mapper.getAnunciosDto(subastaUniquindio.getListaAnunciantes().listIterator().next().getListaAnuncios());
+        List<Anunciante> listaAnunciantes = subastaUniquindio.getListaAnunciantes();
+        // Verifica si la lista de anunciantes tiene elementos.
+        if (listaAnunciantes != null && !listaAnunciantes.isEmpty()) {
+            // Obtén el primer anunciante y su lista de anuncios.
+            Anunciante primerAnunciante = listaAnunciantes.get(0);
+            if (primerAnunciante != null && primerAnunciante.getListaAnuncios() != null) {
+                return mapper.getAnunciosDto(primerAnunciante.getListaAnuncios());
+            }
+        }
+        // Si no hay anunciantes o el primer anunciante no tiene anuncios, retorna una lista vacía.
+        return new ArrayList<>();
     }
+
 
     @Override
     public boolean agregarAnuncio(AnuncioDto anuncioDto, UsuarioDto usuarioDto) {

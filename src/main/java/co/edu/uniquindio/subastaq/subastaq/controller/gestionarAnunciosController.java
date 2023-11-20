@@ -3,10 +3,7 @@ package co.edu.uniquindio.subastaq.subastaq.controller;
 import co.edu.uniquindio.subastaq.subastaq.aplicacion.aplicacion;
 import co.edu.uniquindio.subastaq.subastaq.controllerModel.AnuncioController;
 import co.edu.uniquindio.subastaq.subastaq.controllerModel.ModelFactoryController;
-import co.edu.uniquindio.subastaq.subastaq.mapping.dto.AnuncianteDto;
-import co.edu.uniquindio.subastaq.subastaq.mapping.dto.AnuncioDto;
-import co.edu.uniquindio.subastaq.subastaq.mapping.dto.ProductoDto;
-import co.edu.uniquindio.subastaq.subastaq.mapping.dto.UsuarioDto;
+import co.edu.uniquindio.subastaq.subastaq.mapping.dto.*;
 import co.edu.uniquindio.subastaq.subastaq.model.TipoProducto;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -24,7 +21,9 @@ import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class gestionarAnunciosController {
@@ -95,6 +94,8 @@ public class gestionarAnunciosController {
     @FXML
     private TableView<AnuncioDto> tablaProductos;
 
+    public File fileSeleccionado;
+
     @FXML
     void bttcargarFoto(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -106,6 +107,7 @@ public class gestionarAnunciosController {
         File file = fileChooser.showOpenDialog(((Node) event.getTarget()).getScene().getWindow());
         if (file != null) {
             Image image = new Image(file.toURI().toString());
+            this.fileSeleccionado = file;
             imgFoto.setImage(image);
         }
     }
@@ -128,7 +130,7 @@ public class gestionarAnunciosController {
     @FXML
     void eliminarAnuncioAction(ActionEvent event) {
     }
-    /*
+
     @FXML
     void initialize() {
         AnuncioControllerService = new AnuncioController();
@@ -199,8 +201,6 @@ public class gestionarAnunciosController {
         }
     }
 
-
-
     private void crearAnuncio() {
         //1. Capturar los datos
         AnuncioDto anuncioDto = construirAnuncioDto();
@@ -221,19 +221,22 @@ public class gestionarAnunciosController {
 
     private AnuncioDto construirAnuncioDto() {
         AnuncianteDto anuncianteDto = modelFactoryController.buscarAnuncianteNombre(txtNombreAnunciante.getText());
-        ProductoDto productoDto = crearProductoDto(txtNombreProducto.getText(),cbTipoProducto.getValue(), txtDescripcion.getText(), );
+        ProductoDto productoDto = crearProductoDto(txtNombreProducto.getText(),cbTipoProducto.getValue(), txtDescripcion.getText(), fileSeleccionado.getAbsolutePath());
+        List<PujaDto> listaPujas = new ArrayList<>();
 
         return new AnuncioDto(
                 anuncianteDto,
-
-
+                productoDto,
+                Date.from(dateFechaPublicacion.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),
+                Date.from(dateFechaFinalizacion.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),
+                Double.parseDouble(txtValorInicial.getText()),
+                listaPujas
         );
     }
     public ProductoDto crearProductoDto(String nombreProducto, TipoProducto tipoProducto, String descripcion, String rutaImagen){
         return new ProductoDto(nombreProducto, tipoProducto, descripcion, rutaImagen);
     }
 
-    */
 
     private void limpiarCamposAnuncio() {
         cbTipoProducto.setValue(null);
