@@ -10,22 +10,23 @@
 
 <AnchorPane prefHeight="553.0" prefWidth="773.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.subastaq.subastaq.controller.gestionarPujasController">
     <!-- Lista de anuncios -->
-    <VBox layoutX="252.0" layoutY="14.0">
-        <Label prefHeight="19.0" prefWidth="298.0" text="Lista de anuncios">
+    <VBox layoutX="161.0" layoutY="29.0" prefHeight="226.0" prefWidth="482.0">
+        <Label prefHeight="19.0" prefWidth="298.0" styleClass="label-titulo" stylesheets="@../../../../../EstilosCCS/styles.css" text="Lista de anuncios">
          <font>
             <Font size="17.0" />
          </font></Label>
-        <TableView fx:id="tableAnuncios" prefHeight="200" prefWidth="300">
+        <TableView fx:id="tableAnuncios" prefHeight="200" prefWidth="450.0">
             <columns>
-                <TableColumn fx:id="columnNombre" prefWidth="142.39998626708984" text="Nombre" />
-                <TableColumn fx:id="columnCodigo" prefWidth="155.20001220703125" text="Código" />
+                <TableColumn fx:id="colmNombreProducto" prefWidth="166.39996337890625" text="Nombre Producto" />
+                <TableColumn fx:id="colmFechaPublicacion" prefWidth="156.0" text="Fecha Publicación" />
+            <TableColumn fx:id="colmFechaFinalizacion" prefWidth="160.00009155273438" text="Fecha Finalización" />
             </columns>
         </TableView>
     </VBox>
 
     <!-- Lista de pujas realizadas -->
     <VBox layoutX="160.0" layoutY="256.0" prefHeight="218.0" prefWidth="482.0">
-        <Label prefHeight="18.0" prefWidth="482.0" text="Lista de pujas realizadas">
+        <Label prefHeight="18.0" prefWidth="482.0" styleClass="label-titulo" stylesheets="@../../../../../EstilosCCS/styles.css" text="Lista de pujas realizadas">
          <font>
             <Font size="17.0" />
          </font></Label>
@@ -40,5 +41,5 @@
     </VBox>
 
     <!-- Botón para elegir puja -->
-    <Button fx:id="buttonElegirPuja" layoutX="352.0" layoutY="499.0" prefHeight="26.0" prefWidth="99.0" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Elegir puja" />
+    <Button fx:id="buttonElegirPuja" layoutX="352.0" layoutY="484.0" prefHeight="26.0" prefWidth="99.0" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Elegir puja" />
 </AnchorPane>
