@@ -71,6 +71,9 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
 
     @Override
     public void crearComprador(Usuario usuario) throws CompradorExepcion {
+        if (getListaCompradores() == null) {
+            setListaCompradores(new ArrayList<>());
+        }
         Comprador comprador = new Comprador(3, 0.0, new Puja());
         comprador.setTipo(usuario.getTipo());
         comprador.setNombre(usuario.getNombre());
@@ -270,6 +273,9 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
         getListaUsuarios().add(nuevoUsuario);
     }
     public void crearAnunciante(Usuario usuario) throws AnuncianteExepcion {
+        if (getListaAnunciantes() == null) {
+            setListaAnunciantes(new ArrayList<>());
+        }
         Anunciante anunciante = new Anunciante(10, new Date(),new ArrayList<>());
         anunciante.setTipo(usuario.getTipo());
         anunciante.setNombre(usuario.getNombre());
@@ -292,15 +298,32 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
 
     @Override
     public Anunciante obtenerAnunciante(String cedula) {
-        for (Usuario usuario: getListaUsuarios()){
-            if (usuario.getCedula().equalsIgnoreCase(cedula)){
+        // Buscar el Anunciante en la lista existente
+        for (Usuario usuario : getListaUsuarios()) {
+            if (usuario.getCedula().equalsIgnoreCase(cedula)) {
                 return usuarioToAnunciante(usuario);
             }
         }
-        return null;
+        Anunciante nuevoAnunciante = crearAnunciantePorCedula(cedula);
+        getListaAnunciantes().add(nuevoAnunciante);
+        return nuevoAnunciante;
+    }
+
+    private Anunciante crearAnunciantePorCedula(String cedula) {
+        if (getListaAnunciantes() == null) {
+            setListaAnunciantes(new ArrayList<>());
+        }
+        Anunciante anunciante = new Anunciante(10, new Date(), new ArrayList<>());
+        anunciante.setCedula(cedula); // Establecer la cédula proporcionada
+        // Aquí puedes establecer otros valores predeterminados o dejarlos en null según tus necesidades
+        getListaAnunciantes().add(anunciante);
+        return anunciante;
     }
 
     private Anunciante usuarioToAnunciante(Usuario usuario) {
+        if (getListaAnunciantes() == null) {
+            setListaAnunciantes(new ArrayList<>());
+        }
         Anunciante anunciante = new Anunciante(10, new Date(),new ArrayList<>());
         anunciante.setTipo(usuario.getTipo());
         anunciante.setNombre(usuario.getNombre());
