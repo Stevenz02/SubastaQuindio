@@ -71,7 +71,7 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
 
     @Override
     public void crearComprador(Usuario usuario) throws CompradorExepcion {
-        Comprador comprador = new Comprador();
+        Comprador comprador = new Comprador(3, 0.0, new Puja());
         comprador.setTipo(usuario.getTipo());
         comprador.setNombre(usuario.getNombre());
         comprador.setApellido(usuario.getApellido());
@@ -270,7 +270,7 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
         getListaUsuarios().add(nuevoUsuario);
     }
     public void crearAnunciante(Usuario usuario) throws AnuncianteExepcion {
-        Anunciante anunciante = new Anunciante();
+        Anunciante anunciante = new Anunciante(10, new Date(),new ArrayList<>());
         anunciante.setTipo(usuario.getTipo());
         anunciante.setNombre(usuario.getNombre());
         anunciante.setApellido(usuario.getApellido());
@@ -309,9 +309,9 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
 
     @Override
     public Anunciante buscarAnuncianteCedula(String cedula) {
-        for (Usuario usuario : getListaUsuarios()) {
-            if (usuario.getCedula().equals(cedula) && usuario instanceof Anunciante) {
-                return (Anunciante) usuario; // Realizar el casting a Anunciante
+        for (Anunciante anunciante : getListaAnunciantes()) {
+            if (anunciante.getCedula().equals(cedula)) {
+                return anunciante;
             }
         }
         return null;
