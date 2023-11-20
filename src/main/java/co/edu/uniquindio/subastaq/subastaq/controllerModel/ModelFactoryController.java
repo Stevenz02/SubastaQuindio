@@ -268,4 +268,9 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         return mapper.anuncianteToAnuncianteDto(anunciante);
     }
 
+    @Override
+    public UsuarioDto userToDto(Usuario usuario) {
+        return mapper.usuarioToUsuarioDto(usuario);
+    }
+
 }
