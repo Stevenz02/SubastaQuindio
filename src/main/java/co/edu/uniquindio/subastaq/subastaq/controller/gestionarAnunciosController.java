@@ -215,7 +215,7 @@ public class gestionarAnunciosController {
     }
 
     private AnuncioDto construirAnuncioDto() {
-        AnuncianteDto anuncianteDto = modelFactoryController.buscarAnuncianteCedula(usuario.nombre());
+        AnuncianteDto anuncianteDto = modelFactoryController.buscarAnuncianteCedula(usuario.cedula());
         System.out.println("El anuncianteDto es: " + anuncianteDto);
         if (anuncianteDto == null) {
             // Si el anunciante no se encuentra, devuelve null para manejarlo adecuadamente.

@@ -310,7 +310,7 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
     @Override
     public Anunciante buscarAnuncianteCedula(String cedula) {
         for (Usuario usuario : getListaUsuarios()) {
-            if (usuario.getNombre().equals(cedula) && usuario instanceof Anunciante) {
+            if (usuario.getCedula().equals(cedula) && usuario instanceof Anunciante) {
                 return (Anunciante) usuario; // Realizar el casting a Anunciante
             }
         }
