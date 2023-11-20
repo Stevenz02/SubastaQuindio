@@ -22,7 +22,7 @@ public interface ISubastaService {
     public Boolean eliminarComprador(String cedula)throws EliminarCompradorExepcion;
     boolean actualizarComprador(String cedulaActual, Comprador comprador) throws ActualizarCompradorExepcion;
     public Comprador obtenerComprador(String cedula);
-    public Puja crearPuja(Anuncio anuncio,Comprador comprador, Puja puja);
+    public void crearPuja(Anuncio anuncio,Comprador comprador, Puja puja);
     public void crearAnunciante(Usuario usuario) throws AnuncianteExepcion;
     public Boolean eliminarAnunciante(String cedula)throws EliminarAnuncianteExepcion;
     boolean actualizarAnunciante(String cedulaActual, Anunciante anunciante) throws ActualizarAnuncianteExepcion;

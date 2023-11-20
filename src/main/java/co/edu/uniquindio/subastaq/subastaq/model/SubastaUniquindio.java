@@ -136,10 +136,9 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
     }
 
     @Override
-    public Puja crearPuja(Anuncio anuncio,Comprador comprador,Puja puja) {
+    public void crearPuja(Anuncio anuncio,Comprador comprador,Puja puja) {
         comprador.setPujaActual(puja);
         anuncio.getListaPujas().add(puja);
-        return puja;
     }
 
     public static String generarNumeroAleatorio() {
