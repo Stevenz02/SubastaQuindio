@@ -277,7 +277,7 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
         }
         throw new BuscarUsuarioExepcion("El usuario no existe");
     }
-    public void agregarAnunciante(Anunciante nuevoAnunciante) throws AnuncianteExepcionExepcion {
+    public void agregarAnunciante(Anunciante nuevoAnunciante) throws AnuncianteExepcion {
         getListaAnunciantes().add(nuevoAnunciante);
     }
     public void agregarComprador(Comprador nuevoComprador) throws CompradorExepcion {

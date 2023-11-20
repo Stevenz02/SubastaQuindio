@@ -222,6 +222,8 @@ public class ModelFactoryController implements IModelFactoryControllerService {
             return false;
         } catch (CompradorExepcion e) {
             throw new RuntimeException(e);
+        } catch (AnuncianteExepcion e) {
+            throw new RuntimeException(e);
         }
     }
 
