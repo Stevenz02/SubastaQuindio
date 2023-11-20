@@ -289,6 +289,17 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     }
 
     @Override
+    public boolean agregarPuja(AnuncioDto anuncioDto, PujaDto pujaDto, UsuarioDto usuarioDto) throws CompradorExepcion {
+        Puja puja = mapper.pujaDtoToPuja(pujaDto);
+        Anuncio anuncio = mapper.anuncioDtoToAnuncio(anuncioDto);
+        Comprador comprador = subastaUniquindio.obtenerComprador(usuarioDto.cedula());
+        getSubastaUniquindio().crearPuja(anuncio,comprador, puja);
+        guardarResourceBinario();
+        guardarResourceXML();
+        return true;
+    }
+
+    @Override
     public boolean actualizarUsuario(String cedula, UsuarioDto usuarioDto) {
         try{
             Usuario usuario = mapper.usuarioDtoToUsuario(usuarioDto);
@@ -346,8 +357,19 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     }
 
     @Override
+    public CompradorDto buscarCompradorCedula(String cedula) {
+        Comprador comprador = getSubastaUniquindio().obtenerComprador(cedula);
+        return crearCompradorDto(comprador);
+    }
+
+    @Override
     public AnuncianteDto crearAnuncianteDto(Anunciante anunciante) {
         return mapper.anuncianteToAnuncianteDto(anunciante);
+    }
+
+    @Override
+    public CompradorDto crearCompradorDto(Comprador comprador) {
+        return mapper.compradorToCompradorDto(comprador);
     }
 
 }

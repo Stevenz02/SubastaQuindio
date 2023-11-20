@@ -2,9 +2,11 @@ package co.edu.uniquindio.subastaq.subastaq.controllerModel.service;
 
 import co.edu.uniquindio.subastaq.subastaq.exception.AnuncianteExepcion;
 import co.edu.uniquindio.subastaq.subastaq.exception.BuscarUsuarioExepcion;
+import co.edu.uniquindio.subastaq.subastaq.exception.CompradorExepcion;
 import co.edu.uniquindio.subastaq.subastaq.exception.UsuarioExepcion;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.*;
 import co.edu.uniquindio.subastaq.subastaq.model.Anunciante;
+import co.edu.uniquindio.subastaq.subastaq.model.Comprador;
 import co.edu.uniquindio.subastaq.subastaq.model.Producto;
 import co.edu.uniquindio.subastaq.subastaq.model.Usuario;
 import javafx.event.ActionEvent;
@@ -18,6 +20,7 @@ public interface IModelFactoryControllerService {
     List<AnuncioDto> obtenerAnuncios();
     boolean agregarAnuncio(AnuncioDto anuncioDto, UsuarioDto usuarioDto) throws AnuncianteExepcion;
     boolean agregarUsuario(UsuarioDto usuarioDto);
+    boolean agregarPuja(AnuncioDto anuncioDto,PujaDto pujaDto, UsuarioDto usuarioDto) throws CompradorExepcion;
     boolean actualizarUsuario (String cedula, UsuarioDto usuarioDto);
     boolean eliminarUsuario(String cedula);
     void iniciarSesion(String nombreUsuario, String contrasenia, ActionEvent eventoMouse) throws BuscarUsuarioExepcion;
@@ -25,7 +28,9 @@ public interface IModelFactoryControllerService {
     void cargarVistaComprador(ActionEvent actionEvent);
     void cargarVistaAnunciante(ActionEvent actionEvent);
     AnuncianteDto buscarAnuncianteCedula(String cedula);
+    CompradorDto buscarCompradorCedula(String cedula);
     AnuncianteDto crearAnuncianteDto(Anunciante anunciante);
+    CompradorDto crearCompradorDto(Comprador comprador);
     UsuarioDto userToDto(Usuario usuario);
     Producto productoDtoToProducto (ProductoDto productoDto);
     void producirMensaje(String queue, String message);
