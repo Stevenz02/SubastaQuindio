@@ -29,4 +29,5 @@ public interface ISubastaService {
     public Anunciante obtenerAnunciante(String cedula);
     public void crearAnuncio(Anunciante anunciante, Anuncio anuncio) ;
     public Anunciante buscarAnuncianteCedula(String cedula);
+
 }

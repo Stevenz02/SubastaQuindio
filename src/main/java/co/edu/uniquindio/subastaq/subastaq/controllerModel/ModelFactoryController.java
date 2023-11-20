@@ -2,9 +2,7 @@ package co.edu.uniquindio.subastaq.subastaq.controllerModel;
 
 import co.edu.uniquindio.subastaq.subastaq.aplicacion.aplicacion;
 import co.edu.uniquindio.subastaq.subastaq.controllerModel.service.IModelFactoryControllerService;
-import co.edu.uniquindio.subastaq.subastaq.exception.ActualizarUsuarioExepcion;
-import co.edu.uniquindio.subastaq.subastaq.exception.BuscarUsuarioExepcion;
-import co.edu.uniquindio.subastaq.subastaq.exception.UsuarioExepcion;
+import co.edu.uniquindio.subastaq.subastaq.exception.*;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.*;
 import co.edu.uniquindio.subastaq.subastaq.mapping.mappers.SubastaMapper;
 import co.edu.uniquindio.subastaq.subastaq.model.*;
@@ -206,6 +204,14 @@ public class ModelFactoryController implements IModelFactoryControllerService {
             if (!subastaUniquindio.usuarioExiste(usuarioDto.cedula()) && subastaUniquindio.isMayor(usuarioDto.edad())){
                 Usuario usuario = mapper.usuarioDtoToUsuario(usuarioDto);
                 getSubastaUniquindio().agregarUsuario(usuario);
+                if (usuario.getTipo().equalsIgnoreCase("Comprador")){
+                    Comprador comprador = getSubastaUniquindio().crearCompradorRetorna(usuario);
+                    getSubastaUniquindio().agregarComprador(comprador);
+                }
+                if (usuario.getTipo().equalsIgnoreCase("Anunciante")){
+                    Anunciante anunciante = getSubastaUniquindio().crearAnuncianteRetorna(usuario);
+                    getSubastaUniquindio().agregarAnunciante(anunciante);
+                }
                 guardarResourceBinario();
                 guardarResourceXML();
                 return true;
@@ -214,6 +220,8 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         }catch (UsuarioExepcion e){
             e.getMessage();
             return false;
+        } catch (CompradorExepcion e) {
+            throw new RuntimeException(e);
         }
     }
 

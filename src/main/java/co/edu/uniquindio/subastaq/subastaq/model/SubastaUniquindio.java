@@ -66,7 +66,16 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
                 ", listaCompradores=" + listaCompradores +
                 '}';
     }
-
+    public Comprador crearCompradorRetorna(Usuario usuario){
+        Comprador comprador = new Comprador(3, 0.0, new Puja());
+        comprador.setTipo(usuario.getTipo());
+        comprador.setNombre(usuario.getNombre());
+        comprador.setApellido(usuario.getApellido());
+        comprador.setCedula(usuario.getCedula());
+        comprador.setNombreUsuario(usuario.getNombreUsuario());
+        comprador.setContrasenia(usuario.getContrasenia());
+        return comprador;
+    }
 
 
     @Override
@@ -268,7 +277,12 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
         }
         throw new BuscarUsuarioExepcion("El usuario no existe");
     }
-
+    public void agregarAnunciante(Anunciante nuevoAnunciante) throws AnuncianteExepcionExepcion {
+        getListaAnunciantes().add(nuevoAnunciante);
+    }
+    public void agregarComprador(Comprador nuevoComprador) throws CompradorExepcion {
+        getListaCompradores().add(nuevoComprador);
+    }
     public void agregarUsuario(Usuario nuevoUsuario) throws UsuarioExepcion {
         getListaUsuarios().add(nuevoUsuario);
     }
@@ -298,10 +312,9 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
 
     @Override
     public Anunciante obtenerAnunciante(String cedula) {
-
-        for (Usuario usuario : getListaUsuarios()) {
-            if (usuario.getCedula().equalsIgnoreCase(cedula)) {
-                return usuarioToAnunciante(usuario);
+        for (Anunciante anunciante : getListaAnunciantes()) {
+            if (anunciante.getCedula().equalsIgnoreCase(cedula)) {
+                return anunciante;
             }
         }
         Anunciante nuevoAnunciante = crearAnunciantePorCedula(cedula);
@@ -316,21 +329,6 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
         Anunciante anunciante = new Anunciante(10, new Date(), new ArrayList<>());
         anunciante.setCedula(cedula); // Establecer la cédula proporcionada
         // Aquí puedes establecer otros valores predeterminados o dejarlos en null según tus necesidades
-        getListaAnunciantes().add(anunciante);
-        return anunciante;
-    }
-
-    private Anunciante usuarioToAnunciante(Usuario usuario) {
-        if (getListaAnunciantes() == null) {
-            setListaAnunciantes(new ArrayList<>());
-        }
-        Anunciante anunciante = new Anunciante(10, new Date(),new ArrayList<>());
-        anunciante.setTipo(usuario.getTipo());
-        anunciante.setNombre(usuario.getNombre());
-        anunciante.setApellido(usuario.getApellido());
-        anunciante.setCedula(usuario.getCedula());
-        anunciante.setNombreUsuario(usuario.getNombreUsuario());
-        anunciante.setContrasenia(usuario.getContrasenia());
         getListaAnunciantes().add(anunciante);
         return anunciante;
     }
@@ -356,5 +354,16 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
         aler.setHeaderText(header);
         aler.setContentText(contenido);
         aler.showAndWait();
+    }
+
+    public Anunciante crearAnuncianteRetorna(Usuario usuario) {
+        Anunciante anunciante = new Anunciante(10, new Date(),new ArrayList<>());
+        anunciante.setTipo(usuario.getTipo());
+        anunciante.setNombre(usuario.getNombre());
+        anunciante.setApellido(usuario.getApellido());
+        anunciante.setCedula(usuario.getCedula());
+        anunciante.setNombreUsuario(usuario.getNombreUsuario());
+        anunciante.setContrasenia(usuario.getContrasenia());
+        return anunciante;
     }
 }
