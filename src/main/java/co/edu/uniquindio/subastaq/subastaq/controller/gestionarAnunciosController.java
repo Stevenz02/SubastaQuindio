@@ -27,11 +27,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class gestionarAnunciosController {
-
-    private ModelFactoryController modelFactoryController;
-    public void setModelFactoryController(ModelFactoryController modelFactoryController) {
-        this.modelFactoryController = modelFactoryController;
-    }
+    ModelFactoryController modelFactoryController;
     AnuncioController AnuncioControllerService;
     ObservableList<AnuncioDto> listaAnunciosDto = FXCollections.observableArrayList();
     AnuncioDto anuncioSeleccionado;
@@ -121,19 +117,12 @@ public class gestionarAnunciosController {
             System.out.println("modelFactoryController es null");
         }
     }
-    @FXML
-    void bttactualizarProducto(ActionEvent event) {
-    }
-    @FXML
-    void guardarAnuncioAction(ActionEvent event) {
-    }
-    @FXML
-    void eliminarAnuncioAction(ActionEvent event) {
-    }
 
     @FXML
     void initialize() {
         AnuncioControllerService = new AnuncioController();
+        modelFactoryController = ModelFactoryController.getInstance();
+        cbTipoProducto.getItems().setAll(TipoProducto.values());
         intiView();
     }
 
@@ -200,28 +189,43 @@ public class gestionarAnunciosController {
             imgFoto.setImage(image);
         }
     }
+    @FXML
+    void bttactualizarProducto(ActionEvent event) {
+    }
+    @FXML
+    void guardarAnuncioAction(ActionEvent event) {
+        crearAnuncio();
+    }
+    @FXML
+    void eliminarAnuncioAction(ActionEvent event) {
+    }
 
     private void crearAnuncio() {
         //1. Capturar los datos
         AnuncioDto anuncioDto = construirAnuncioDto();
+        if (anuncioDto == null) {
+            mostrarMensaje("Error", "Anuncio no creado", "No se pudo crear el anuncio debido a datos inválidos.", Alert.AlertType.ERROR);
+            return;
+        }
         //2. Validar la información
-        if (datosValidos(anuncioDto)) {
-            if (AnuncioControllerService.agregarAnuncio(anuncioDto, usuario)) {
-                listaAnunciosDto.add(anuncioDto);
-                mostrarMensaje("Notificación Anuncio", "Anuncio creado", "El anuncio se ha creado con éxito", Alert.AlertType.INFORMATION);
-                limpiarCamposAnuncio();
-                registrarAcciones("Anuncio agregado", 1, "Anuncio Usuario");
-            } else {
-                mostrarMensaje("Notificación Anuncio", "Anuncio no creado", "El anuncio no se ha creado con éxito", Alert.AlertType.ERROR);
-            }
+        if (AnuncioControllerService.agregarAnuncio(anuncioDto, usuario)) {
+            listaAnunciosDto.add(anuncioDto);
+            mostrarMensaje("Notificación Anuncio", "Anuncio creado", "El anuncio se ha creado con éxito", Alert.AlertType.INFORMATION);
+            limpiarCamposAnuncio();
+            registrarAcciones("Anuncio agregado", 1, "Anuncio Usuario");
         } else {
-            mostrarMensaje("Notificación Anuncio", "Anuncio no creado", "Los datos ingresados son invalidos", Alert.AlertType.ERROR);
+            mostrarMensaje("Notificación Anuncio", "Anuncio no creado", "El anuncio no se ha creado con éxito", Alert.AlertType.ERROR);
         }
     }
 
     private AnuncioDto construirAnuncioDto() {
         AnuncianteDto anuncianteDto = modelFactoryController.buscarAnuncianteNombre(txtNombreAnunciante.getText());
-        ProductoDto productoDto = crearProductoDto(txtNombreProducto.getText(),cbTipoProducto.getValue(), txtDescripcion.getText(), fileSeleccionado.getAbsolutePath());
+        System.out.println("El anuncianteDto es: " + anuncianteDto);
+        if (anuncianteDto == null) {
+            // Si el anunciante no se encuentra, devuelve null para manejarlo adecuadamente.
+            return null;
+        }
+        ProductoDto productoDto = crearProductoDto(txtNombreProducto.getText(), cbTipoProducto.getValue(), txtDescripcion.getText(), fileSeleccionado.getAbsolutePath());
         List<PujaDto> listaPujas = new ArrayList<>();
 
         return new AnuncioDto(
@@ -233,6 +237,7 @@ public class gestionarAnunciosController {
                 listaPujas
         );
     }
+
     public ProductoDto crearProductoDto(String nombreProducto, TipoProducto tipoProducto, String descripcion, String rutaImagen){
         return new ProductoDto(nombreProducto, tipoProducto, descripcion, rutaImagen);
     }
@@ -254,7 +259,7 @@ public class gestionarAnunciosController {
     private boolean datosValidos(AnuncioDto anuncioDto) {
         StringBuilder mensaje = new StringBuilder();
 
-        if (anuncioDto.anuncianteDto() == null || !datosUsuarioValidos(anuncioDto.anuncianteDto()))
+        if (anuncioDto.anuncianteDto() == null)
             mensaje.append("Los datos del anunciante son inválidos.\n");
 
         if (anuncioDto.productoDto() == null || !datosProductoValidos(anuncioDto.productoDto()))
@@ -276,31 +281,6 @@ public class gestionarAnunciosController {
             return true;
         } else {
             mostrarMensaje("Notificación de Anuncio", "Datos inválidos", mensaje.toString(), Alert.AlertType.WARNING);
-            return false;
-        }
-    }
-    private boolean datosUsuarioValidos(AnuncianteDto usuarioDto) {
-        StringBuilder mensajeUsuario = new StringBuilder();
-
-        if (usuarioDto.nombre().isBlank())
-            mensajeUsuario.append("El nombre es inválido.\n");
-        if (usuarioDto.apellido().isBlank())
-            mensajeUsuario.append("El apellido es inválido.\n");
-        if (usuarioDto.cedula().isBlank())
-            mensajeUsuario.append("La cédula es inválida.\n");
-        if (usuarioDto.edad() == null || usuarioDto.edad() <= 0)
-            mensajeUsuario.append("La edad es inválida.\n");
-        if (usuarioDto.tipo().isBlank())
-            mensajeUsuario.append("El tipo de usuario es inválido.\n");
-        if (usuarioDto.nombreUsuario().isBlank())
-            mensajeUsuario.append("El nombre de usuario es inválido.\n");
-        if (usuarioDto.contrasenia().isBlank())
-            mensajeUsuario.append("La contraseña es inválida.\n");
-
-        if (mensajeUsuario.length() == 0) {
-            return true;
-        } else {
-            mostrarMensaje("Notificación usuario", "Datos inválidos", mensajeUsuario.toString(), Alert.AlertType.WARNING);
             return false;
         }
     }

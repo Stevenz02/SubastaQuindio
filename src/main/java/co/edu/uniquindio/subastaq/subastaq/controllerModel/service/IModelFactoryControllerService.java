@@ -8,6 +8,7 @@ import co.edu.uniquindio.subastaq.subastaq.mapping.dto.AnuncioDto;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.CompradorDto;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.subastaq.subastaq.model.Anunciante;
+import co.edu.uniquindio.subastaq.subastaq.model.Usuario;
 import javafx.event.ActionEvent;
 
 import java.util.List;
@@ -27,4 +28,5 @@ public interface IModelFactoryControllerService {
     void cargarVistaAnunciante(ActionEvent actionEvent);
     AnuncianteDto buscarAnuncianteNombre(String nombre);
     AnuncianteDto crearAnuncianteDto(Anunciante anunciante);
+    UsuarioDto userToDto(Usuario usuario);
 }
