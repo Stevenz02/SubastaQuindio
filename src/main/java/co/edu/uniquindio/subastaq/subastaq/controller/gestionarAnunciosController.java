@@ -6,6 +6,7 @@ import co.edu.uniquindio.subastaq.subastaq.controllerModel.ModelFactoryControlle
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.*;
 import co.edu.uniquindio.subastaq.subastaq.model.TipoProducto;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,6 +33,7 @@ public class gestionarAnunciosController {
     ObservableList<AnuncioDto> listaAnunciosDto = FXCollections.observableArrayList();
     AnuncioDto anuncioSeleccionado;
     UsuarioDto usuario = ModelFactoryController.getUsuarioActual();
+    public ProductoDto productoDto;
 
     @FXML
     private ResourceBundle resources;
@@ -133,8 +135,10 @@ public class gestionarAnunciosController {
 
     private void initDataBinding() {
         // Configura las columnas con los nombres de las propiedades
-        columnaNombreProducto.setCellValueFactory(new PropertyValueFactory<>("producto.nombreProducto"));
-        columnaTipoProducto.setCellValueFactory(new PropertyValueFactory<>("producto.tipoProducto"));
+// Asegúrese de que la columna 'columnaNombreProducto' se define para manejar strings
+        columnaNombreProducto.setCellValueFactory(new PropertyValueFactory<>("productoDto.nombreProducto"));
+// Asegúrese de que la columna 'columnaTipoProducto' se define para manejar TipoProducto
+        columnaTipoProducto.setCellValueFactory(new PropertyValueFactory<>("productoDto.tipoProducto"));
         columnaFechaPublicacion.setCellValueFactory(cellData -> new SimpleObjectProperty<>(convertToLocalDateViaInstant(cellData.getValue().fechaPublicacion())));
         columnaFechaTerminacion.setCellValueFactory(cellData -> new SimpleObjectProperty<>(convertToLocalDateViaInstant(cellData.getValue().FechaLimite())));
     }
@@ -221,7 +225,7 @@ public class gestionarAnunciosController {
             // Si el anunciante no se encuentra, devuelve null para manejarlo adecuadamente.
             return null;
         }
-        ProductoDto productoDto = crearProductoDto(txtNombreProducto.getText(), cbTipoProducto.getValue(), txtDescripcion.getText(), fileSeleccionado.getAbsolutePath());
+        productoDto = crearProductoDto(txtNombreProducto.getText(), cbTipoProducto.getValue(), txtDescripcion.getText(), fileSeleccionado.getAbsolutePath());
         List<PujaDto> listaPujas = new ArrayList<>();
 
         return new AnuncioDto(

@@ -269,7 +269,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
 
     @Override
     public AnuncianteDto buscarAnuncianteCedula(String cedula) {
-        Anunciante anunciante = getSubastaUniquindio().buscarAnuncianteCedula(cedula);
+        Anunciante anunciante = getSubastaUniquindio().obtenerAnunciante(cedula);
         return crearAnuncianteDto(anunciante);
     }
 

@@ -8,8 +8,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controller/gestionarAnunciosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controller/gestionarAnunciosController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controllerModel/ModelFactoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controllerModel/ModelFactoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controllerModel/service/IModelFactoryControllerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controllerModel/service/IModelFactoryControllerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Persistencia/SubastaLog.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persistencia/SubastaLog.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Persistencia/model.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persistencia/model.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Persistencia/model.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persistencia/model.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
