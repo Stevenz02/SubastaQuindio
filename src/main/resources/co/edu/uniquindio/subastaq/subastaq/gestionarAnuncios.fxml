@@ -10,13 +10,12 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="553.0" prefWidth="773.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.subastaq.subastaq.controller.gestionarAnunciosController">
     <children>
-        <Label layoutX="20.0" layoutY="20.0" text="Tipo de Producto:" />
+        <Label layoutX="11.0" layoutY="15.0" prefHeight="26.0" prefWidth="140.0" styleClass="label-titulo" stylesheets="@../../../../../EstilosCCS/styles.css" text="Tipo de Producto:" />
         <ComboBox fx:id="cbTipoProducto" layoutX="180.0" layoutY="16.0" prefWidth="200.0">
             <items>
                 <FXCollections fx:factory="observableArrayList">
@@ -28,21 +27,21 @@
                 </FXCollections>
             </items>
         </ComboBox>
-        <Label layoutX="20.0" layoutY="60.0" text="Nombre Producto:" />
+        <Label layoutX="11.0" layoutY="56.0" styleClass="label-titulo" stylesheets="@../../../../../EstilosCCS/styles.css" text="Nombre Producto:" />
         <TextField fx:id="txtNombreProducto" layoutX="180.0" layoutY="56.0" prefHeight="26.0" prefWidth="200.0" />
-        <Label layoutX="20.0" layoutY="100.0" text="Descripción:" />
+        <Label layoutX="11.0" layoutY="96.0" styleClass="label-titulo" stylesheets="@../../../../../EstilosCCS/styles.css" text="Descripción:" />
         <TextArea fx:id="txtDescripcion" layoutX="180.0" layoutY="96.0" prefHeight="58.0" prefWidth="200.0" />
-        <Label layoutX="434.0" layoutY="20.0" text="Foto:" />
+        <Label layoutX="434.0" layoutY="20.0" styleClass="label-titulo" stylesheets="@../../../../../EstilosCCS/styles.css" text="Foto:" />
         <ImageView fx:id="imgFoto" fitHeight="150.0" fitWidth="200.0" layoutX="493.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
-        <Button fx:id="btncargarFoto" layoutX="541.0" layoutY="177.0" onAction="#bttcargarFoto" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Cargar Foto" />
-        <Label layoutX="19.0" layoutY="188.0" text="Fecha Publicación:" />
-        <DatePicker fx:id="dateFechaPublicacion" layoutX="180.0" layoutY="184.0" prefHeight="26.0" prefWidth="200.0" />
-        <Label layoutX="19.0" layoutY="234.0" text="Fecha Finalización:" />
-        <DatePicker fx:id="dateFechaFinalizacion" layoutX="180.0" layoutY="230.0" prefHeight="26.0" prefWidth="200.0" />
-        <Label layoutX="21.0" layoutY="283.0" text="Valor Inicial:" />
-        <TextField fx:id="txtValorInicial" layoutX="180.0" layoutY="279.0" prefHeight="26.0" prefWidth="200.0" />
-        <Button fx:id="btnagregarProducto" layoutX="598.0" layoutY="335.0" onAction="#guardarAnuncioAction" prefHeight="40.0" prefWidth="146.0" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Agregar Anuncio" />
-        <TableView fx:id="tablaProductos" layoutX="20.0" layoutY="318.0" prefHeight="222.0" prefWidth="547.0" stylesheets="@../../../../../EstilosCCS/styles.css">
+        <Button fx:id="btncargarFoto" layoutX="541.0" layoutY="210.0" onAction="#bttcargarFoto" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Cargar Foto" />
+        <Label layoutX="12.0" layoutY="164.0" styleClass="label-titulo" stylesheets="@../../../../../EstilosCCS/styles.css" text="Fecha Publicación:" />
+        <DatePicker fx:id="dateFechaPublicacion" layoutX="180.0" layoutY="164.0" prefHeight="26.0" prefWidth="200.0" />
+        <Label layoutX="11.0" layoutY="204.0" styleClass="label-titulo" stylesheets="@../../../../../EstilosCCS/styles.css" text="Fecha Finalización:" />
+        <DatePicker fx:id="dateFechaFinalizacion" layoutX="180.0" layoutY="204.0" prefHeight="26.0" prefWidth="200.0" />
+        <Label layoutX="10.0" layoutY="243.0" styleClass="label-titulo" stylesheets="@../../../../../EstilosCCS/styles.css" text="Valor Inicial:" />
+        <TextField fx:id="txtValorInicial" layoutX="180.0" layoutY="243.0" prefHeight="26.0" prefWidth="200.0" />
+        <Button fx:id="btnagregarProducto" layoutX="597.0" layoutY="318.0" onAction="#guardarAnuncioAction" prefHeight="40.0" prefWidth="146.0" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Agregar Anuncio" />
+        <TableView fx:id="tablaProductos" layoutX="20.0" layoutY="305.0" prefHeight="210.0" prefWidth="547.0" stylesheets="@../../../../../EstilosCCS/styles.css">
             <columns>
                 <TableColumn fx:id="columnaNombreProducto" prefWidth="123.20003509521484" text="Nombre Producto" />
                 <TableColumn fx:id="columnaTipoProducto" minWidth="0.0" prefWidth="143.199951171875" text="Tipo Producto" />
@@ -50,13 +49,9 @@
                 <TableColumn fx:id="columnaFechaTerminacion" prefWidth="146.39999389648438" text="Fecha Terminación" />
             </columns>
         </TableView>
-      <Button fx:id="btnactualizarProducto" layoutX="598.0" layoutY="392.0" mnemonicParsing="false" onAction="#bttactualizarProducto" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Actualizar Anuncio" />
-      <Button fx:id="btneliminarProducto" layoutX="598.0" layoutY="448.0" mnemonicParsing="false" onAction="#eliminarAnuncioAction" prefHeight="40.0" prefWidth="146.0" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Eliminar Anuncio" />
-      <ImageView fitHeight="99.0" fitWidth="149.0" layoutX="621.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../Imagenes/carritoProductos.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="btnCerrarSesion" layoutX="597.0" layoutY="499.0" mnemonicParsing="false" onAction="#cerrarSesionAction" prefHeight="40.0" prefWidth="146.0" styleClass="button-standard-stop" stylesheets="@../../../../../EstilosCCS/styles.css" text="Cerrar Sesión" />
+      <Button fx:id="btnactualizarProducto" layoutX="598.0" layoutY="370.0" mnemonicParsing="false" onAction="#bttactualizarProducto" prefHeight="40.0" prefWidth="146.0" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Actualizar Anuncio" />
+      <Button fx:id="btneliminarProducto" layoutX="598.0" layoutY="423.0" mnemonicParsing="false" onAction="#eliminarAnuncioAction" prefHeight="40.0" prefWidth="146.0" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Eliminar Anuncio" />
+      <Button fx:id="btnCerrarSesion" layoutX="597.0" layoutY="474.0" mnemonicParsing="false" onAction="#cerrarSesionAction" prefHeight="40.0" prefWidth="146.0" styleClass="button-standard-stop" stylesheets="@../../../../../EstilosCCS/styles.css" text="Cerrar Sesión" />
+      <Label layoutX="470.0" layoutY="177.0" styleClass="label-titulo" stylesheets="@../../../../../EstilosCCS/styles.css" text="Presione aquí para elegir una foto" />
     </children>
 </AnchorPane>

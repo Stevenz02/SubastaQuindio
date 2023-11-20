@@ -49,9 +49,9 @@
       </items>
    </SplitPane>
    <Button fx:id="btnCerrarSesion" layoutX="533.0" layoutY="491.0" mnemonicParsing="false" onAction="#cerrarSesionAction" styleClass="button-standard-stop" stylesheets="@../../../../../EstilosCCS/styles.css" text="Cerrar Sesión" />
-   <Label layoutX="295.0" layoutY="-4.0" text="Lista de Anuncios">
+   <Label layoutX="321.0" layoutY="1.0" prefHeight="26.0" prefWidth="134.0" styleClass="label-titulo" stylesheets="@../../../../../EstilosCCS/styles.css" text="Lista de Anuncios">
       <font>
-         <Font size="24.0" />
+         <Font size="26.0" />
       </font>
    </Label>
 </AnchorPane>
