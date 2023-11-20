@@ -75,16 +75,16 @@ public class gestionarAnunciosController {
     private ImageView imgFoto;
 
     @FXML
-    private TableColumn<ProductoDto, String> columnaNombreProducto;
+    private TableColumn<AnuncioDto, String> columnaNombreProducto;
 
     @FXML
-    private TableColumn<ProductoDto, TipoProducto> columnaTipoProducto;
+    private TableColumn<AnuncioDto, String> columnaTipoProducto;
 
     @FXML
-    private TableColumn<AnuncioDto, LocalDate> columnaFechaPublicacion;
+    private TableColumn<AnuncioDto, String> columnaFechaPublicacion;
 
     @FXML
-    private TableColumn<AnuncioDto, LocalDate> columnaFechaTerminacion;
+    private TableColumn<AnuncioDto, String> columnaFechaTerminacion;
 
     @FXML
     private TableView<AnuncioDto> tablaProductos;
@@ -135,12 +135,10 @@ public class gestionarAnunciosController {
 
     private void initDataBinding() {
         // Configura las columnas con los nombres de las propiedades
-// Asegúrese de que la columna 'columnaNombreProducto' se define para manejar strings
-        columnaNombreProducto.setCellValueFactory(new PropertyValueFactory<>("productoDto.nombreProducto"));
-// Asegúrese de que la columna 'columnaTipoProducto' se define para manejar TipoProducto
-        columnaTipoProducto.setCellValueFactory(new PropertyValueFactory<>("productoDto.tipoProducto"));
-        columnaFechaPublicacion.setCellValueFactory(cellData -> new SimpleObjectProperty<>(convertToLocalDateViaInstant(cellData.getValue().fechaPublicacion())));
-        columnaFechaTerminacion.setCellValueFactory(cellData -> new SimpleObjectProperty<>(convertToLocalDateViaInstant(cellData.getValue().FechaLimite())));
+        columnaNombreProducto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().productoDto().nombreProducto()));
+        columnaTipoProducto.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().productoDto().tipoProducto())));
+        columnaFechaPublicacion.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().fechaPublicacion())));
+        columnaFechaTerminacion.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().FechaLimite())));
     }
 
     // Método auxiliar para convertir Date a LocalDate
