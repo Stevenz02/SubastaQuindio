@@ -332,7 +332,7 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
         getListaAnunciantes().add(anunciante);
         return anunciante;
     }
-    
+
     @Override
     public void crearAnuncio(Anunciante anunciante, Anuncio anuncio) {
         anunciante.getListaAnuncios().add(anuncio);
