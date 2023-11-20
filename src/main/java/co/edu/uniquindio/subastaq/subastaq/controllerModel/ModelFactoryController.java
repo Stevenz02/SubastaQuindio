@@ -191,6 +191,14 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     public static UsuarioDto getUsuarioActual() {
         return usuarioActual;
     }
+    public static void setUsuarioActual(UsuarioDto usuario) {
+        usuarioActual = usuario;
+    }
+    @Override
+    public UsuarioDto userToDto(Usuario usuario) {
+        return mapper.usuarioToUsuarioDto(usuario);
+    }
+
 
     @Override
     public boolean agregarUsuario(UsuarioDto usuarioDto) {
@@ -236,6 +244,8 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         Usuario usuario = null;
         if(subastaUniquindio.verificarCredenciales(nombreUsuario, contrasenia)){
             usuario = subastaUniquindio.buscarUsuario(nombreUsuario, contrasenia);
+            UsuarioDto usuarioAutenticado = userToDto(usuario);
+            ModelFactoryController.setUsuarioActual(usuarioAutenticado);
             System.out.println(("El usuario es: " + usuario));
             if(usuario.getTipo().equalsIgnoreCase("Anunciante")){
                 cargarVistaAnunciante(eventoMouse);
