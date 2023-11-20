@@ -11,21 +11,21 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="553.0" prefWidth="773.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.subastaq.subastaq.controller.pujarProductoController">
-    <TableView fx:id="tableAnuncios" layoutX="129.0" layoutY="14.0" prefHeight="202.0" prefWidth="515.0">
+    <TableView fx:id="tableAnuncios" layoutX="130.0" layoutY="31.0" prefHeight="202.0" prefWidth="515.0">
         <columns>
-            <TableColumn fx:id="colmNombreProducto" prefWidth="198.39999389648438" text="Nombre Producto" />
-            <TableColumn fx:id="colmTipoProducto" prefWidth="183.20001220703125" text="Tipo Producto" />
-         <TableColumn fx:id="colmPrecio" prefWidth="134.39999389648438" text="Precio" />
+            <TableColumn fx:id="colmNombreAnunciante" prefWidth="177.5999755859375" text="Anunciante" />
+            <TableColumn fx:id="colmNombreProducto" prefWidth="194.39996337890625" text="Nombre Producto" />
+         <TableColumn fx:id="colmCodigo" prefWidth="145.60006713867188" text="Código" />
         </columns>
     </TableView>
 
     <TextField fx:id="textFieldPuja" layoutX="188.0" layoutY="498.0" prefWidth="200.0" promptText="Tu oferta" />
     <Button fx:id="buttonOfertar" layoutX="404.0" layoutY="491.0" onAction="#handleOfertar" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Ofertar" />
-   <SplitPane dividerPositions="0.5022522522522522" layoutX="130.0" layoutY="234.0" prefHeight="244.0" prefWidth="515.0">
+   <SplitPane dividerPositions="0.5022522522522522" layoutX="130.0" layoutY="240.0" prefHeight="244.0" prefWidth="515.0">
       <items>
          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="326.0" prefWidth="271.0">
             <children>
-               <Label layoutX="68.0" layoutY="30.0" prefHeight="26.0" prefWidth="118.0" text="Datos de producto">
+               <Label layoutX="68.0" layoutY="30.0" prefHeight="26.0" prefWidth="118.0" text="Datos del Anuncio">
                   <font>
                      <Font size="14.0" />
                   </font>
@@ -49,4 +49,9 @@
       </items>
    </SplitPane>
    <Button fx:id="btnCerrarSesion" layoutX="533.0" layoutY="491.0" mnemonicParsing="false" onAction="#cerrarSesionAction" styleClass="button-standard-stop" stylesheets="@../../../../../EstilosCCS/styles.css" text="Cerrar Sesión" />
+   <Label layoutX="295.0" layoutY="-4.0" text="Lista de Anuncios">
+      <font>
+         <Font size="24.0" />
+      </font>
+   </Label>
 </AnchorPane>

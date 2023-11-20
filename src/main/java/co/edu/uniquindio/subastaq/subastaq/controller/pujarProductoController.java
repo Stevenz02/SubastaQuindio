@@ -15,6 +15,8 @@ import javafx.scene.image.ImageView;
 
 public class pujarProductoController {
 
+    public TableColumn colmNombreAnunciante;
+    public TableColumn colmCodigo;
     private ModelFactoryController modelFactoryController;
 
     @FXML
