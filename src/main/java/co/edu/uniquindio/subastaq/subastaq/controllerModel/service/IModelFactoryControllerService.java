@@ -34,4 +34,5 @@ public interface IModelFactoryControllerService {
     UsuarioDto userToDto(Usuario usuario);
     Producto productoDtoToProducto (ProductoDto productoDto);
     void producirMensaje(String queue, String message);
+    List<PujaDto> leerListaPujasAnuncio(AnuncioDto anuncioDto);
 }
