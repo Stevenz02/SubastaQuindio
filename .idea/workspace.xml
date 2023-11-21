@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1c0cd79d-d40e-49f3-a50a-5ec033274a5e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controller/gestionarPujasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controller/gestionarPujasController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controller/pujarProductoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controller/pujarProductoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Persistencia/SubastaLog.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persistencia/SubastaLog.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastaq/subastaq/pujarProducto.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastaq/subastaq/pujarProducto.fxml" afterDir="false" />
@@ -134,7 +133,11 @@
       <workItem from="1700011707613" duration="491000" />
       <workItem from="1700438883236" duration="5429000" />
       <workItem from="1700485784588" duration="4454000" />
-      <workItem from="1700508552006" duration="3027000" />
+      <workItem from="1700508552006" duration="3109000" />
+      <workItem from="1700516198497" duration="110000" />
+      <workItem from="1700521884651" duration="257000" />
+      <workItem from="1700528273849" duration="18000" />
+      <workItem from="1700531699620" duration="2100000" />
     </task>
     <servers />
   </component>
