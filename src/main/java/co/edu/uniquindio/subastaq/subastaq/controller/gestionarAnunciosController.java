@@ -96,7 +96,7 @@ public class gestionarAnunciosController {
     private TableView<AnuncioDto> tablaProductos;
 
     public File fileSeleccionado;
-
+    // Método para cargar una foto desde el sistema de archivos del usuario.
     @FXML
     void bttcargarFoto(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -112,6 +112,7 @@ public class gestionarAnunciosController {
             imgFoto.setImage(image);
         }
     }
+    // Método para cerrar la sesión actual en la aplicación.
     @FXML
     public void cerrarSesionAction(ActionEvent event) {
         modelFactoryController = ModelFactoryController.getInstance();
@@ -122,7 +123,7 @@ public class gestionarAnunciosController {
             System.out.println("modelFactoryController es null");
         }
     }
-
+    // Método inicializador que se ejecuta al cargar la interfaz de usuario.
     @FXML
     void initialize() {
         AnuncioControllerService = new AnuncioController();
@@ -131,6 +132,7 @@ public class gestionarAnunciosController {
         intiView();
     }
 
+    // Método auxiliar para inicializar la vista y cargar datos.
     private void intiView() {
         initDataBinding();
         obtenerAnuncios();
@@ -138,6 +140,7 @@ public class gestionarAnunciosController {
         tablaProductos.setItems(listaAnunciosDto);
         listenerSelection();
     }
+// Configura el enlace de datos entre la interfaz de usuario y los modelos de datos.
 
     private void initDataBinding() {
         // Configura las columnas con los nombres de las propiedades
@@ -146,25 +149,18 @@ public class gestionarAnunciosController {
         columnaFechaPublicacion.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().fechaPublicacion())));
         columnaFechaTerminacion.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().FechaLimite())));
     }
-
-    // Método auxiliar para convertir Date a LocalDate
-    public static LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
-        return dateToConvert.toInstant()
-                .atZone(ZoneId.systemDefault())
-                .toLocalDate();
-    }
-
+// Obtiene y muestra anuncios desde el controlador de anuncios.
     private void obtenerAnuncios() {
         listaAnunciosDto.addAll(AnuncioControllerService.obtenerAnuncios());
     }
-
+// Añade un listener a la selección de la tabla de productos.
     private void listenerSelection() {
         tablaProductos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             anuncioSeleccionado = newSelection;
             mostrarInformacionAnuncio(anuncioSeleccionado);
         });
     }
-
+// Muestra la información detallada de un anuncio seleccionado.
     private void mostrarInformacionAnuncio(AnuncioDto anuncioSeleccionado) {
         if (anuncioSeleccionado != null) {
             // Suponiendo que anuncioSeleccionado.productoDto() retorna un ProductoDto y tienes getters adecuados en ProductoDto.
@@ -193,17 +189,20 @@ public class gestionarAnunciosController {
             imgFoto.setImage(image);
         }
     }
+    // Controlador del evento para actualizar un producto.
     @FXML
     void bttactualizarProducto(ActionEvent event) {
     }
+    // Controlador del evento para guardar un nuevo anuncio.
     @FXML
     void guardarAnuncioAction(ActionEvent event) {
         crearAnuncio();
     }
+    // Controlador del evento para eliminar un anuncio existente.
     @FXML
     void eliminarAnuncioAction(ActionEvent event) {
     }
-
+// Crea un nuevo anuncio a partir de los datos de entrada del usuario.
     private void crearAnuncio() {
         //1. Capturar los datos
         AnuncioDto anuncioDto = construirAnuncioDto();
@@ -221,7 +220,7 @@ public class gestionarAnunciosController {
             mostrarMensaje("Notificación Anuncio", "Anuncio no creado", "El anuncio no se ha creado con éxito", Alert.AlertType.ERROR);
         }
     }
-
+// Construye un objeto AnuncioDto a partir de los datos de entrada del usuario.
     private AnuncioDto construirAnuncioDto() {
         AnuncianteDto anuncianteDto = modelFactoryController.buscarAnuncianteCedula(usuario.cedula());
         System.out.println("El anuncianteDto es: " + anuncianteDto);
@@ -241,12 +240,11 @@ public class gestionarAnunciosController {
                 listaPujas
         );
     }
-
+// Crea un objeto ProductoDto a partir de los datos de entrada del usuario.
     public ProductoDto crearProductoDto(String nombreProducto, TipoProducto tipoProducto, String descripcion, String rutaImagen){
         return new ProductoDto(nombreProducto, tipoProducto, descripcion, rutaImagen);
     }
-
-
+    // Limpia los campos de entrada del formulario de anuncio.
     private void limpiarCamposAnuncio() {
         cbTipoProducto.setValue(null);
         txtNombreProducto.clear();
@@ -256,9 +254,11 @@ public class gestionarAnunciosController {
         txtValorInicial.clear();
         imgFoto.setImage(null); // Si quieres limpiar la imagen también
     }
+    // Registra acciones realizadas en la aplicación para auditoría o registro.
     private void registrarAcciones(String mensaje, int nivel, String accion) {
         AnuncioControllerService.registrarAcciones(mensaje, nivel, accion);
     }
+    // Valida los datos de un AnuncioDto.
     private boolean datosValidos(AnuncioDto anuncioDto) {
         StringBuilder mensaje = new StringBuilder();
 
@@ -287,6 +287,7 @@ public class gestionarAnunciosController {
             return false;
         }
     }
+    // Valida los datos de un ProductoDto.
     private boolean datosProductoValidos(ProductoDto productoDto) {
         StringBuilder mensajeProducto = new StringBuilder();
         if (productoDto.nombreProducto().isBlank())
@@ -300,6 +301,7 @@ public class gestionarAnunciosController {
             }
         return false;
     }
+    // Muestra un mensaje emergente en la interfaz de usuario.
     private void mostrarMensaje(String titulo, String header, String contenido, Alert.AlertType alertType) {
         Alert aler = new Alert(alertType);
         aler.setTitle(titulo);
@@ -307,7 +309,7 @@ public class gestionarAnunciosController {
         aler.setContentText(contenido);
         aler.showAndWait();
     }
-
+// Controlador del evento para exportar anuncios a un archivo CSV.
     @FXML
     void exportarAnuncioAction(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

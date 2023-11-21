@@ -29,14 +29,24 @@ public class autenticarUsuarioController {
     @FXML
     private TextField texUsuario;
 
+    /**
+     * Cierra la ventana actual de la interfaz gráfica de usuario.
+     *
+     * @param event El evento generado al hacer clic en el botón 'Cerrar'.
+     */
     @FXML
     void bttCerrar(ActionEvent event) {
-        // Obtener la ventana actual
         Stage stage = (Stage) btnCerrar.getScene().getWindow();
-        // Cerrar la ventana
         stage.close();
     }
 
+    /**
+     * Maneja el proceso de inicio de sesión con credenciales de usuario.
+     *
+     * @param event El evento generado al hacer clic en el botón 'Ingresar'.
+     *              Intenta iniciar sesión con el nombre de usuario y contraseña.
+     *              Captura y registra excepciones relacionadas con la búsqueda de usuarios.
+     */
     @FXML
     void bttIngresar(ActionEvent event) {
         try {

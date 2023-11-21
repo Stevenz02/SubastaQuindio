@@ -72,7 +72,12 @@ public class pujarProductoController {
 
     @FXML
     private TableView<AnuncioDto> tableAnuncios;
-
+    /**
+     * Realiza una puja en el anuncio seleccionado.
+     * Crea una nueva puja y la agrega al sistema, mostrando una notificación según el resultado.
+     * @param event El evento de acción que desencadena este método.
+     * @throws CompradorExepcion Si ocurre un error relacionado con el comprador.
+     */
     @FXML
     void ofertarAction(ActionEvent event) throws CompradorExepcion {
         pujaDto = new PujaDto(modelFactoryController.crearAleatorio(),new Date(), Double.parseDouble(textFieldPuja.getText()));
@@ -82,6 +87,11 @@ public class pujarProductoController {
             mostrarMensaje("Notificación Puja", "Puja no creada", "La puja no se ha creado con éxito", Alert.AlertType.ERROR);
         }
     }
+    /**
+     * Cierra la sesión actual en la aplicación.
+     * Verifica si el controlador del modelo está disponible y ejecuta la acción de cierre de sesión.
+     * @param event El evento de acción que desencadena este método.
+     */
     public void cerrarSesionAction(ActionEvent event) {
         modelFactoryController = ModelFactoryController.getInstance();
         if (modelFactoryController != null) {
@@ -91,12 +101,20 @@ public class pujarProductoController {
             System.out.println("modelFactoryController es null");
         }
     }
+    /**
+     * Método inicializador que se ejecuta al cargar la interfaz de usuario.
+     * Configura los controladores y prepara la vista inicial.
+     */
     @FXML
     void initialize() {
         AnuncioControllerService = new AnuncioController();
         modelFactoryController = ModelFactoryController.getInstance();
         intiView();
     }
+    /**
+     * Inicializa la vista principal de la aplicación.
+     * Configura la vinculación de datos y carga los anuncios para mostrar en la tabla.
+     */
     private void intiView() {
         initDataBinding();
         obtenerAnuncios();
@@ -104,20 +122,39 @@ public class pujarProductoController {
         tableAnuncios.setItems(listaAnunciosDto);
         listenerSelection();
     }
+    /**
+     * Configura el enlace de datos entre la interfaz de usuario y los modelos de datos.
+     * Establece cómo se mostrarán los datos en las columnas de la tabla.
+     */
     private void initDataBinding() {
         // Configura las columnas con los nombres de las propiedades
         colmNombreAnunciante.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().anuncianteDto().nombre()));
         colmNombreProducto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().productoDto().nombreProducto()));
         colmFechaLimite.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().FechaLimite())));
     }
+    /**
+     * Obtiene y agrega los anuncios al modelo de datos observable para mostrar en la interfaz.
+     */
     private void obtenerAnuncios() {
         listaAnunciosDto.addAll(AnuncioControllerService.obtenerAnuncios());
     }
+    /**
+     * Añade un listener a la selección en la tabla de anuncios.
+     * Actualiza la información mostrada en la interfaz de usuario basada en el anuncio seleccionado.
+     */
     private void listenerSelection() {
         tableAnuncios.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             anuncioSeleccionado = newSelection;
         });
     }
+    /**
+     * Muestra un mensaje emergente en la interfaz de usuario.
+     * Utilizado para notificar al usuario sobre el resultado de ciertas acciones.
+     * @param titulo El título del mensaje.
+     * @param header El encabezado del mensaje.
+     * @param contenido El contenido del mensaje.
+     * @param alertType El tipo de alerta a mostrar.
+     */
     private void mostrarMensaje(String titulo, String header, String contenido, Alert.AlertType alertType) {
         Alert aler = new Alert(alertType);
         aler.setTitle(titulo);

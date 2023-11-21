@@ -81,13 +81,19 @@ public class registrarUsuarioController {
 
     @FXML
     private TableView<UsuarioDto> tableUsuarios;
-
+    /**
+     * Método inicializador que se ejecuta al cargar la interfaz de usuario.
+     * Configura los controladores y prepara la vista inicial.
+     */
     @FXML
     void initialize() {
         UsuarioControllerService = new UsuarioController();
         intiView();
     }
-
+    /**
+     * Inicializa la vista principal de la aplicación.
+     * Configura la vinculación de datos y carga los usuarios para mostrar en la tabla.
+     */
     private void intiView() {
         initDataBinding();
         obtenerUsuarios();
@@ -95,20 +101,35 @@ public class registrarUsuarioController {
         tableUsuarios.setItems(listaUsuariosDto);
         listenerSelection();
     }
+    /**
+     * Configura el enlace de datos entre la interfaz de usuario y los modelos de datos.
+     * Establece cómo se mostrarán los datos en las columnas de la tabla de usuarios.
+     */
     private void initDataBinding() {
         colmNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().nombre()));
         colmCedula.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().cedula()));
         colmUsuario.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().nombreUsuario()));
     }
+    /**
+     * Obtiene y agrega los usuarios al modelo de datos observable para mostrar en la interfaz.
+     */
     private void obtenerUsuarios() {
         listaUsuariosDto.addAll(UsuarioControllerService.obtenerUsuarios());
     }
+    /**
+     * Añade un listener a la selección en la tabla de usuarios.
+     * Actualiza la información mostrada en la interfaz de usuario basada en el usuario seleccionado.
+     */
     private void listenerSelection() {
         tableUsuarios.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             usuarioSeleccionado = newSelection;
             mostrarInformacionUsuario(usuarioSeleccionado);
         });
     }
+    /**
+     * Muestra la información del usuario seleccionado en los campos de texto de la interfaz.
+     * @param usuarioSeleccionado El usuario seleccionado en la tabla.
+     */
     private void mostrarInformacionUsuario(UsuarioDto usuarioSeleccionado) {
         if(usuarioSeleccionado != null){
             texNombre.setText(usuarioSeleccionado.nombre());
@@ -120,6 +141,10 @@ public class registrarUsuarioController {
             texContrasena.setText(usuarioSeleccionado.contrasenia());
         }
     }
+    /**
+     * Prepara los campos de texto para crear un nuevo usuario.
+     * @param event El evento de acción que desencadena este método.
+     */
     @FXML
     void crearUsuarioAction(ActionEvent event){
         texNombre.setText("Ingrese el nombre");
@@ -130,13 +155,28 @@ public class registrarUsuarioController {
         texUsuario.setText("Ingrese el usuario");
         texContrasena.setText("Ingrese la contraseña");
     }
+    /**
+     * Gestiona el guardado de un nuevo usuario en el sistema.
+     * @param event El evento de acción que desencadena este método.
+     */
     @FXML
     void guardarUsuarioAction(ActionEvent event) { crearUsuario(); }
+    /**
+     * Gestiona la actualización de un usuario existente en el sistema.
+     * @param event El evento de acción que desencadena este método.
+     */
     @FXML
     void actualizarUsuarioAction(ActionEvent event) { actualizarUsuario(); }
+    /**
+     * Gestiona la eliminación de un usuario del sistema.
+     * @param event El evento de acción que desencadena este método.
+     */
     @FXML
     void eliminarUsuarioAction(ActionEvent event) { eliminarUsuario(); }
-
+    /**
+     * Crea un nuevo usuario a partir de los datos ingresados en la interfaz.
+     * Valida los datos y los agrega al sistema si son válidos.
+     */
     private void crearUsuario() {
         //1. Capturar los datos
         UsuarioDto usuarioDto = construirUsuarioDto();
@@ -154,6 +194,10 @@ public class registrarUsuarioController {
             mostrarMensaje("Notificación usuario", "Usuario no creado", "Los datos ingresados son invalidos", Alert.AlertType.ERROR);
         }
     }
+    /**
+     * Actualiza los datos de un usuario existente en el sistema.
+     * Valida los datos nuevos y realiza la actualización si son válidos.
+     */
     private void actualizarUsuario() {
         if (usuarioSeleccionado != null) {
             //1. Capturar los datos nuevos
@@ -182,7 +226,9 @@ public class registrarUsuarioController {
             mostrarMensaje("Notificación usuario", "Usuario no seleccionado", "Seleccione un usuario de la lista", Alert.AlertType.WARNING);
         }
     }
-
+    /**
+     * Elimina un usuario seleccionado del sistema después de confirmar la acción.
+     */
     private void eliminarUsuario() {
         if(usuarioSeleccionado != null){
             if(mostrarMensajeConfirmacion("¿Estas seguro de eliminar al usuario?")){
@@ -200,6 +246,10 @@ public class registrarUsuarioController {
             mostrarMensaje("Notificación usuario", "Usuario no seleccionado", "Selecciona un usuario de la lista", Alert.AlertType.WARNING);
         }
     }
+    /**
+     * Construye un objeto UsuarioDto a partir de los datos ingresados en la interfaz.
+     * @return UsuarioDto con los datos ingresados.
+     */
     private UsuarioDto construirUsuarioDto() {
         return new UsuarioDto(
         texNombre.getText(),
@@ -211,6 +261,9 @@ public class registrarUsuarioController {
         comboUsuario.getValue()
         );
     }
+    /**
+     * Limpia los campos de entrada del formulario de usuario.
+     */
     private void limpiarCamposUsuario() {
         texNombre.setText("");
         texApellido.setText("");
@@ -220,9 +273,20 @@ public class registrarUsuarioController {
         texContrasena.setText("");
         comboUsuario.setValue("");
     }
+    /**
+     * Registra acciones realizadas en la aplicación para auditoría o registro.
+     * @param mensaje Descripción de la acción realizada.
+     * @param nivel Nivel de importancia o tipo de acción.
+     * @param accion La acción específica realizada.
+     */
     private void registrarAcciones(String mensaje, int nivel, String accion) {
         UsuarioControllerService.registrarAcciones(mensaje, nivel, accion);
     }
+    /**
+     * Valida los datos de un UsuarioDto.
+     * @param usuarioDto El objeto UsuarioDto a validar.
+     * @return true si los datos son válidos, false en caso contrario.
+     */
     private boolean datosValidos(UsuarioDto usuarioDto) {
         StringBuilder mensaje = new StringBuilder();
         if (usuarioDto.nombre().isBlank())
@@ -247,6 +311,14 @@ public class registrarUsuarioController {
             return false;
         }
     }
+    /**
+     * Muestra un mensaje emergente en la interfaz de usuario.
+     * Utilizado para notificar al usuario sobre el resultado de ciertas acciones.
+     * @param titulo El título del mensaje.
+     * @param header El encabezado del mensaje.
+     * @param contenido El contenido del mensaje.
+     * @param alertType El tipo de alerta a mostrar.
+     */
     private void mostrarMensaje(String titulo, String header, String contenido, Alert.AlertType alertType) {
         Alert aler = new Alert(alertType);
         aler.setTitle(titulo);
@@ -254,6 +326,11 @@ public class registrarUsuarioController {
         aler.setContentText(contenido);
         aler.showAndWait();
     }
+    /**
+     * Muestra un mensaje de confirmación y espera la respuesta del usuario.
+     * @param mensaje El mensaje a mostrar en la confirmación.
+     * @return true si el usuario confirma, false en caso contrario.
+     */
     private boolean mostrarMensajeConfirmacion(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText(null);
@@ -266,7 +343,6 @@ public class registrarUsuarioController {
             return false;
         }
     }
-
 }
 
 
