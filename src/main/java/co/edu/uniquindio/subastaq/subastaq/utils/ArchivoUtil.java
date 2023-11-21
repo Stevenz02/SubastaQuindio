@@ -52,8 +52,14 @@ public  class ArchivoUtil {
         fr.close();
         return contenido;
     }
-
-
+    /**
+     * Guarda un registro de log en un archivo especificado, con información detallada como mensaje, nivel de log, acción y fecha.
+     *
+     * @param mensajeLog El mensaje a registrar en el log.
+     * @param nivel      El nivel de log (1: INFO, 2: WARNING, 3: SEVERE).
+     * @param accion     La acción que generó el log.
+     * @param rutaArchivo La ruta del archivo de log donde se almacenará la información.
+     */
     public static void guardarRegistroLog(String mensajeLog, int nivel, String accion, String rutaArchivo)
     {
         String log = "";
@@ -95,7 +101,9 @@ public  class ArchivoUtil {
             fileHandler.close();
         }
     }
-
+    /**
+     * Carga la fecha del sistema y la formatea para su uso.
+     */
     private static void cargarFechaSistema() {
 
         String diaN = "";
@@ -129,14 +137,13 @@ public  class ArchivoUtil {
     }
 
     //------------------------------------SERIALIZACIÓN  y XML
-    /**
-     * Escribe en el fichero que se le pasa el objeto que se le envia
-     *
-     * @param rutaArchivo
-     *            path del fichero que se quiere escribir
-     * @throws IOException
-     */
 
+    /**
+     * Carga un recurso serializado desde un archivo.
+     * @param rutaArchivo La ruta del archivo desde el cual cargar el recurso serializado.
+     * @return El objeto cargado desde el archivo.
+     * @throws Exception Si ocurre un error durante la carga del recurso.
+     */
     @SuppressWarnings("unchecked")
     public static Object cargarRecursoSerializado(String rutaArchivo)throws Exception {
         Object aux = null;
@@ -153,7 +160,13 @@ public  class ArchivoUtil {
         }
         return aux;
     }
-
+    /**
+     * Guarda un objeto serializado en un archivo.
+     *
+     * @param rutaArchivo La ruta del archivo donde se guardará el objeto serializado.
+     * @param object      El objeto a serializar y guardar.
+     * @throws Exception Si ocurre un error durante la operación de guardado.
+     */
     public static void salvarRecursoSerializado(String rutaArchivo, Object object)	throws Exception {
         ObjectOutputStream oos = null;
         try {
@@ -166,7 +179,13 @@ public  class ArchivoUtil {
                 oos.close();
         }
     }
-
+    /**
+     * Carga un recurso serializado desde un archivo XML.
+     *
+     * @param rutaArchivo La ruta del archivo XML desde el cual cargar el recurso serializado.
+     * @return El objeto cargado desde el archivo XML.
+     * @throws IOException Si ocurre un error durante la carga del recurso.
+     */
     public static Object cargarRecursoSerializadoXML(String rutaArchivo) throws IOException {
 
         XMLDecoder decodificadorXML;
@@ -178,7 +197,12 @@ public  class ArchivoUtil {
         return objetoXML;
 
     }
-
+    /**
+     * Guarda un objeto serializado en un archivo XML.
+     * @param rutaArchivo La ruta del archivo XML donde se guardará el objeto serializado.
+     * @param objeto      El objeto a serializar y guardar.
+     * @throws IOException Si ocurre un error durante la operación de guardado.
+     */
     public static void salvarRecursoSerializadoXML(String rutaArchivo, Object objeto) throws IOException {
         XMLEncoder codificadorXML;
         codificadorXML = new XMLEncoder(new FileOutputStream(rutaArchivo));

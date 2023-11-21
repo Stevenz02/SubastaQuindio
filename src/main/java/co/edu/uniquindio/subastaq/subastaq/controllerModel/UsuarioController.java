@@ -6,6 +6,9 @@ import co.edu.uniquindio.subastaq.subastaq.mapping.dto.UsuarioDto;
 import java.util.List;
 
 public class UsuarioController implements IUsuarioControllerService {
+    /**
+     * Controller de la clase usuario
+     */
     ModelFactoryController modelFactoryController;
     public UsuarioController(){
         modelFactoryController = ModelFactoryController.getInstance();

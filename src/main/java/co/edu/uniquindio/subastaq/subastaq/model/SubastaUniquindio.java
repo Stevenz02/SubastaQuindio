@@ -7,15 +7,27 @@ import javafx.scene.control.Alert;
 
 import java.io.Serializable;
 import java.util.*;
-
+/**
+ * Clase que representa el sistema de subastas de la Universidad del Quindío.
+ * Implementa la interfaz ISubastaService y Serializable.
+ */
 public class SubastaUniquindio implements ISubastaService, Serializable {
     private List<Anunciante> listaAnunciantes = new ArrayList<>();
     private List<Usuario> listaUsuarios = new ArrayList<>();
     private List<Comprador> listaCompradores = new ArrayList<>();
-
+    /**
+     * Constructor por defecto de la clase SubastaUniquindio.
+     * Crea una instancia de SubastaUniquindio con listas vacías.
+     */
     public SubastaUniquindio() {
     }
-
+    /**
+     * Constructor de la clase SubastaUniquindio que permite inicializar sus listas.
+     *
+     * @param listaAnunciantes Lista de anunciantes en el sistema.
+     * @param listaUsuarios    Lista de usuarios en el sistema.
+     * @param listaCompradores Lista de compradores en el sistema.
+     */
     public SubastaUniquindio(List<Anunciante> listaAnunciantes, List<Usuario> listaUsuarios, List<Comprador> listaCompradores) {
         this.listaAnunciantes = listaAnunciantes;
         this.listaUsuarios = listaUsuarios;
@@ -141,11 +153,30 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
         comprador.setLimitePujas(comprador.getLimitePujas()-1);
         anuncio.getListaPujas().add(puja);
     }
-
+    /**
+     * Método estático que genera un número aleatorio entre 1 y 500 (inclusive).
+     *
+     * @return Número aleatorio generado como una cadena de texto.
+     */
     public static String generarNumeroAleatorio() {
         Random random = new Random();
         return String.valueOf(random.nextInt(500) + 1);  // Genera un número entre 1 y 500 (ambos inclusive)
     }
+
+    /**
+     * Metodo que se usa para crear un usuario
+     * @param nombre
+     * @param apellido
+     * @param edad
+     * @param cedula
+     * @param NombreUsuario
+     * @param contrasenia
+     * @param tipo
+     * @return
+     * @throws CompradorExepcion
+     * @throws AnuncianteExepcion
+     * @throws UsuarioExepcion
+     */
     @Override
     public Usuario crearUsuario(String nombre, String apellido, Integer edad, String cedula, String NombreUsuario, String contrasenia, String tipo) throws CompradorExepcion, AnuncianteExepcion, UsuarioExepcion {
         Usuario usuario = null;
@@ -178,11 +209,21 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
         return usuario;
     }
 
+    /**
+     * metodo para identificar si un usuario es mayor de edad
+     * @param edad
+     * @return
+     */
     @Override
     public boolean isMayor(Integer edad) {
         return edad >= 18;
     }
 
+    /**
+     * metodo que se usa para identificar si un usuario existe
+     * @param cedula
+     * @return retorna true si existe
+     */
     @Override
     public boolean usuarioExiste(String cedula) {
         boolean flag = false;
@@ -195,6 +236,12 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
         return flag;
     }
 
+    /**
+     * Metodo que se usa para eliminar un usuario
+     * @param cedula
+     * @return
+     * @throws UsuarioExepcion
+     */
     @Override
     public Boolean eliminarUsuario(String cedula) throws UsuarioExepcion {
         Usuario usuario = null;
@@ -209,6 +256,13 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
         return flag;
     }
 
+    /**
+     * metodo que se usa para actualizar un usuario
+     * @param cedulaActual
+     * @param usuario
+     * @return
+     * @throws ActualizarUsuarioExepcion
+     */
     @Override
     public boolean actualizarUsuario(String cedulaActual, Usuario usuario) throws ActualizarUsuarioExepcion {
         Usuario usuarioActual = obtenerUsuario(cedulaActual);
@@ -227,6 +281,12 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
         return true;
     }
 
+    /**
+     * metodo que se usa para verificar si un usuario existe
+     * @param cedula
+     * @return
+     * @throws VerificarUsuarioExepcion
+     */
     @Override
     public boolean verificarUsuarioExistente(String cedula) throws VerificarUsuarioExepcion {
         if (usuarioExiste(cedula)){
@@ -237,6 +297,11 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
         }
     }
 
+    /**
+     * Metodo que se usa oara obtener un usuario
+     * @param cedula
+     * @return
+     */
     @Override
     public Usuario obtenerUsuario(String cedula) {
         Usuario usuarioEncontrado = null;
@@ -249,11 +314,21 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
         return usuarioEncontrado;
     }
 
+    /**
+     * Metodo que se usa para obtener una lista de usuarios
+     * @return
+     */
     @Override
     public List<Usuario> obtenerUsuarios() {
         return getListaUsuarios();
     }
 
+    /**
+     * Metodo que se usa para verificar las credenciales del usuario
+     * @param nombreUsuario
+     * @param contrasenia
+     * @return
+     */
     @Override
     public boolean verificarCredenciales(String nombreUsuario, String contrasenia) {
         for(Usuario usuario : getListaUsuarios()){
@@ -266,6 +341,13 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
         return false;
     }
 
+    /**
+     * Metodo que busca un usuario
+     * @param nombreUsuario
+     * @param contrasenia
+     * @return
+     * @throws BuscarUsuarioExepcion
+     */
     @Override
     public Usuario buscarUsuario(String nombreUsuario, String contrasenia) throws BuscarUsuarioExepcion {
         Usuario usuarioEncontrado = null;
@@ -277,15 +359,39 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
         }
         throw new BuscarUsuarioExepcion("El usuario no existe");
     }
+
+    /**
+     * Meotodo que agrega un anunciante
+     * @param nuevoAnunciante
+     * @throws AnuncianteExepcion
+     */
     public void agregarAnunciante(Anunciante nuevoAnunciante) throws AnuncianteExepcion {
         getListaAnunciantes().add(nuevoAnunciante);
     }
+
+    /**
+     * metodo que agrega un comprador
+     * @param nuevoComprador
+     * @throws CompradorExepcion
+     */
     public void agregarComprador(Comprador nuevoComprador) throws CompradorExepcion {
         getListaCompradores().add(nuevoComprador);
     }
+
+    /**
+     * Metodo que agrega un usuario
+     * @param nuevoUsuario
+     * @throws UsuarioExepcion
+     */
     public void agregarUsuario(Usuario nuevoUsuario) throws UsuarioExepcion {
         getListaUsuarios().add(nuevoUsuario);
     }
+
+    /**
+     * metodo que se usa para crear un anunciante
+     * @param usuario
+     * @throws AnuncianteExepcion
+     */
     public void crearAnunciante(Usuario usuario) throws AnuncianteExepcion {
         if (getListaAnunciantes() == null) {
             setListaAnunciantes(new ArrayList<>());
@@ -300,16 +406,34 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
         getListaAnunciantes().add(anunciante);
     }
 
+    /**
+     * metodo que se usa para eliminar un anunciante
+     * @param cedula
+     * @return
+     * @throws EliminarAnuncianteExepcion
+     */
     @Override
     public Boolean eliminarAnunciante(String cedula) throws EliminarAnuncianteExepcion {
         return null;
     }
 
+    /**
+     * Metodo que se usa para actualizar un anunciante
+     * @param cedulaActual
+     * @param anunciante
+     * @return
+     * @throws ActualizarAnuncianteExepcion
+     */
     @Override
     public boolean actualizarAnunciante(String cedulaActual, Anunciante anunciante) throws ActualizarAnuncianteExepcion {
         return false;
     }
 
+    /**
+     * Metodo que se usa para obtener un anunciante a traves de la cedula
+     * @param cedula
+     * @return
+     */
     @Override
     public Anunciante obtenerAnunciante(String cedula) {
         for (Anunciante anunciante : getListaAnunciantes()) {
@@ -322,6 +446,11 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
         return nuevoAnunciante;
     }
 
+    /**
+     * Metodo que se usa para crear un anunciante por cedula
+     * @param cedula
+     * @return
+     */
     private Anunciante crearAnunciantePorCedula(String cedula) {
         if (getListaAnunciantes() == null) {
             setListaAnunciantes(new ArrayList<>());
@@ -333,11 +462,21 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
         return anunciante;
     }
 
+    /**
+     * Metodo que se usa para crear un anuncio
+     * @param anunciante
+     * @param anuncio
+     */
     @Override
     public void crearAnuncio(Anunciante anunciante, Anuncio anuncio) {
         anunciante.getListaAnuncios().add(anuncio);
     }
 
+    /**
+     * Metodo que se usa para buscar un anunciante por cedula
+     * @param cedula
+     * @return
+     */
     @Override
     public Anunciante buscarAnuncianteCedula(String cedula) {
         for (Anunciante anunciante : getListaAnunciantes()) {
@@ -348,6 +487,13 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
         return null;
     }
 
+    /**
+     * Metodo que se usa para mostrar un mensaje
+     * @param titulo
+     * @param header
+     * @param contenido
+     * @param alertType
+     */
     private void mostrarMensaje(String titulo, String header, String contenido, Alert.AlertType alertType) {
         Alert aler = new Alert(alertType);
         aler.setTitle(titulo);
@@ -356,6 +502,11 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
         aler.showAndWait();
     }
 
+    /**
+     * Metodo que se usa para crear un anunciante
+     * @param usuario
+     * @return
+     */
     public Anunciante crearAnuncianteRetorna(Usuario usuario) {
         Anunciante anunciante = new Anunciante(10, new Date(),new ArrayList<>());
         anunciante.setTipo(usuario.getTipo());
@@ -367,6 +518,11 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
         return anunciante;
     }
 
+    /**
+     * Metodo que se usa para obtener la lista de pujas de un anuncio
+     * @param anuncio
+     * @return
+     */
     public List<Puja> obtenerListaPujas(Anuncio anuncio) {
         return anuncio.getListaPujas();
     }

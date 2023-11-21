@@ -12,7 +12,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class aplicacion extends Application {
-
+    /**
+     * Clase aplicacion para ejecutar las vistas.
+     */
     private Stage primaryStage;
 
     @Override

@@ -10,6 +10,9 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
+/**
+ * Mapper de la clase subasta
+ */
 @Mapper
 public interface SubastaMapper {
     SubastaMapper INSTANCE = Mappers.getMapper(SubastaMapper.class);

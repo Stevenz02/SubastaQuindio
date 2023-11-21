@@ -9,8 +9,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Clase utilitaria que proporciona métodos para la persistencia de datos y operaciones relacionadas.
+ */
 public class Persistencia {
+    // Rutas de archivos de persistencia
     public static final String RUTA_ARCHIVO_MODELO_SUBASTA_BINARIO = "src/main/resources/Persistencia/model.dat";
     public static final String RUTA_ARCHIVO_MODELO_SUBASTA_XML = "src/main/resources/Persistencia/model.xml";
     public static final String RUTA_ARCHIVO_COMPRADORES = "src/main/resources/Persistencia/archivoCompradores.dat";
@@ -151,7 +154,7 @@ public class Persistencia {
     //	---------------------- Metodos ------------------------   //
 
     /**
-     *
+     * Métodos de validación y otros
      * @param usuario
      * @param contrasenia
      * @return

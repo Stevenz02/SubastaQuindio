@@ -59,11 +59,17 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         // Registrar acciones del sistema
         registrarAccionesSistema("Inicio de sesión", 1, "inicioSesión");
     }
+    /**
+     * Crea la conexión con RabbitMQ
+     */
     private void initRabbitConnection() {
         rabbitFactory = new RabbitProducer();
         connectionFactory = rabbitFactory.getConnectionFactory();
         System.out.println("conexion establecidad");
     }
+    /**
+     * Método para consumir mensajes de RabbitMQ
+     */
     private void consumirMensajes() {
         try {
             Connection connection = connectionFactory.newConnection();
@@ -83,19 +89,26 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         }
     }
 
+    /**
+     * Inicia el proceso de consumir mensajes de RabbitMQ
+     */
     public void consumirMensajesServicio1(){
         hiloServicioConsumer1 = new Thread(this::run);
         hiloServicioConsumer1.start();
     }
 
-
+    /**
+     * Método ejecutado por el hilo de consumir mensajes
+     */
     public void run() {
         Thread currentThread = Thread.currentThread();
         if(currentThread == hiloServicioConsumer1){
             consumirMensajes();
         }
     }
-
+    /**
+     * Método para cargar datos de manera asíncrona
+     */
     private void cargarDatosAsync() {
         // Cargar datos de archivos
         executorService.submit(this::cargarDatosDesdeArchivos);
@@ -140,6 +153,9 @@ public class ModelFactoryController implements IModelFactoryControllerService {
             Thread.currentThread().interrupt();
         }
     }
+    /**
+     * Carga datos desde archivos
+     */
     private void cargarDatosDesdeArchivos() {
         subastaUniquindio = new SubastaUniquindio();
         try {
@@ -148,7 +164,9 @@ public class ModelFactoryController implements IModelFactoryControllerService {
             throw new RuntimeException(e);
         }
     }
-
+    /**
+     * Guarda datos de prueba
+     */
     private void salvarDatosPrueba() {
         Persistencia.guardarSubastaUniquindio(getSubastaUniquindio());
         Persistencia.guardarAnunciantes(getSubastaUniquindio().getListaAnunciantes());
@@ -156,10 +174,15 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         Persistencia.guardarUsuarios(getSubastaUniquindio().getListaUsuarios());
     }
 
+    /**
+     * Carga los datos base
+     */
     private void cargarDatosBase() {
         subastaUniquindio = inicializarDatos();
     }
-
+    /**
+     * Obtiene la instancia de SubastaUniquindio
+     */
     public SubastaUniquindio getSubastaUniquindio() {
         return subastaUniquindio;
     }
@@ -231,21 +254,43 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         guardarResourceXML();
         return true;
     }
+    /**
+     * Obtiene el usuario actual autenticado en la aplicación
+     * @return El objeto UsuarioDto del usuario actual
+     */
     public static UsuarioDto getUsuarioActual() {
         return usuarioActual;
     }
+    /**
+     * Establece el usuario actual autenticado en la aplicación
+     * @param usuario El objeto UsuarioDto a establecer como usuario actual
+     */
     public static void setUsuarioActual(UsuarioDto usuario) {
         usuarioActual = usuario;
     }
+    /**
+     * Convierte un objeto Usuario a su representación DTO (Data Transfer Object)
+     * @param usuario El objeto Usuario a convertir
+     * @return El objeto UsuarioDto correspondiente
+     */
     @Override
     public UsuarioDto userToDto(Usuario usuario) {
         return mapper.usuarioToUsuarioDto(usuario);
     }
+    /**
+     * Convierte un objeto ProductoDto a su representación de Producto
+     * @param productoDto El objeto ProductoDto a convertir
+     * @return El objeto Producto correspondiente
+     */
     @Override
     public Producto productoDtoToProducto(ProductoDto productoDto) {
         return mapper.productoDtoToProducto(productoDto);
     }
-
+    /**
+     * Produce un mensaje y lo envía a una cola específica en RabbitMQ
+     * @param queue   La cola de destino del mensaje
+     * @param message El mensaje a enviar
+     */
     @Override
     public void producirMensaje(String queue, String message) {
         try (Connection connection = connectionFactory.newConnection();
@@ -257,7 +302,11 @@ public class ModelFactoryController implements IModelFactoryControllerService {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Lee la lista de pujas asociadas a un anuncio específico
+     * @param anuncioDto El objeto AnuncioDto del anuncio
+     * @return Lista de objetos PujaDto asociados al anuncio
+     */
     @Override
     public List<PujaDto> leerListaPujasAnuncio(AnuncioDto anuncioDto) {
         Anuncio anuncio = mapper.anuncioDtoToAnuncio(anuncioDto);
@@ -267,12 +316,20 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         guardarResourceXML();
         return listaPujasDto;
     }
-
+    /**
+     * Convierte una lista de objetos Puja a su representación DTO
+     * @param listaPujas Lista de objetos Puja a convertir
+     * @return Lista de objetos PujaDto correspondientes
+     */
     private List<PujaDto> pujaToPujaDto(List<Puja> listaPujas){
         return mapper.getPujasDto(listaPujas);
     }
 
-
+    /**
+     * Agrega un nuevo usuario a la aplicación
+     * @param usuarioDto El objeto UsuarioDto del usuario a agregar
+     * @return true si se agregó exitosamente, false si el usuario ya existe o no cumple con los requisitos
+     */
     @Override
     public boolean agregarUsuario(UsuarioDto usuarioDto) {
         try{
@@ -301,7 +358,14 @@ public class ModelFactoryController implements IModelFactoryControllerService {
             throw new RuntimeException(e);
         }
     }
-
+    /**
+     * Agrega una puja a un anuncio específico por parte de un comprador
+     * @param anuncioDto El objeto AnuncioDto del anuncio
+     * @param pujaDto    El objeto PujaDto de la puja
+     * @param usuarioDto El objeto UsuarioDto del comprador que realiza la puja
+     * @return true si se agregó exitosamente, false si hay un error
+     * @throws CompradorExepcion Si hay un error relacionado con el comprador
+     */
     @Override
     public boolean agregarPuja(AnuncioDto anuncioDto, PujaDto pujaDto, UsuarioDto usuarioDto) throws CompradorExepcion {
         Puja puja = mapper.pujaDtoToPuja(pujaDto);
@@ -313,33 +377,56 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         return true;
     }
 
+    /**
+     * Genera un número aleatorio para propósitos específicos en la aplicación
+     * @return Cadena que representa el número aleatorio generado
+     */
     public String crearAleatorio(){
         return SubastaUniquindio.generarNumeroAleatorio();
     }
-
+    /**
+     * Actualiza la información de un usuario existente en la aplicación
+     * @param cedula      La cédula del usuario a actualizar
+     * @param usuarioDto  El objeto UsuarioDto con la nueva información
+     * @return true si la actualización fue exitosa, false si hubo un error
+     */
     @Override
     public boolean actualizarUsuario(String cedula, UsuarioDto usuarioDto) {
         try{
             Usuario usuario = mapper.usuarioDtoToUsuario(usuarioDto);
             getSubastaUniquindio().actualizarUsuario(cedula,usuario);
+            guardarResourceBinario();
+            guardarResourceXML();
             return true;
         } catch (ActualizarUsuarioExepcion e) {
             e.printStackTrace();
             return false;
         }
     }
-
+    /**
+     * Elimina un usuario de la aplicación
+     * @param cedula La cédula del usuario a eliminar
+     * @return true si se eliminó exitosamente, false si hubo un error
+     */
     @Override
     public boolean eliminarUsuario(String cedula) {
         boolean flag = false;
         try{
             flag = getSubastaUniquindio().eliminarUsuario(cedula);
+            guardarResourceBinario();
+            guardarResourceXML();
         }catch (UsuarioExepcion e){
             e.printStackTrace();
         }
         return flag;
     }
-
+    /**
+     * Inicia sesión de un usuario en la aplicación
+     * @param nombreUsuario Nombre de usuario del usuario
+     * @param contrasenia   Contraseña del usuario
+     * @param eventoMouse    Evento del mouse asociado a la acción
+     * @throws BuscarUsuarioExepcion Si hay un error al buscar el usuario
+     */
     @Override
     public void iniciarSesion(String nombreUsuario, String contrasenia, ActionEvent eventoMouse) throws BuscarUsuarioExepcion {
         Usuario usuario = null;
@@ -356,35 +443,59 @@ public class ModelFactoryController implements IModelFactoryControllerService {
             }
         }
     }
+    /**
+     * Cierra la sesión actual del usuario en la aplicación
+     * @param actionEvent Evento asociado al cierre de sesión
+     */
     public void cerrarSesion(ActionEvent actionEvent) {
         Aplicacion.volverALogin();
     }
+    /**
+     * Carga la vista del panel del comprador en la aplicación
+     * @param actionEvent Evento asociado a la carga del panel del comprador
+     */
     @Override
     public void cargarVistaComprador(ActionEvent actionEvent) {
         Aplicacion.cambiarPanelComprador();
     }
+    /**
+     * Carga la vista del panel del anunciante en la aplicación
+     * @param actionEvent Evento asociado a la carga del panel del anunciante
+     */
     @Override
     public void cargarVistaAnunciante(ActionEvent actionEvent) {
         Aplicacion.cambiarPanelAnunciante();
     }
-
+    /**
+     * Busca un anunciante por su cédula
+     * @param cedula La cédula del anunciante a buscar
+     * @return El objeto AnuncianteDto correspondiente a la búsqueda
+     */
     @Override
     public AnuncianteDto buscarAnuncianteCedula(String cedula) {
         Anunciante anunciante = getSubastaUniquindio().obtenerAnunciante(cedula);
         return crearAnuncianteDto(anunciante);
     }
-
+    /**
+     * Busca un comprador por su cédula
+     * @param cedula La cédula del comprador a buscar
+     * @return El objeto CompradorDto correspondiente a la búsqueda
+     */
     @Override
     public CompradorDto buscarCompradorCedula(String cedula) {
         Comprador comprador = getSubastaUniquindio().obtenerComprador(cedula);
         return crearCompradorDto(comprador);
     }
-
+    /**
+     * Crea un AnuncianteDto a partir de un Anunciante
+     */
     @Override
     public AnuncianteDto crearAnuncianteDto(Anunciante anunciante) {
         return mapper.anuncianteToAnuncianteDto(anunciante);
     }
-
+    /**
+     * Crea un CompradorDto a partir de un Comprador
+     */
     @Override
     public CompradorDto crearCompradorDto(Comprador comprador) {
         return mapper.compradorToCompradorDto(comprador);
