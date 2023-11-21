@@ -138,6 +138,7 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
     @Override
     public void crearPuja(Anuncio anuncio,Comprador comprador,Puja puja) {
         comprador.setPujaActual(puja);
+        comprador.setLimitePujas(comprador.getLimitePujas()-1);
         anuncio.getListaPujas().add(puja);
     }
 

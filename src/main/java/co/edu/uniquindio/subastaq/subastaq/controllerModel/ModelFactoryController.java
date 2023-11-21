@@ -299,6 +299,10 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         return true;
     }
 
+    public String crearAleatorio(){
+        return SubastaUniquindio.generarNumeroAleatorio();
+    }
+
     @Override
     public boolean actualizarUsuario(String cedula, UsuarioDto usuarioDto) {
         try{
