@@ -178,6 +178,18 @@ public class Persistencia {
         }else {
             throw new UsuarioExepcion ("Usuario no existe");
         }
-
+    }
+    // Métodos de exportación
+    public static void exportarAnunciantesCSV(List<Anunciante> anunciantes, File archivo) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
+            writer.write("Cedula,Nombre,ListaAnuncios,Apellido\n");
+            for (Anunciante anunciante : anunciantes) {
+                writer.write(String.format("%s,%s,%s,%s\n",
+                        anunciante.getCedula(),
+                        anunciante.getNombre(),
+                        anunciante.getListaAnuncios(),
+                        anunciante.getApellido()));
+            }
+        }
     }
 }

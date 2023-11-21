@@ -145,7 +145,7 @@
       <string>123456</string>
      </void>
      <void property="limitePujas">
-      <int>3</int>
+      <int>2</int>
      </void>
      <void property="nombre">
       <string>Juan</string>
@@ -156,15 +156,15 @@
      <void property="pujaActual">
       <object class="co.edu.uniquindio.subastaq.subastaq.model.Puja">
        <void property="codigo">
-        <string>465</string>
+        <string>447</string>
        </void>
        <void property="fecha">
         <object class="java.util.Date">
-         <long>1700536548210</long>
+         <long>1700539450009</long>
         </object>
        </void>
        <void property="ofertaActual">
-        <double>20000.0</double>
+        <double>250000.0</double>
        </void>
       </object>
      </void>

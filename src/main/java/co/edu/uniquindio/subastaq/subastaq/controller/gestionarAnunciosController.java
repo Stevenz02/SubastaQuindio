@@ -5,6 +5,7 @@ import co.edu.uniquindio.subastaq.subastaq.controllerModel.AnuncioController;
 import co.edu.uniquindio.subastaq.subastaq.controllerModel.ModelFactoryController;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.*;
 import co.edu.uniquindio.subastaq.subastaq.model.TipoProducto;
+import co.edu.uniquindio.subastaq.subastaq.utils.Persistencia;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -17,8 +18,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -52,6 +55,9 @@ public class gestionarAnunciosController {
 
     @FXML
     private Button btneliminarProducto;
+
+    @FXML
+    private Button btnExportarAnuncio;
 
     @FXML
     private ComboBox<TipoProducto> cbTipoProducto;
@@ -302,5 +308,23 @@ public class gestionarAnunciosController {
         aler.showAndWait();
     }
 
+    @FXML
+    void exportarAnuncioAction(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+        fileChooser.setTitle("Guardar Datos");
+
+        // Dialogo para guardar los Anunciantes
+        File fileAnunciantes = fileChooser.showSaveDialog(stage);
+        if (fileAnunciantes != null) {
+            try {
+                Persistencia.exportarAnunciantesCSV(modelFactoryController.getSubastaUniquindio().getListaAnunciantes(), fileAnunciantes);
+                mostrarMensaje("Notificación Anuncio", "Anuncios exportados", "Los anuncios se ha exportado con éxito", Alert.AlertType.INFORMATION);
+            } catch (IOException e) {
+                mostrarMensaje("Notificación Anuncio", "Anuncios no exportados", "Los anuncios no se ha exportado con éxito", Alert.AlertType.ERROR);
+            }
+        }
+    }
 }
 

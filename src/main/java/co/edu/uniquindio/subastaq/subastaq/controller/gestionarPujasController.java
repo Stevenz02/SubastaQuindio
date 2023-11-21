@@ -5,7 +5,7 @@ import co.edu.uniquindio.subastaq.subastaq.controllerModel.ModelFactoryControlle
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.AnuncioDto;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.ProductoDto;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.PujaDto;
-import co.edu.uniquindio.subastaq.subastaq.model.TipoProducto;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,9 +20,11 @@ import java.util.ResourceBundle;
 public class gestionarPujasController {
 
     ModelFactoryController modelFactoryController;
-    AnuncioController AnuncioControllerService;
+    AnuncioController anuncioControllerService;
     ObservableList<AnuncioDto> listaAnunciosDto = FXCollections.observableArrayList();
+    ObservableList<PujaDto> listaPujasDto = FXCollections.observableArrayList();
     AnuncioDto anuncioSeleccionado;
+    PujaDto pujaSeleccionado;
     public ProductoDto productoDto;
 
     @FXML
@@ -41,7 +43,7 @@ public class gestionarPujasController {
     private TableColumn<PujaDto, String> columnFecha;
 
     @FXML
-    private TableColumn<PujaDto, Double> columnOferta;
+    private TableColumn<PujaDto, String> columnOferta;
 
     @FXML
     private TableView<PujaDto> tablePujas;
@@ -60,38 +62,52 @@ public class gestionarPujasController {
 
     @FXML
     void initialize() {
-        AnuncioControllerService = new AnuncioController();
+        anuncioControllerService = new AnuncioController();
         modelFactoryController = ModelFactoryController.getInstance();
-        intiView();
+        listaAnunciosDto = FXCollections.observableArrayList();
+        listaPujasDto = FXCollections.observableArrayList();
+        initView();
     }
-    private void intiView() {
+
+    private void initView() {
         initDataBinding();
         obtenerAnuncios();
-        tableAnuncios.getItems().clear();
         tableAnuncios.setItems(listaAnunciosDto);
-        tablePujas.getItems().clear();
-        //tablePujas.setItems(listaPujasDto);
         listenerSelection();
     }
+
     private void initDataBinding() {
-        // Configura las columnas con los nombres de las propiedades
         colmNombreProducto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().productoDto().nombreProducto()));
         colmFechaPublicacion.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().fechaPublicacion())));
         colmFechaFinalizacion.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().FechaLimite())));
 
-    }
-    private void obtenerAnuncios() {
-        listaAnunciosDto.addAll(AnuncioControllerService.obtenerAnuncios());
-    }
-/*
-    private void obtenerPujas() {
-        listaPujasDto.addAll(AnuncioControllerService.obtenerPujas());
+        columnCodigoPuja.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().codigo()));
+        columnFecha.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().fecha())));
+        columnOferta.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().ofertaActual())));
     }
 
- */
+    private void obtenerAnuncios() {
+        // Aquí debes reemplazar con tu método para obtener los anuncios
+        listaAnunciosDto.addAll(anuncioControllerService.obtenerAnuncios());
+    }
+
+    private void obtenerPujas() {
+        if (anuncioSeleccionado != null) {
+            listaPujasDto.clear();
+            listaPujasDto.addAll(anuncioControllerService.obtenerPujas(anuncioSeleccionado));
+            Platform.runLater(() -> {
+                tablePujas.setItems(listaPujasDto);
+                tablePujas.refresh();
+            });
+        }
+    }
+
     private void listenerSelection() {
-        tableAnuncios.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            anuncioSeleccionado = newSelection;
+        tableAnuncios.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                anuncioSeleccionado = newValue;
+                obtenerPujas(); // Actualiza la tabla de pujas basado en el anuncio seleccionado.
+            }
         });
     }
 }

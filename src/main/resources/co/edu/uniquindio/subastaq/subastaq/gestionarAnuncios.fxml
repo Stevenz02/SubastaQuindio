@@ -12,6 +12,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="553.0" prefWidth="773.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.subastaq.subastaq.controller.gestionarAnunciosController">
     <children>
@@ -53,5 +54,10 @@
       <Button fx:id="btneliminarProducto" layoutX="598.0" layoutY="423.0" mnemonicParsing="false" onAction="#eliminarAnuncioAction" prefHeight="40.0" prefWidth="146.0" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Eliminar Anuncio" />
       <Button fx:id="btnCerrarSesion" layoutX="597.0" layoutY="474.0" mnemonicParsing="false" onAction="#cerrarSesionAction" prefHeight="40.0" prefWidth="146.0" styleClass="button-standard-stop" stylesheets="@../../../../../EstilosCCS/styles.css" text="Cerrar Sesión" />
       <Label layoutX="470.0" layoutY="177.0" styleClass="label-titulo" stylesheets="@../../../../../EstilosCCS/styles.css" text="Presione aquí para elegir una foto" />
+      <Button fx:id="btnExportarAnuncio" layoutX="597.0" layoutY="269.0" mnemonicParsing="false" onAction="#exportarAnuncioAction" prefHeight="40.0" prefWidth="146.0" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Exportar Anuncios CSV">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>
