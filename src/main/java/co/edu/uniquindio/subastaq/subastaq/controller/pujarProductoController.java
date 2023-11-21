@@ -15,9 +15,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -57,6 +60,18 @@ public class pujarProductoController {
 
     @FXML
     private Label labelTipoProducto;
+
+    @FXML
+    private TextField texFechaFinal;
+
+    @FXML
+    private TextField texFechaInicial;
+
+    @FXML
+    private TextField texNombreProducto;
+
+    @FXML
+    private TextField texTipoProducto;
 
     @FXML
     private TextField textFieldPuja;
@@ -145,6 +160,7 @@ public class pujarProductoController {
     private void listenerSelection() {
         tableAnuncios.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             anuncioSeleccionado = newSelection;
+            mostrarInformacionAnuncio(anuncioSeleccionado);
         });
     }
     /**
@@ -161,5 +177,27 @@ public class pujarProductoController {
         aler.setHeaderText(header);
         aler.setContentText(contenido);
         aler.showAndWait();
+    }
+    // Muestra la información detallada de un anuncio seleccionado.
+    private void mostrarInformacionAnuncio(AnuncioDto anuncioSeleccionado) {
+        if (anuncioSeleccionado != null) {
+            // Establecer el tipo de producto en el ComboBox, asegurándose de que el valor es el esperado y que TipoProducto es un enum.
+            texTipoProducto.setText(String.valueOf(anuncioSeleccionado.productoDto().tipoProducto()));
+
+            // Establecer el nombre del producto, la descripción y el nombre del anunciante en sus respectivos TextFields.
+            texNombreProducto.setText(anuncioSeleccionado.productoDto().nombreProducto());
+
+            // Convertir Date a LocalDate
+            LocalDate fechaPubLocalDate = anuncioSeleccionado.fechaPublicacion().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate fechaFinLocalDate = anuncioSeleccionado.FechaLimite().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+            texFechaInicial.setText(String.valueOf(fechaPubLocalDate));
+            texFechaFinal.setText(String.valueOf(fechaFinLocalDate));
+
+            // Para la imagen, se debe convertir la ruta de la imagen a un objeto Image y luego establecerla en un ImageView.
+            // Suponiendo que tienes un getter que te da la URL o ruta de la imagen como un String.
+            Image image = new Image(anuncioSeleccionado.productoDto().rutaImagen());
+            imgVistaProducto.setImage(image);
+        }
     }
 }

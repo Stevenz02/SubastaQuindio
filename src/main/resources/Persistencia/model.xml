@@ -53,12 +53,12 @@
          </object>
         </void>
         <void property="fechaLimite">
-         <object class="java.util.Date">
+         <object class="java.util.Date" id="Date1">
           <long>1700456400000</long>
          </object>
         </void>
         <void property="fechaPublicacion">
-         <object class="java.util.Date">
+         <object class="java.util.Date" id="Date2">
           <long>1700370000000</long>
          </object>
         </void>
@@ -74,7 +74,7 @@
            <string>C:\Users\apoyotic\iCloudDrive\Personal\Estafa.png</string>
           </void>
           <void property="tipoProducto">
-           <object class="java.lang.Enum" method="valueOf">
+           <object class="java.lang.Enum" id="TipoProducto0" method="valueOf">
             <class>co.edu.uniquindio.subastaq.subastaq.model.TipoProducto</class>
             <string>TECNOLOGIA</string>
            </object>
@@ -83,6 +83,132 @@
         </void>
         <void property="valorInicial">
          <double>1090233.0</double>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="co.edu.uniquindio.subastaq.subastaq.model.Anuncio">
+        <void property="anunciante">
+         <object class="co.edu.uniquindio.subastaq.subastaq.model.Anunciante" id="Anunciante1">
+          <void property="apellido">
+           <string>Morales</string>
+          </void>
+          <void property="cantidadAnuncios">
+           <int>10</int>
+          </void>
+          <void property="cedula">
+           <string>1004916715</string>
+          </void>
+          <void property="contrasenia">
+           <string>123456</string>
+          </void>
+          <void property="fechaLimite">
+           <object idref="Date0"/>
+          </void>
+          <void property="listaAnuncios">
+           <void method="add">
+            <object class="co.edu.uniquindio.subastaq.subastaq.model.Anuncio">
+             <void property="anunciante">
+              <object class="co.edu.uniquindio.subastaq.subastaq.model.Anunciante">
+               <void property="apellido">
+                <string>Morales</string>
+               </void>
+               <void property="cantidadAnuncios">
+                <int>10</int>
+               </void>
+               <void property="cedula">
+                <string>1004916715</string>
+               </void>
+               <void property="contrasenia">
+                <string>123456</string>
+               </void>
+               <void property="fechaLimite">
+                <object idref="Date0"/>
+               </void>
+               <void property="listaAnuncios">
+                <null/>
+               </void>
+               <void property="nombre">
+                <string>Steven</string>
+               </void>
+               <void property="nombreUsuario">
+                <string>prueba2</string>
+               </void>
+               <void property="tipo">
+                <string>Anunciante</string>
+               </void>
+              </object>
+             </void>
+             <void property="fechaLimite">
+              <object idref="Date1"/>
+             </void>
+             <void property="fechaPublicacion">
+              <object idref="Date2"/>
+             </void>
+             <void property="producto">
+              <object class="co.edu.uniquindio.subastaq.subastaq.model.Producto">
+               <void property="descripcion">
+                <string>No prende</string>
+               </void>
+               <void property="nombreProducto">
+                <string>BMW</string>
+               </void>
+               <void property="rutaImagen">
+                <string>C:\Users\apoyotic\iCloudDrive\Personal\Estafa.png</string>
+               </void>
+               <void property="tipoProducto">
+                <object idref="TipoProducto0"/>
+               </void>
+              </object>
+             </void>
+             <void property="valorInicial">
+              <double>1090233.0</double>
+             </void>
+            </object>
+           </void>
+          </void>
+          <void property="nombre">
+           <string>Steven</string>
+          </void>
+          <void property="nombreUsuario">
+           <string>prueba2</string>
+          </void>
+          <void property="tipo">
+           <string>Anunciante</string>
+          </void>
+         </object>
+        </void>
+        <void property="fechaLimite">
+         <object class="java.util.Date">
+          <long>1700629200000</long>
+         </object>
+        </void>
+        <void property="fechaPublicacion">
+         <object class="java.util.Date">
+          <long>1700542800000</long>
+         </object>
+        </void>
+        <void property="producto">
+         <object class="co.edu.uniquindio.subastaq.subastaq.model.Producto">
+          <void property="descripcion">
+           <string>MT07 A LA VENTA</string>
+          </void>
+          <void property="nombreProducto">
+           <string>MT07</string>
+          </void>
+          <void property="rutaImagen">
+           <string>C:\Users\apoyotic\Desktop\Imagen de WhatsApp 2023-11-17 a las 23.47.01_564f3224.jpg</string>
+          </void>
+          <void property="tipoProducto">
+           <object class="java.lang.Enum" method="valueOf">
+            <class>co.edu.uniquindio.subastaq.subastaq.model.TipoProducto</class>
+            <string>VEHICULOS</string>
+           </object>
+          </void>
+         </object>
+        </void>
+        <void property="valorInicial">
+         <double>2.75E7</double>
         </void>
        </object>
       </void>
@@ -145,7 +271,7 @@
       <string>123456</string>
      </void>
      <void property="limitePujas">
-      <int>2</int>
+      <int>1</int>
      </void>
      <void property="nombre">
       <string>Juan</string>
@@ -156,15 +282,15 @@
      <void property="pujaActual">
       <object class="co.edu.uniquindio.subastaq.subastaq.model.Puja">
        <void property="codigo">
-        <string>447</string>
+        <string>160</string>
        </void>
        <void property="fecha">
         <object class="java.util.Date">
-         <long>1700539450009</long>
+         <long>1700609090624</long>
         </object>
        </void>
        <void property="ofertaActual">
-        <double>250000.0</double>
+        <double>30000.0</double>
        </void>
       </object>
      </void>
@@ -178,7 +304,7 @@
    <void method="add">
     <object class="co.edu.uniquindio.subastaq.subastaq.model.Usuario">
      <void property="apellido">
-      <string>Morales</string>
+      <string>Moralesz</string>
      </void>
      <void property="cedula">
       <string>1004916715</string>
@@ -222,31 +348,6 @@
      </void>
      <void property="tipo">
       <string>Comprador</string>
-     </void>
-    </object>
-   </void>
-   <void method="add">
-    <object class="co.edu.uniquindio.subastaq.subastaq.model.Usuario">
-     <void property="apellido">
-      <string>nose</string>
-     </void>
-     <void property="cedula">
-      <string>8046</string>
-     </void>
-     <void property="contrasenia">
-      <string>123456</string>
-     </void>
-     <void property="edad">
-      <int>99</int>
-     </void>
-     <void property="nombre">
-      <string>Carlos</string>
-     </void>
-     <void property="nombreUsuario">
-      <string>prueba3</string>
-     </void>
-     <void property="tipo">
-      <string>Anunciante</string>
      </void>
     </object>
    </void>

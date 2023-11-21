@@ -15,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class gestionarPujasController {
@@ -104,10 +105,11 @@ public class gestionarPujasController {
      * Obtiene y muestra las pujas para el anuncio seleccionado actualmente.
      * Limpia y actualiza la lista de pujas en la interfaz de usuario.
      */
-    private void obtenerPujas() {
+    private void obtenerPujas(List<PujaDto> listaPujas) {
         if (anuncioSeleccionado != null) {
             listaPujasDto.clear();
             listaPujasDto.addAll(anuncioControllerService.obtenerPujas(anuncioSeleccionado));
+            listaPujasDto.addAll(listaPujas);
             Platform.runLater(() -> {
                 tablePujas.setItems(listaPujasDto);
                 tablePujas.refresh();
@@ -122,7 +124,7 @@ public class gestionarPujasController {
         tableAnuncios.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 anuncioSeleccionado = newValue;
-                obtenerPujas(); // Actualiza la tabla de pujas basado en el anuncio seleccionado.
+                obtenerPujas(anuncioSeleccionado.listaPujasDto()); // Actualiza la tabla de pujas basado en el anuncio seleccionado.
             }
         });
     }

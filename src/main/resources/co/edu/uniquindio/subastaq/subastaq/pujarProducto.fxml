@@ -30,10 +30,14 @@
                      <Font size="14.0" />
                   </font>
                </Label>
-               <Label fx:id="labelNombreProducto" layoutX="22.0" layoutY="95.0" prefHeight="17.0" prefWidth="176.0" text="Nombre Producto: " />
-               <Label fx:id="labelTipoProducto" layoutX="22.0" layoutY="121.0" prefHeight="17.0" prefWidth="176.0" text="Tipo Producto:" />
-               <Label fx:id="labelFechaInicial" layoutX="22.0" layoutY="147.0" prefHeight="17.0" prefWidth="176.0" text="Fecha Inicial:" />
-               <Label fx:id="labelFechaFinal" layoutX="22.0" layoutY="173.0" prefHeight="17.0" prefWidth="176.0" text="Fecha Final:" />
+               <Label fx:id="labelNombreProducto" layoutX="22.0" layoutY="95.0" prefHeight="18.0" prefWidth="102.0" text="Nombre Producto: " />
+               <Label fx:id="labelTipoProducto" layoutX="22.0" layoutY="129.0" prefHeight="17.0" prefWidth="176.0" text="Tipo Producto:" />
+               <Label fx:id="labelFechaInicial" layoutX="22.0" layoutY="163.0" prefHeight="17.0" prefWidth="176.0" text="Fecha Inicial:" />
+               <Label fx:id="labelFechaFinal" layoutX="22.0" layoutY="205.0" prefHeight="17.0" prefWidth="176.0" text="Fecha Final:" />
+               <TextField fx:id="texNombreProducto" layoutX="130.0" layoutY="91.0" prefHeight="26.0" prefWidth="112.0" />
+               <TextField fx:id="texTipoProducto" layoutX="130.0" layoutY="125.0" prefHeight="26.0" prefWidth="112.0" />
+               <TextField fx:id="texFechaInicial" layoutX="130.0" layoutY="159.0" prefHeight="26.0" prefWidth="112.0" />
+               <TextField fx:id="texFechaFinal" layoutX="130.0" layoutY="201.0" prefHeight="26.0" prefWidth="112.0" />
             </children>
          </AnchorPane>
          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">

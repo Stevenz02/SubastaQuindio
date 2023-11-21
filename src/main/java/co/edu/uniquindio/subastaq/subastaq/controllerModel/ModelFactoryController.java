@@ -54,7 +54,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         cargarDatosAsync();
 
         // Metodo para crear la conexion con rabbit
-        //initRabbitConnection();
+        initRabbitConnection();
 
         // Registrar acciones del sistema
         registrarAccionesSistema("Inicio de sesión", 1, "inicioSesión");
@@ -65,7 +65,7 @@ public class ModelFactoryController implements IModelFactoryControllerService {
     private void initRabbitConnection() {
         rabbitFactory = new RabbitProducer();
         connectionFactory = rabbitFactory.getConnectionFactory();
-        System.out.println("conexion establecidad");
+        System.out.println("conexion establecida");
     }
     /**
      * Método para consumir mensajes de RabbitMQ
