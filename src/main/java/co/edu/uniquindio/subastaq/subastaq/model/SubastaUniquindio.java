@@ -366,4 +366,8 @@ public class SubastaUniquindio implements ISubastaService, Serializable {
         anunciante.setContrasenia(usuario.getContrasenia());
         return anunciante;
     }
+
+    public List<Puja> obtenerListaPujas(Anuncio anuncio) {
+        return anuncio.getListaPujas();
+    }
 }

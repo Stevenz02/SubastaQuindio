@@ -258,6 +258,20 @@ public class ModelFactoryController implements IModelFactoryControllerService {
         }
     }
 
+    @Override
+    public List<PujaDto> leerListaPujasAnuncio(AnuncioDto anuncioDto) {
+        Anuncio anuncio = mapper.anuncioDtoToAnuncio(anuncioDto);
+        List<Puja> listaPujas = getSubastaUniquindio().obtenerListaPujas(anuncio);
+        List<PujaDto> listaPujasDto = pujaToPujaDto(listaPujas);
+        guardarResourceBinario();
+        guardarResourceXML();
+        return listaPujasDto;
+    }
+
+    private List<PujaDto> pujaToPujaDto(List<Puja> listaPujas){
+        return mapper.getPujasDto(listaPujas);
+    }
+
 
     @Override
     public boolean agregarUsuario(UsuarioDto usuarioDto) {
