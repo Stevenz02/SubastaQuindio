@@ -20,7 +20,7 @@
     </TableView>
 
     <TextField fx:id="textFieldPuja" layoutX="188.0" layoutY="498.0" prefWidth="200.0" promptText="Tu oferta" />
-    <Button fx:id="buttonOfertar" layoutX="404.0" layoutY="491.0" onAction="#handleOfertar" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Ofertar" />
+    <Button fx:id="buttonOfertar" layoutX="404.0" layoutY="491.0" onAction="#ofertarAction" styleClass="button-standard" stylesheets="@../../../../../EstilosCCS/styles.css" text="Ofertar" />
    <SplitPane dividerPositions="0.5022522522522522" layoutX="130.0" layoutY="240.0" prefHeight="244.0" prefWidth="515.0">
       <items>
          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="326.0" prefWidth="271.0">

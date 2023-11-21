@@ -4,6 +4,8 @@ import co.edu.uniquindio.subastaq.subastaq.controllerModel.AnuncioController;
 import co.edu.uniquindio.subastaq.subastaq.controllerModel.ModelFactoryController;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.AnuncioDto;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.ProductoDto;
+import co.edu.uniquindio.subastaq.subastaq.mapping.dto.PujaDto;
+import co.edu.uniquindio.subastaq.subastaq.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.subastaq.subastaq.model.Anuncio;
 import co.edu.uniquindio.subastaq.subastaq.model.TipoProducto;
 import javafx.beans.property.SimpleStringProperty;
@@ -27,6 +29,8 @@ public class pujarProductoController {
     AnuncioController AnuncioControllerService;
     ObservableList<AnuncioDto> listaAnunciosDto = FXCollections.observableArrayList();
     AnuncioDto anuncioSeleccionado;
+    UsuarioDto usuarioDto = ModelFactoryController.getUsuarioActual();
+    PujaDto pujaDto;
     public ProductoDto productoDto;
 
     @FXML
@@ -72,7 +76,8 @@ public class pujarProductoController {
     private TableView<AnuncioDto> tableAnuncios;
 
     @FXML
-    void handleOfertar(ActionEvent event) {
+    void ofertarAction(ActionEvent event) {
+        //pujaDto = new PujaDto();
     }
     public void cerrarSesionAction(ActionEvent event) {
         modelFactoryController = ModelFactoryController.getInstance();
