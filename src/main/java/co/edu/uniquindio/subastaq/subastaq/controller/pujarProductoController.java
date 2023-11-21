@@ -2,6 +2,7 @@ package co.edu.uniquindio.subastaq.subastaq.controller;
 
 import co.edu.uniquindio.subastaq.subastaq.controllerModel.AnuncioController;
 import co.edu.uniquindio.subastaq.subastaq.controllerModel.ModelFactoryController;
+import co.edu.uniquindio.subastaq.subastaq.exception.CompradorExepcion;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.AnuncioDto;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.ProductoDto;
 import co.edu.uniquindio.subastaq.subastaq.mapping.dto.PujaDto;
@@ -13,14 +14,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class pujarProductoController {
@@ -76,8 +74,13 @@ public class pujarProductoController {
     private TableView<AnuncioDto> tableAnuncios;
 
     @FXML
-    void ofertarAction(ActionEvent event) {
-        //pujaDto = new PujaDto();
+    void ofertarAction(ActionEvent event) throws CompradorExepcion {
+        pujaDto = new PujaDto(modelFactoryController.crearAleatorio(),new Date(), Double.parseDouble(textFieldPuja.getText()));
+        if(modelFactoryController.agregarPuja(anuncioSeleccionado,pujaDto,usuarioDto)){
+            mostrarMensaje("Notificación Puja", "Puja creada", "La puja se ha creado con éxito", Alert.AlertType.INFORMATION);
+        } else {
+            mostrarMensaje("Notificación Puja", "Puja no creada", "La puja no se ha creado con éxito", Alert.AlertType.ERROR);
+        }
     }
     public void cerrarSesionAction(ActionEvent event) {
         modelFactoryController = ModelFactoryController.getInstance();
@@ -114,5 +117,12 @@ public class pujarProductoController {
         tableAnuncios.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             anuncioSeleccionado = newSelection;
         });
+    }
+    private void mostrarMensaje(String titulo, String header, String contenido, Alert.AlertType alertType) {
+        Alert aler = new Alert(alertType);
+        aler.setTitle(titulo);
+        aler.setHeaderText(header);
+        aler.setContentText(contenido);
+        aler.showAndWait();
     }
 }

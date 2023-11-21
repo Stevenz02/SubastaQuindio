@@ -8,7 +8,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controller/pujarProductoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/subastaq/subastaq/controller/pujarProductoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Persistencia/SubastaLog.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persistencia/SubastaLog.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastaq/subastaq/pujarProducto.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/subastaq/subastaq/pujarProducto.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Persistencia/archivoCompradores.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persistencia/archivoCompradores.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Persistencia/model.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persistencia/model.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Persistencia/model.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persistencia/model.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +139,7 @@
       <workItem from="1700516198497" duration="110000" />
       <workItem from="1700521884651" duration="257000" />
       <workItem from="1700528273849" duration="18000" />
-      <workItem from="1700531699620" duration="2100000" />
+      <workItem from="1700531699620" duration="2725000" />
     </task>
     <servers />
   </component>

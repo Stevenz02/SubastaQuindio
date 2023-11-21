@@ -154,7 +154,19 @@
       <string>prueba1</string>
      </void>
      <void property="pujaActual">
-      <object class="co.edu.uniquindio.subastaq.subastaq.model.Puja"/>
+      <object class="co.edu.uniquindio.subastaq.subastaq.model.Puja">
+       <void property="codigo">
+        <string>465</string>
+       </void>
+       <void property="fecha">
+        <object class="java.util.Date">
+         <long>1700536548210</long>
+        </object>
+       </void>
+       <void property="ofertaActual">
+        <double>20000.0</double>
+       </void>
+      </object>
      </void>
      <void property="tipo">
       <string>Comprador</string>
